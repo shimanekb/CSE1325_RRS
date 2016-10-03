@@ -22,6 +22,7 @@ int PartController::Execute() {
 }
 
 const Part* PartController::CreatePart() {
+    const Part* part;
     Part::PartType part_type;
     std::string name;
     int part_number;
@@ -53,7 +54,14 @@ const Part* PartController::CreatePart() {
     if(rss_io::StringIn(description))
         throw std::invalid_argument{"Bad description input."};
 
-    return CreateBatteryPart(name, part_number, weight, cost, description);
+    if (part_type == Part::PartType::BATTERY) {
+        part = CreateBatteryPart(name, part_number, weight, cost, description);
+    } 
+    else if (part_type == Part::PartType::ARM) {
+        part = CreateArmPart(name, part_number, weight, cost, description);
+    }
+
+    return part;
 }
 
 const Battery* PartController::CreateBatteryPart(const std::string name, const int part_number, 
@@ -66,4 +74,19 @@ const Battery* PartController::CreateBatteryPart(const std::string name, const i
 
     return new Battery{name, part_number, weight, cost, description, Part::PartType::BATTERY, 
         kilowattHours};
+}
+
+
+const Arm* PartController::CreateArmPart(const std::string name, const int part_number, 
+            const double weight, const double cost, 
+            const std::string description) {
+   double power_consumed_watts; 
+   part_view.AskForPowerConsumedWatts();
+
+   if (rss_io::DoubleIn(power_consumed_watts))
+        throw std::invalid_argument{"Bad power consumed in watts input."};
+
+   return new Arm{name, part_number, weight, cost, description, Part::PartType::ARM, 
+        power_consumed_watts};
+
 }

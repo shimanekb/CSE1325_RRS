@@ -3,6 +3,7 @@
 
 #include "part.hpp"
 #include "battery.hpp"
+#include "arm.hpp"
 #include "part_view.hpp"
 
 class PartController {
@@ -11,6 +12,9 @@ class PartController {
     private:
         const Part* CreatePart();
         const Battery* CreateBatteryPart(const std::string name, const int part_number, 
+            const double weight, const double cost, 
+            const std::string description);
+        const Arm* CreateArmPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);
         PartView part_view;

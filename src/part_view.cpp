@@ -33,3 +33,7 @@ void PartView::DisplayPart(const Part* part) {
 void PartView::AskForKiloWattHours() {
     std::cout << "Enter energy contained in kilowatt hours: " << std::endl;
 }
+
+void PartView::AskForPowerConsumedWatts() {
+   std::cout << "Enter power consumed in watts: " << std::endl;
+}

@@ -12,6 +12,7 @@ class PartView {
         void AskPartCost();
         void AskPartDescription();
         void AskForKiloWattHours();
+        void AskForPowerConsumedWatts();
         void DisplayPart(const Part* part);
 };
 
