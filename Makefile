@@ -1,8 +1,9 @@
-vpath %.cpp src:test
-vpath %.hpp src:test
-vpath %.o src:test
+vpath %.hpp src:src/part:test
+vpath %.cpp src:src/part:test
+vpath %.o src:src/part:test
 
 TARGETDIR := bin
+INCLUDE := src/part
 OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o torso.o head.o
 CXXFLAGS =-std=c++14 -w
 
@@ -11,7 +12,7 @@ debug: CXXFLAGS += -g
 rebuild: clean executable
 
 executable: main.cpp $(OBJS)
-	$(CXX) $(CXXFLAGS) $^
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE) $^
 part_controller.o: part_controller.cpp battery.hpp part.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp torso.hpp head.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 part.o: part.cpp
@@ -40,4 +41,4 @@ torso_test.o: torso_test.cpp catch.hpp part.hpp torso.hpp
 head_test.o: head_test.cpp catch.hpp part.hpp head.hpp
 	$(CXX) $(CXXFLAGS) -Isrc -c $< -o $@ 
 clean:
-	rm -f *.o src/*.o a.out test/*.o test/*.gch
+	rm -f *.o src/*.o a.out test/*.o test/*.gch src/part/*.o 
