@@ -13,7 +13,7 @@ rebuild: clean executable
 
 executable: main.cpp $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INC) $^
-part_controller.o: part_controller.cpp battery.hpp part.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp torso.hpp head.hpp part_repo.hpp
+part_controller.o: part_controller.cpp battery.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp torso.hpp head.hpp part_repo.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 part.o: part.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
@@ -34,13 +34,15 @@ head.o: head.cpp part.hpp
 part_repo.o: part_repo.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 
-test: main_test.cpp catch.hpp part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o
+test: main_test.cpp catch.hpp part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o part_repo_test.o part_repo.o
 	$(CXX) $(CXXFLAGS) $^ 
 battery_test.o: battery_test.cpp catch.hpp part.hpp battery.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 torso_test.o: torso_test.cpp catch.hpp part.hpp torso.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 head_test.o: head_test.cpp catch.hpp part.hpp head.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+part_repo_test.o: part_repo_test.cpp part_repo.hpp battery.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 clean:
 	rm -f *.o src/*.o a.out test/*.o test/*.gch src/part/*.o 
