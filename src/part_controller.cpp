@@ -127,7 +127,7 @@ const Torso* PartController::CreateTorsoPart(const std::string name, const int p
            || battery_compartments > 3)
         throw std::invalid_argument{"Bad battery compartment size  input."};
 
-   return new Torso{name, part_number, weight, cost, description, Part::PartType::TORSO, 
+   return new Torso{name, part_number, weight, cost, description,
         battery_compartments};
 }
 

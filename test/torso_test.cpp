@@ -11,7 +11,7 @@ TEST_CASE("Torso ToString") {
    constexpr int kBatteryCompartments = 2;
 
    const Torso& torso = Torso{kName, kPartNumber, kWeight, kCost,kDescription, 
-       Part::PartType::TORSO, kBatteryCompartments};
+     kBatteryCompartments};
 
    REQUIRE(torso.ToString() != "");
 }
