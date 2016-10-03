@@ -94,9 +94,8 @@ const Arm* PartController::CreateArmPart(const std::string name, const int part_
    if (rss_io::DoubleIn(power_consumed_watts))
         throw std::invalid_argument{"Bad power consumed in watts input."};
 
-   return new Arm{name, part_number, weight, cost, description, Part::PartType::ARM, 
-        power_consumed_watts};
-
+   return new Arm{name, part_number, weight, cost, description, 
+       power_consumed_watts};
 }
 
 const Locomotor* PartController::CreateLocomotorPart(const std::string name, const int part_number, 
