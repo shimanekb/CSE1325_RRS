@@ -3,7 +3,7 @@ vpath %.o
 vpath %.hpp src test
 
 TARGETDIR := bin
-OBJS := part_controller.o part.o part_view.o rss_io.o
+OBJS := part_controller.o part.o part_view.o rss_io.o battery.o
 CXXFLAGS =-std=c++14 -w
 
 all: executable
@@ -19,6 +19,8 @@ part.o: part.cpp
 part_view.o: part_view.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 rss_io.o: rss_io.cpp part.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+battery.o: battery.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 
 test: main_test.cpp
