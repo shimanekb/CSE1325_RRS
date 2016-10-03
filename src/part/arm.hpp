@@ -1,5 +1,5 @@
-#ifndef ARM_HPP_
-#define ARM_HPP_
+#ifndef RRS_PART_ARM_HPP_
+#define RRS_PART_ARM_HPP_
 
 #include <string>
 #include "part.hpp"

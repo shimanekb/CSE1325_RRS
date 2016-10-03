@@ -1,5 +1,5 @@
-#ifndef PART_VIEW_HPP_
-#define PART_VIEW_HPP_
+#ifndef RRS_PART_PART_VIEW_HPP_
+#define RRS_PART_PART_VIEW_HPP_
 
 #include "part.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef LOCOMOTOR_HPP_
-#define LOCOMOTOR_HPP_
+#ifndef RRS_PART_LOCOMOTOR_HPP_
+#define RRS_PART_LOCOMOTOR_HPP_
 
 #include <string>
 #include "part.hpp"

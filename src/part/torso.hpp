@@ -1,5 +1,5 @@
-#ifndef TORSO_HPP_
-#define TORSO_HPP_
+#ifndef RRS_PART_TORSO_HPP_
+#define RRS_PART_TORSO_HPP_
 
 #include <string>
 #include "part.hpp"

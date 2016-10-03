@@ -4,7 +4,7 @@
 Battery::Battery(const std::string name, const int part_number, 
     const double weight, const double cost,
     const std::string description,
-    const double kilowattHours) : kKilowattHours(kilowattHours), 
+    const double kilowatt_hours) : kKilowattHours(kilowatt_hours), 
     Part(name, part_number, weight, cost, description, 
             Part::PartType::BATTERY) {};
 

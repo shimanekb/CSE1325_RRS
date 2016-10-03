@@ -1,5 +1,5 @@
-#ifndef PART_CONTROLLER_HPP_
-#define PART_CONTROLLER_HPP_
+#ifndef RRS_PART_PART_CONTROLLER_HPP_
+#define RRS_PART_PART_CONTROLLER_HPP_
 
 #include "part.hpp"
 #include "battery.hpp"
