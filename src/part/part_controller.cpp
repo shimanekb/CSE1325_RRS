@@ -7,10 +7,9 @@
 int PartController::Execute() {
     int error = 0;
     try {
-        const Part* part = CreatePart();
+        std::unique_ptr<const Part> part = CreatePart();
         part_view.DisplayPart(part);
-
-        delete part;        
+        part.reset();
     }
     catch (std::invalid_argument& e) {
         std::cerr << e.what() << std::endl;
@@ -20,8 +19,8 @@ int PartController::Execute() {
     return 1;
 }
 
-const Part* PartController::CreatePart() {
-    const Part* part;
+std::unique_ptr<const Part> PartController::CreatePart() {
+    std::unique_ptr<const Part> part;
     Part::PartType part_type;
     std::string name;
     int part_number;
@@ -72,20 +71,20 @@ const Part* PartController::CreatePart() {
     return part;
 }
 
-const Battery* PartController::CreateBatteryPart(const std::string name, const int part_number, 
+std::unique_ptr<const Battery> PartController::CreateBatteryPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description) { 
     double kilowattHours;
     part_view.AskForKiloWattHours();
     if (rss_io::DoubleIn(kilowattHours))
         throw std::invalid_argument{"Bad kilowatt hours input."};
-
-    return new Battery{name, part_number, weight, cost, description, 
-        kilowattHours};
+    auto ptr = std::unique_ptr<const Battery>{new Battery{name, part_number, 
+        weight, cost, description, kilowattHours}};
+    return ptr;
 }
 
 
-const Arm* PartController::CreateArmPart(const std::string name, const int part_number, 
+std::unique_ptr<const Arm> PartController::CreateArmPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description) {
    double power_consumed_watts; 
@@ -94,13 +93,14 @@ const Arm* PartController::CreateArmPart(const std::string name, const int part_
    if (rss_io::DoubleIn(power_consumed_watts))
         throw std::invalid_argument{"Bad power consumed in watts input."};
 
-   return new Arm{name, part_number, weight, cost, description, 
-       power_consumed_watts};
+   auto ptr = std::unique_ptr<const Arm>{new Arm{name, part_number, weight, 
+       cost, description, power_consumed_watts}}; 
+   return ptr;
 }
 
-const Locomotor* PartController::CreateLocomotorPart(const std::string name, const int part_number, 
-            const double weight, const double cost, 
-            const std::string description) {
+std::unique_ptr<const Locomotor> PartController::CreateLocomotorPart(
+        const std::string name, const int part_number, const double weight, 
+        const double cost,const std::string description) {
    double power_consumed_watts; 
    double max_speed;
 
@@ -112,28 +112,28 @@ const Locomotor* PartController::CreateLocomotorPart(const std::string name, con
    if (rss_io::DoubleIn(max_speed))
         throw std::invalid_argument{"Bad max speed input."};
 
-   return new Locomotor{name, part_number, weight, cost, description, 
-        power_consumed_watts, max_speed};
+   return std::unique_ptr<const Locomotor>{new Locomotor{name, part_number, weight, 
+       cost, description,power_consumed_watts, max_speed}};
 }
 
 
-const Torso* PartController::CreateTorsoPart(const std::string name, const int part_number, 
-            const double weight, const double cost, 
-            const std::string description) {
+std::unique_ptr<const Torso> PartController::CreateTorsoPart(
+        const std::string name, const int part_number, const double weight, 
+        const double cost,const std::string description) {
    int battery_compartments; 
 
    part_view.AskForBatteryCompartmentSize();
    if (rss_io::IntIn(battery_compartments) || battery_compartments < 0 
            || battery_compartments > 3)
         throw std::invalid_argument{"Bad battery compartment size  input."};
-
-   return new Torso{name, part_number, weight, cost, description,
-        battery_compartments};
+   
+   return std::unique_ptr<const Torso>{new Torso{name, part_number, weight, 
+       cost, description, battery_compartments}};
 }
 
-const Head* PartController::CreateHeadPart(const std::string name, 
+std::unique_ptr<const Head> PartController::CreateHeadPart(const std::string name, 
         const int part_number, const double weight, const double cost, 
         const std::string description) {
 
-   return new Head{name, part_number, weight, cost, description};
+   return std::unique_ptr<const Head>{new Head{name, part_number, weight, cost, description}};
 }

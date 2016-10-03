@@ -1,6 +1,7 @@
 #ifndef RRS_PART_PART_VIEW_HPP_
 #define RRS_PART_PART_VIEW_HPP_
 
+#include <memory>
 #include "part.hpp"
 
 class PartView {
@@ -15,7 +16,7 @@ class PartView {
         void AskForPowerConsumedWatts();
         void AskForMaxMphSpeed();
         void AskForBatteryCompartmentSize();
-        void DisplayPart(const Part* part);
+        void DisplayPart(std::unique_ptr<const Part>& part);
 };
 
 #endif
