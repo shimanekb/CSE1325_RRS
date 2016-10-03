@@ -17,13 +17,11 @@ TEST_CASE("PartRepo Crud Operations") {
 
    PartRepo& repo = PartRepo::GetInstance();
 
-   REQUIRE(repo.AddPart(std::unique_ptr<const Part>{new Battery{kName, 
+   REQUIRE(repo.Add(std::unique_ptr<const Part>{new Battery{kName, 
                kPartNumber, kWeight, kCost,kDescription, kKilowattHour}})
                == true);
 
-   /*
    SECTION("Part Repo GetParts") {
-
+        REQUIRE(repo.GetAll().size() == 1);
    }
-   */
 }

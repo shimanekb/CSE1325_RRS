@@ -7,7 +7,7 @@
 int PartController::Execute() {
     int error = 0;
     try {
-        part_repo.AddPart(CreatePart());
+        part_repo.Add(CreatePart());
     }
     catch (std::invalid_argument& e) {
         std::cerr << e.what() << std::endl;
