@@ -31,11 +31,13 @@ torso.o: torso.cpp part.hpp
 head.o: head.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 
-test: main_test.cpp catch.hpp part.o battery.o battery_test.o torso.o torso_test.o
+test: main_test.cpp catch.hpp part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o
 	$(CXX) $(CXXFLAGS) $^ 
 battery_test.o: battery_test.cpp catch.hpp part.hpp battery.hpp
 	$(CXX) $(CXXFLAGS) -Isrc -c $< -o $@ 
 torso_test.o: torso_test.cpp catch.hpp part.hpp torso.hpp
+	$(CXX) $(CXXFLAGS) -Isrc -c $< -o $@ 
+head_test.o: head_test.cpp catch.hpp part.hpp head.hpp
 	$(CXX) $(CXXFLAGS) -Isrc -c $< -o $@ 
 clean:
 	rm -f *.o src/*.o a.out test/*.o test/*.gch
