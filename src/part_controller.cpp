@@ -112,7 +112,7 @@ const Locomotor* PartController::CreateLocomotorPart(const std::string name, con
    if (rss_io::DoubleIn(max_speed))
         throw std::invalid_argument{"Bad max speed input."};
 
-   return new Locomotor{name, part_number, weight, cost, description, Part::PartType::ARM, 
+   return new Locomotor{name, part_number, weight, cost, description, 
         power_consumed_watts, max_speed};
 }
 

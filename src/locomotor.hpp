@@ -8,7 +8,7 @@ class Locomotor : public Part {
     public:
         Locomotor(const std::string name, const int part_number, 
                 const double weight, const double cost, 
-                const std::string description, const Part::PartType part_type,
+                const std::string description,
                 const double power_consumed_watts, const double max_speed);
         double GetPowerConsumedWatts() const;
         double GetMaxMphSpeed() const;
