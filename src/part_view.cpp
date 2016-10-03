@@ -34,6 +34,10 @@ void PartView::AskForKiloWattHours() {
     std::cout << "Enter energy contained in kilowatt hours: " << std::endl;
 }
 
+void PartView::AskForMaxMphSpeed() {
+    std::cout << "Enter maximum speed in mph: " << std::endl;
+}
+
 void PartView::AskForPowerConsumedWatts() {
    std::cout << "Enter power consumed in watts: " << std::endl;
 }

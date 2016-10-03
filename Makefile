@@ -3,7 +3,7 @@ vpath %.hpp src:test
 vpath %.o src:test
 
 TARGETDIR := bin
-OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o
+OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o
 CXXFLAGS =-std=c++14 -w
 
 all: executable
@@ -12,7 +12,7 @@ rebuild: clean executable
 
 executable: main.cpp $(OBJS)
 	$(CXX) $(CXXFLAGS) $^
-part_controller.o: part_controller.cpp battery.hpp part.hpp part_view.hpp rss_io.hpp arm.hpp
+part_controller.o: part_controller.cpp battery.hpp part.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 part.o: part.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
@@ -23,6 +23,8 @@ rss_io.o: rss_io.cpp part.hpp
 battery.o: battery.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 arm.o: arm.cpp part.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+locomotor.o: locomotor.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 
 test: main_test.cpp catch.hpp part.o battery.o battery_test.o 

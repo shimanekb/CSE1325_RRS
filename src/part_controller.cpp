@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <iostream>
 #include "part_controller.hpp"
-#include "battery.hpp"
 #include "rss_io.hpp"
 
 int PartController::Execute() {
@@ -60,6 +59,9 @@ const Part* PartController::CreatePart() {
     else if (part_type == Part::PartType::ARM) {
         part = CreateArmPart(name, part_number, weight, cost, description);
     }
+    else if (part_type == Part::PartType::LOCOMOTOR) {
+        part = CreateLocomotorPart(name, part_number, weight, cost, description);
+    }
 
     return part;
 }
@@ -88,5 +90,24 @@ const Arm* PartController::CreateArmPart(const std::string name, const int part_
 
    return new Arm{name, part_number, weight, cost, description, Part::PartType::ARM, 
         power_consumed_watts};
+
+}
+
+const Locomotor* PartController::CreateLocomotorPart(const std::string name, const int part_number, 
+            const double weight, const double cost, 
+            const std::string description) {
+   double power_consumed_watts; 
+   double max_speed;
+
+   part_view.AskForPowerConsumedWatts();
+   if (rss_io::DoubleIn(power_consumed_watts))
+        throw std::invalid_argument{"Bad power consumed in watts input."};
+
+   part_view.AskForMaxMphSpeed();
+   if (rss_io::DoubleIn(max_speed))
+        throw std::invalid_argument{"Bad max speed input."};
+
+   return new Locomotor{name, part_number, weight, cost, description, Part::PartType::ARM, 
+        power_consumed_watts, max_speed};
 
 }
