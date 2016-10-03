@@ -11,7 +11,7 @@ TEST_CASE("Battery ToString") {
    constexpr double kKilowattHour = 2;
 
    const Part& battery = Battery{kName, kPartNumber, kWeight, kCost,kDescription, 
-       Part::PartType::BATTERY, kKilowattHour};
+       kKilowattHour};
 
    REQUIRE(battery.ToString() != "");
 }

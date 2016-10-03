@@ -80,7 +80,7 @@ const Battery* PartController::CreateBatteryPart(const std::string name, const i
     if (rss_io::DoubleIn(kilowattHours))
         throw std::invalid_argument{"Bad kilowatt hours input."};
 
-    return new Battery{name, part_number, weight, cost, description, Part::PartType::BATTERY, 
+    return new Battery{name, part_number, weight, cost, description, 
         kilowattHours};
 }
 

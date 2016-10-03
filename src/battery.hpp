@@ -8,7 +8,7 @@ class Battery : public Part {
     public:
         Battery(const std::string name, const int part_number, 
                 const double weight, const double cost, 
-                const std::string description, const Part::PartType part_type,
+                const std::string description,
                 const double kilowattHours);
         double GetKilowattHours() const;
         std::string ToString() const;

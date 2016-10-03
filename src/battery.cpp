@@ -3,9 +3,10 @@
 
 Battery::Battery(const std::string name, const int part_number, 
     const double weight, const double cost,
-    const std::string description, const Part::PartType part_type,
+    const std::string description,
     const double kilowattHours) : kKilowattHours(kilowattHours), 
-    Part(name, part_number, weight, cost, description, part_type) {};
+    Part(name, part_number, weight, cost, description, 
+            Part::PartType::BATTERY) {};
 
 double Battery::GetKilowattHours() const {
     return kKilowattHours;
