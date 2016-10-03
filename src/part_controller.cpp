@@ -65,6 +65,9 @@ const Part* PartController::CreatePart() {
     else if (part_type == Part::PartType::TORSO) {
         part = CreateTorsoPart(name, part_number, weight, cost, description);
     }
+    else if (part_type == Part::PartType::HEAD) {
+        part = CreateHeadPart(name, part_number, weight, cost, description);
+    }
 
     return part;
 }
@@ -127,4 +130,12 @@ const Torso* PartController::CreateTorsoPart(const std::string name, const int p
 
    return new Torso{name, part_number, weight, cost, description, Part::PartType::TORSO, 
         battery_compartments};
+}
+
+const Head* PartController::CreateHeadPart(const std::string name, 
+        const int part_number, const double weight, const double cost, 
+        const std::string description) {
+
+   return new Head{name, part_number, weight, cost, description, 
+       Part::PartType::HEAD};
 }
