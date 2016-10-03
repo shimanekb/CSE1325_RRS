@@ -5,6 +5,7 @@
 #include "battery.hpp"
 #include "arm.hpp"
 #include "locomotor.hpp"
+#include "torso.hpp"
 #include "part_view.hpp"
 
 class PartController {
@@ -19,6 +20,9 @@ class PartController {
             const double weight, const double cost, 
             const std::string description);
         const Locomotor* CreateLocomotorPart(const std::string name, const int part_number, 
+            const double weight, const double cost, 
+            const std::string description);
+        const Torso* CreateTorsoPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);
         PartView part_view;

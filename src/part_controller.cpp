@@ -62,6 +62,9 @@ const Part* PartController::CreatePart() {
     else if (part_type == Part::PartType::LOCOMOTOR) {
         part = CreateLocomotorPart(name, part_number, weight, cost, description);
     }
+    else if (part_type == Part::PartType::TORSO) {
+        part = CreateTorsoPart(name, part_number, weight, cost, description);
+    }
 
     return part;
 }
@@ -109,5 +112,19 @@ const Locomotor* PartController::CreateLocomotorPart(const std::string name, con
 
    return new Locomotor{name, part_number, weight, cost, description, Part::PartType::ARM, 
         power_consumed_watts, max_speed};
+}
 
+
+const Torso* PartController::CreateTorsoPart(const std::string name, const int part_number, 
+            const double weight, const double cost, 
+            const std::string description) {
+   int battery_compartments; 
+
+   part_view.AskForBatteryCompartmentSize();
+   if (rss_io::IntIn(battery_compartments) || battery_compartments < 0 
+           || battery_compartments > 3)
+        throw std::invalid_argument{"Bad battery compartment size  input."};
+
+   return new Torso{name, part_number, weight, cost, description, Part::PartType::TORSO, 
+        battery_compartments};
 }

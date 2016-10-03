@@ -41,3 +41,8 @@ void PartView::AskForMaxMphSpeed() {
 void PartView::AskForPowerConsumedWatts() {
    std::cout << "Enter power consumed in watts: " << std::endl;
 }
+
+
+void PartView::AskForBatteryCompartmentSize() {
+   std::cout << "Enter the number of battery compartments (1-3): " << std::endl;
+}
