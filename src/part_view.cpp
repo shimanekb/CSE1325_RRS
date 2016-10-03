@@ -1,6 +1,5 @@
 #include <iostream>
-#include "part_view.hpp"
-
+#include "part_view.hpp" 
 void PartView::AskPartType() {
     std::cout << "Choose a part type: " << std::endl << "1. Torso" << std::endl
         << "2. Head" << std::endl << "3. Arm" << std::endl << "4. Locomotor"
@@ -27,6 +26,10 @@ void PartView::AskPartDescription() {
     std::cout << "Enter a part description: " << std::endl;
 }
 
-void PartView::DisplayPart(Part part) {
-    std::cout << part.ToString() << std::endl;
+void PartView::DisplayPart(const Part* part) {
+    std::cout << part->ToString() << std::endl;
+}
+
+void PartView::AskForKiloWattHours() {
+    std::cout << "Enter energy contained in kilowatt hours: " << std::endl;
 }

@@ -2,12 +2,16 @@
 #include <stdexcept>
 #include <iostream>
 #include "part_controller.hpp"
+#include "battery.hpp"
 #include "rss_io.hpp"
 
 int PartController::Execute() {
     int error = 0;
     try {
-        part_view.DisplayPart(CreatePart());
+        const Part* part = CreatePart();
+        part_view.DisplayPart(part);
+
+        delete part;        
     }
     catch (std::invalid_argument& e) {
         std::cerr << e.what() << std::endl;
@@ -17,7 +21,7 @@ int PartController::Execute() {
     return 1;
 }
 
-Part PartController::CreatePart() {
+const Part* PartController::CreatePart() {
     Part::PartType part_type;
     std::string name;
     int part_number;
@@ -49,5 +53,17 @@ Part PartController::CreatePart() {
     if(rss_io::StringIn(description))
         throw std::invalid_argument{"Bad description input."};
 
-    return Part{name, part_number, weight, cost, description, part_type};
+    return CreateBatteryPart(name, part_number, weight, cost, description);
+}
+
+const Battery* PartController::CreateBatteryPart(const std::string name, const int part_number, 
+            const double weight, const double cost, 
+            const std::string description) { 
+    double kilowattHours;
+    part_view.AskForKiloWattHours();
+    if (rss_io::DoubleIn(kilowattHours))
+        throw std::invalid_argument{"Bad kilowatt hours input."};
+
+    return new Battery{name, part_number, weight, cost, description, Part::PartType::BATTERY, 
+        kilowattHours};
 }

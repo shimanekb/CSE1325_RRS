@@ -11,6 +11,8 @@ class PartView {
         void AskPartWeight();
         void AskPartCost();
         void AskPartDescription();
-        void DisplayPart(Part part);
+        void AskForKiloWattHours();
+        void DisplayPart(const Part* part);
 };
+
 #endif

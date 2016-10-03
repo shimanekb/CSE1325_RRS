@@ -14,7 +14,7 @@ namespace rss_io {
             std::string input;
             std::getline(std::cin, input);
             
-            int index = std::stoi(input);
+            int index = std::stoi(input) - 1;
             if (index < 0 || index > kPartTypeIndexMax) {
                 error = 1;
             }

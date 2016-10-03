@@ -1,21 +1,21 @@
 #include <sstream>
-#include "battery.hpp"
+#include "arm.hpp"
 
-Battery::Battery(const std::string name, const int part_number, 
+Arm::Arm(const std::string name, const int part_number, 
     const double weight, const double cost,
     const std::string description, const Part::PartType part_type,
-    const double kilowattHours) : kKilowattHours(kilowattHours), 
+    const double power_consumed_watts) : kPowerConsumedWatts(power_consumed_watts), 
     Part(name, part_number, weight, cost, description, part_type) {};
 
-double Battery::GetKilowattHours() const {
-    return kKilowattHours;
+double Arm::GetPowerConsumedWatts() const {
+    return kPowerConsumedWatts;
 }
 
-std::string Battery::ToString() const {
+std::string Arm::ToString() const {
     std::stringstream str;
     str << GetPartNumber() << ", " << GetName() << ", " << GetWeight() << ", "
         << "$" << GetCost() << ", " << GetPartTypeString() << ", "
-        << GetDescription() << ", " << GetKilowattHours();
+        << GetDescription() << ", " << GetPowerConsumedWatts();
     return str.str();
 }
 

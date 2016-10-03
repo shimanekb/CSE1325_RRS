@@ -15,15 +15,15 @@ class Part {
         Part(const std::string name, const int part_number, const double weight,
                 const double cost, std::string description,
                 const Part::PartType part_type);
-        std::string GetName();
-        int GetPartNumber();
-        double GetWeight();
-        double GetCost();
-        std::string GetDescription();
-        Part::PartType GetPartType();
-        std::string ToString();
+        std::string GetName() const;
+        int GetPartNumber() const;
+        double GetWeight() const;
+        double GetCost() const;
+        std::string GetDescription() const;
+        std::string GetPartTypeString() const;
+        Part::PartType GetPartType() const;
+        virtual std::string ToString() const = 0;
     private:
-        std::string GetPartTypeString();
         const std::string kName;
         const int kPartNumber;
         const double kWeight;
