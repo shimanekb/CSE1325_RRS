@@ -21,7 +21,9 @@ class Part {
         double GetCost();
         std::string GetDescription();
         Part::PartType GetPartType();
+        std::string ToString();
     private:
+        std::string GetPartTypeString();
         const std::string kName;
         const int kPartNumber;
         const double kWeight;

@@ -1,10 +1,20 @@
-#include<string>
+#include <string>
+#include <stdexcept>
+#include <iostream>
 #include "part_controller.hpp"
 #include "rss_io.hpp"
 
 int PartController::Execute() {
-    CreatePart();
-    return 0;
+    int error = 0;
+    try {
+        part_view.DisplayPart(CreatePart());
+    }
+    catch (std::invalid_argument& e) {
+        std::cerr << e.what() << std::endl;
+        error = 1;
+    }
+
+    return 1;
 }
 
 Part PartController::CreatePart() {
@@ -16,22 +26,28 @@ Part PartController::CreatePart() {
     std::string description;
 
     part_view.AskPartType();
-    rss_io::PartTypeIn(part_type); 
+    if (rss_io::PartTypeIn(part_type))
+        throw std::invalid_argument{"Bad part type input."};
 
     part_view.AskPartName();
-    rss_io::StringIn(name);
+    if(rss_io::StringIn(name))
+        throw std::invalid_argument{"Bad part name input."};
 
     part_view.AskPartNumber();
-    rss_io::IntIn(part_number);
+    if(rss_io::IntIn(part_number))
+        throw std::invalid_argument{"Bad part number input."};
 
     part_view.AskPartWeight();
-    rss_io::DoubleIn(weight);
+    if(rss_io::DoubleIn(weight))
+        throw std::invalid_argument{"Bad weight input."};
 
     part_view.AskPartCost();
-    rss_io::DoubleIn(cost);
+    if(rss_io::DoubleIn(cost))
+        throw std::invalid_argument{"Bad cost input."};
 
     part_view.AskPartDescription();
-    rss_io::StringIn(description);
+    if(rss_io::StringIn(description))
+        throw std::invalid_argument{"Bad description input."};
 
     return Part{name, part_number, weight, cost, description, part_type};
 }

@@ -27,3 +27,6 @@ void PartView::AskPartDescription() {
     std::cout << "Enter a part description: " << std::endl;
 }
 
+void PartView::DisplayPart(Part part) {
+    std::cout << part.ToString() << std::endl;
+}

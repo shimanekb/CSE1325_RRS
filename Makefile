@@ -16,7 +16,7 @@ part_controller.o: part_controller.cpp part.hpp part_view.hpp rss_io.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 part.o: part.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
-part_view.o: part_view.cpp
+part_view.o: part_view.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 rss_io.o: rss_io.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
