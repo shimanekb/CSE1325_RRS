@@ -1,5 +1,5 @@
-#ifndef PART_
-#define PART_
+#ifndef PART_HPP_
+#define PART_HPP_
 
 #include <string>
 

@@ -1,0 +1,29 @@
+#include <iostream>
+#include "part_view.hpp"
+
+void PartView::AskPartType() {
+    std::cout << "Choose a part type: " << std::endl << "1. Torso" << std::endl
+        << "2. Head" << std::endl << "3. Arm" << std::endl << "4. Locomotor"
+        << std::endl << "5. Battery" << std::endl;
+}
+
+void PartView::AskPartName() {
+    std::cout << "Enter a part name: " << std::endl;
+}
+
+void PartView::AskPartNumber() {
+    std::cout << "Enter a part number: " << std::endl;
+}
+
+void PartView::AskPartWeight() {
+    std::cout << "Enter the part weight: " << std::endl;
+}
+
+void PartView::AskPartCost() {
+    std::cout << "Enter the part cost: " << std::endl;
+}
+
+void PartView::AskPartDescription() {
+    std::cout << "Enter a part description: " << std::endl;
+}
+
