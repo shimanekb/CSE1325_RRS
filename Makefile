@@ -34,6 +34,6 @@ head.o: head.cpp part.hpp
 test: main_test.cpp catch.hpp part.o battery.o battery_test.o 
 	$(CXX) $(CXXFLAGS) $^ 
 battery_test.o: battery_test.cpp catch.hpp part.hpp battery.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) -Isrc -c $< -o $@ 
 clean:
 	rm -f *.o src/*.o a.out test/*.o
