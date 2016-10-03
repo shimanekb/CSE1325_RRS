@@ -135,6 +135,5 @@ const Head* PartController::CreateHeadPart(const std::string name,
         const int part_number, const double weight, const double cost, 
         const std::string description) {
 
-   return new Head{name, part_number, weight, cost, description, 
-       Part::PartType::HEAD};
+   return new Head{name, part_number, weight, cost, description};
 }

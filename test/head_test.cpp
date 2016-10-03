@@ -9,8 +9,7 @@ TEST_CASE("Head ToString") {
    constexpr double kWeight = 10;
    constexpr double kCost = 20;
 
-   const Head& head = Head{kName, kPartNumber, kWeight, kCost,kDescription, 
-       Part::PartType::HEAD};
+   const Head& head = Head{kName, kPartNumber, kWeight, kCost,kDescription};
 
    REQUIRE(head.ToString() != "");
 }
