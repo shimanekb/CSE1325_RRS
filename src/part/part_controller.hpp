@@ -2,6 +2,7 @@
 #define RRS_PART_PART_CONTROLLER_HPP_
 
 #include <memory>
+#include "part_repo.hpp"
 #include "part.hpp"
 #include "battery.hpp"
 #include "arm.hpp"
@@ -31,6 +32,7 @@ class PartController {
             const double weight, const double cost, 
             const std::string description);
         PartView part_view;
+        PartRepo &part_repo = PartRepo::GetInstance();
 };
 
 #endif

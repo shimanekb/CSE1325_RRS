@@ -4,7 +4,7 @@ vpath %.o src:src/part:test:test/part
 
 TARGETDIR := bin
 INC = -Isrc/part -Itest
-OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o torso.o head.o
+OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o
 CXXFLAGS =-std=c++14 -w
 
 all: executable
@@ -13,7 +13,7 @@ rebuild: clean executable
 
 executable: main.cpp $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INC) $^
-part_controller.o: part_controller.cpp battery.hpp part.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp torso.hpp head.hpp
+part_controller.o: part_controller.cpp battery.hpp part.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp torso.hpp head.hpp part_repo.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 part.o: part.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
@@ -30,6 +30,8 @@ locomotor.o: locomotor.cpp part.hpp
 torso.o: torso.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 head.o: head.cpp part.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+part_repo.o: part_repo.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 
 test: main_test.cpp catch.hpp part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o

@@ -16,7 +16,7 @@ class PartView {
         void AskForPowerConsumedWatts();
         void AskForMaxMphSpeed();
         void AskForBatteryCompartmentSize();
-        void DisplayPart(std::unique_ptr<const Part>& part);
+        void DisplayPart(std::unique_ptr<const Part> const &part);
 };
 
 #endif

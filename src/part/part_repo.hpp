@@ -2,18 +2,21 @@
 #define RSS_PART_PART_REPO_HPP_
 
 #include <vector>
+#include <memory>
 #include "part.hpp"
 
 class PartRepo {
     public:
-        bool AddPart(const Part* part);
-        vector<Part> GetParts();
-        static PartRepo& GetInstance();
+        bool AddPart(std::unique_ptr<const Part> part);
+        //const std::vector<std::unique_ptr<const Part>> GetParts();
+        static PartRepo& GetInstance() {
+            static PartRepo instance;
+            return instance;
+        }
     private:
-        PartRepo();
-        PartRepo(const& PartRepo);
-        void operator=(const& PartRepo);
-        vector<Part> parts;
+        PartRepo() {};
+        PartRepo(PartRepo const&);
+        void operator=(PartRepo const&);
+        std::vector<std::unique_ptr<const Part>> parts;
 };
-
 #endif

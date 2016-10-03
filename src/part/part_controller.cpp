@@ -7,9 +7,7 @@
 int PartController::Execute() {
     int error = 0;
     try {
-        std::unique_ptr<const Part> part = CreatePart();
-        part_view.DisplayPart(part);
-        part.reset();
+        part_repo.AddPart(CreatePart());
     }
     catch (std::invalid_argument& e) {
         std::cerr << e.what() << std::endl;
