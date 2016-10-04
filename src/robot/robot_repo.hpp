@@ -1,6 +1,7 @@
 #ifndef RRS_ROBOT_ROBOT_REPO_HPP_
 #define RRS_ROBOT_ROBOT_REPO_HPP_
 
+#include <memory>
 #include "robot.hpp"
 
 class RobotRepo {
@@ -9,13 +10,13 @@ class RobotRepo {
             static RobotRepo instance;
             return instance;
         }
-        bool AddRobot(Robot robot);
+        bool AddRobot(std::unique_ptr<Robot> robot);
         Robot GetByModelNumber(int model_number);
         bool Save(Robot robot);
     private:
         RobotRepo() {};
         RobotRepo(RobotRepo const&);
         void operator=(RobotRepo const&);
-        std::vector<Robot> robots;
+        std::vector<std::unique_ptr<Robot>> robots;
 };
 #endif
