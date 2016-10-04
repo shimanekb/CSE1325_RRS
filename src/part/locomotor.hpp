@@ -13,6 +13,7 @@ class Locomotor : public Part {
         double GetPowerConsumedWatts() const;
         double GetMaxMphSpeed() const;
         std::string ToString() const;
+        std::unique_ptr<Part> GetCopy() const;
     private:
         const double kPowerConsumedWatts;
         const double kMaxSpeed;

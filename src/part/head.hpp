@@ -10,6 +10,7 @@ class Head : public Part {
                 const double weight, const double cost, 
                 const std::string description);
         std::string ToString() const;
+        std::unique_ptr<Part> GetCopy() const;
 };
 
 #endif

@@ -13,3 +13,16 @@ TEST_CASE("Head ToString") {
 
    REQUIRE(head.ToString() != "");
 }
+
+TEST_CASE("Head GetCopy") {
+   std::string kName = "FOO"; 
+   std::string kDescription = "Test";
+   constexpr int kPartNumber = 1234;
+   constexpr double kWeight = 10;
+   constexpr double kCost = 20;
+
+   const Head& head = Head{kName, kPartNumber, kWeight, kCost,kDescription};
+
+   std::unique_ptr<Part> headptr{head.GetCopy()};
+   REQUIRE(headptr->GetName() == kName);
+}

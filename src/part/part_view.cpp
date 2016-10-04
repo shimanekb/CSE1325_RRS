@@ -27,7 +27,7 @@ void PartView::AskPartDescription() {
     std::cout << "Enter a part description: " << std::endl;
 }
 
-void PartView::DisplayPart(std::unique_ptr<const Part> const &part) {
+void PartView::DisplayPart(std::unique_ptr<Part> const &part) {
     std::cout << part->ToString() << std::endl;
 }
 

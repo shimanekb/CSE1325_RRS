@@ -7,8 +7,8 @@
 
 class PartRepo {
     public:
-        bool Add(std::unique_ptr<const Part> part);
-        const std::vector<std::unique_ptr<const Part>>& GetAll();
+        bool Add(std::unique_ptr<Part> part);
+        const std::vector<std::unique_ptr<Part>>& GetAll();
         static PartRepo& GetInstance() {
             static PartRepo instance;
             return instance;
@@ -17,6 +17,6 @@ class PartRepo {
         PartRepo() {};
         PartRepo(PartRepo const&);
         void operator=(PartRepo const&);
-        std::vector<std::unique_ptr<const Part>> parts;
+        std::vector<std::unique_ptr<Part>> parts;
 };
 #endif

@@ -15,4 +15,7 @@ std::string Head::ToString() const {
     return str.str();
 }
 
-
+std::unique_ptr<Part> Head::GetCopy() const {
+    return std::unique_ptr<Part>{new Head{GetName(), GetPartNumber(),
+        GetWeight(), GetCost(), GetDescription()}};
+}

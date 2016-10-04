@@ -20,4 +20,7 @@ std::string Battery::ToString() const {
     return str.str();
 }
 
-
+std::unique_ptr<Part> Battery::GetCopy() const {
+    return std::unique_ptr<Part>{new Battery{GetName(), GetPartNumber(),
+        GetWeight(), GetCost(), GetDescription(), GetKilowattHours()}};
+}

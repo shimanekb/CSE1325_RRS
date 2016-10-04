@@ -57,4 +57,4 @@ $(OBJ_DIR)/robot_test.o: robot_test.cpp catch.hpp robot.hpp battery.hpp
 $(OBJ_DIR)/robot_repo_test.o: robot_repo_test.cpp robot.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 clean:
-	rm -f *.o src/*.o a.out test/*.o test/*.gch src/part/*.o 
+	rm -f $(OBJ_DIR)/*.o a.out 

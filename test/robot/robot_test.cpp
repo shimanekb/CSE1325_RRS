@@ -23,7 +23,7 @@ TEST_CASE("Robot Creation") {
         const std::string kDescription = "Test";
         constexpr double kKilowattHour = 30;
 
-        std::unique_ptr<const Part> part{ new Battery{kName, kPartNumber, 
+        std::unique_ptr<Part> part{ new Battery{kName, kPartNumber, 
             kWeight, kCost,kDescription,kKilowattHour}};
         REQUIRE(robot.AddPart(std::move(part)) == true);
         REQUIRE(robot.GetParts().size() == 1);

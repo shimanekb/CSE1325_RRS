@@ -12,6 +12,7 @@ class Arm : public Part {
                 const double power_consumed_watts);
         double GetPowerConsumedWatts() const;
         std::string ToString() const;
+        std::unique_ptr<Part> GetCopy() const;
     private:
         const double kPowerConsumedWatts;
 };

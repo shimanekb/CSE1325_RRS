@@ -15,20 +15,20 @@ class PartController {
     public:
         int Execute();
     private:
-        std::unique_ptr<const Part> CreatePart();
-        std::unique_ptr<const Battery> CreateBatteryPart(const std::string name, const int part_number, 
+        std::unique_ptr<Part> CreatePart();
+        std::unique_ptr<Battery> CreateBatteryPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);
-        std::unique_ptr<const Arm> CreateArmPart(const std::string name, const int part_number, 
+        std::unique_ptr<Arm> CreateArmPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);
-        std::unique_ptr<const Locomotor> CreateLocomotorPart(const std::string name, const int part_number, 
+        std::unique_ptr<Locomotor> CreateLocomotorPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);
-        std::unique_ptr<const Torso> CreateTorsoPart(const std::string name, const int part_number, 
+        std::unique_ptr<Torso> CreateTorsoPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);
-        std::unique_ptr<const Head> CreateHeadPart(const std::string name, const int part_number, 
+        std::unique_ptr<Head> CreateHeadPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);
         PartView part_view;

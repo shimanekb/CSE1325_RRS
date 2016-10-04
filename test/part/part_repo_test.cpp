@@ -12,12 +12,9 @@ TEST_CASE("PartRepo Crud Operations") {
    constexpr double kCost = 20;
    constexpr double kKilowattHour = 2;
 
-   const Part& battery = Battery{kName, kPartNumber, kWeight, kCost,kDescription, 
-       kKilowattHour};
-
    PartRepo& repo = PartRepo::GetInstance();
 
-   REQUIRE(repo.Add(std::unique_ptr<const Part>{new Battery{kName, 
+   REQUIRE(repo.Add(std::unique_ptr<Part>{new Battery{kName, 
                kPartNumber, kWeight, kCost,kDescription, kKilowattHour}})
                == true);
 

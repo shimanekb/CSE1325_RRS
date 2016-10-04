@@ -16,11 +16,11 @@ double Robot::GetPrice() const {
     return kPrice;
 }
 
-const std::vector<std::unique_ptr<const Part>>& Robot::GetParts() const {
+const std::vector<std::unique_ptr<Part>>& Robot::GetParts() const {
     return parts;
 }
 
-bool Robot::AddPart(std::unique_ptr<const Part> part) {
+bool Robot::AddPart(std::unique_ptr<Part> part) {
     parts.push_back(std::move(part));    
     return true;
 }

@@ -19,4 +19,7 @@ std::string Torso::ToString() const {
     return str.str();
 }
 
-
+std::unique_ptr<Part> Torso::GetCopy() const {
+    return std::unique_ptr<Part>{new Torso{GetName(), GetPartNumber(),
+        GetWeight(), GetCost(), GetDescription(), GetBatteryCompartmentSize()}};
+}
