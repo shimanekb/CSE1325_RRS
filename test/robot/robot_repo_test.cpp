@@ -1,5 +1,6 @@
 #include <string>
 #include <memory>
+#include "rss_error.hpp"
 #include "robot.hpp"
 #include "robot_repo.hpp"
 #include "catch.hpp"
@@ -12,6 +13,6 @@ TEST_CASE("RobotRepo Crud Operations") {
 
    std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice}};
 
-   REQUIRE(repo.AddRobot(std::move(robot)) == true);
+   REQUIRE(repo.AddRobot(std::move(robot)) == RssError::NO_ERROR);
 }
 

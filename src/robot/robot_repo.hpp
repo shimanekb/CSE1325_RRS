@@ -10,13 +10,16 @@ class RobotRepo {
             static RobotRepo instance;
             return instance;
         }
-        bool AddRobot(std::unique_ptr<Robot> robot);
-        Robot GetByModelNumber(int model_number);
-        bool Save(Robot robot);
+        int AddRobot(std::unique_ptr<Robot> robot);
+        int GetByModelNumber(int model_number, std::unique_ptr<Robot> &robot);
+        int Save(Robot robot);
     private:
         RobotRepo() {};
         RobotRepo(RobotRepo const&);
         void operator=(RobotRepo const&);
         std::vector<std::unique_ptr<Robot>> robots;
+        std::unique_ptr<Robot> CreateRobotCopy(
+            std::unique_ptr<Robot> const &robot);
+
 };
 #endif

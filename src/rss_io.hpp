@@ -1,5 +1,5 @@
-#ifndef RRS_PART_RSS_IO_HPP
-#define RRS_PART_RSS_IO_HPP
+#ifndef RRS_RSS_IO_HPP
+#define RRS_RSS_IO_HPP
 
 #include <string>
 #include "part.hpp"
