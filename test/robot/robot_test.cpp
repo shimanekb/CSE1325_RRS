@@ -4,10 +4,12 @@
 
 TEST_CASE("Robot Creation") {
    const std::string kName = "FOO";
-   constexpr int kModelNubmer = 1234;
+   constexpr int kModelNumber = 1234;
    constexpr double kPrice = 20.0;
 
-   Robot robot{kName, kModelNubmer, kPrice};
+   Robot robot{kName, kModelNumber, kPrice};
 
-   REQUIRE(true == true);
+   REQUIRE(robot.GetName() == kName);
+   REQUIRE(robot.GetModelNumber() == kModelNumber);
+   REQUIRE(robot.GetPrice() == kPrice);
 }
