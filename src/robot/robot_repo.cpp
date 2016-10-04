@@ -6,7 +6,7 @@ int RobotRepo::AddRobot(std::unique_ptr<Robot> robot) {
     return RssError::NO_ERROR;
 }
 
-int RobotRepo::GetByModelNumber(int model_number, std::unique_ptr<Robot> &robot) {
+int RobotRepo::GetRobotByModelNumber(int model_number, std::unique_ptr<Robot> &robot) {
     int error_code = RssError::NOT_FOUND;
     for (std::unique_ptr<Robot> const &bot : robots) {
        if (bot->GetModelNumber() == model_number) {

@@ -14,5 +14,11 @@ TEST_CASE("RobotRepo Crud Operations") {
    std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice}};
 
    REQUIRE(repo.AddRobot(std::move(robot)) == RssError::NO_ERROR);
+
+   SECTION("GetByModelNumber") {
+        std::unique_ptr<Robot> tmp_robot;
+        REQUIRE(repo.GetRobotByModelNumber(kModelNumber, tmp_robot) == RssError::NO_ERROR);
+        REQUIRE(tmp_robot->GetPrice() == kPrice);
+   }
 }
 

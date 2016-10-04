@@ -11,7 +11,7 @@ class RobotRepo {
             return instance;
         }
         int AddRobot(std::unique_ptr<Robot> robot);
-        int GetByModelNumber(int model_number, std::unique_ptr<Robot> &robot);
+        int GetRobotByModelNumber(int model_number, std::unique_ptr<Robot> &robot);
         int Save(Robot robot);
     private:
         RobotRepo() {};
