@@ -15,3 +15,12 @@ int Robot::GetModelNumber() const {
 double Robot::GetPrice() const {
     return kPrice;
 }
+
+const std::vector<std::unique_ptr<const Part>>& Robot::GetParts() const {
+    return parts;
+}
+
+bool Robot::AddPart(std::unique_ptr<const Part> part) {
+    parts.push_back(std::move(part));    
+    return true;
+}

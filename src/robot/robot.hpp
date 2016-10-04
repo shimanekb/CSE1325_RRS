@@ -9,10 +9,11 @@
 class Robot {
     public:
         Robot(const std::string name, const int model_number, const double price);
-        const std::vector<std::unique_ptr<const Part>> GetParts() const;
+        const std::vector<std::unique_ptr<const Part>>& GetParts() const;
         std::string GetName() const;
         int GetModelNumber() const;
         double GetPrice() const; 
+        bool AddPart(std::unique_ptr<const Part> part);
     private:
         std::vector<std::unique_ptr<const Part>> parts;
         const std::string kName;

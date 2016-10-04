@@ -47,7 +47,7 @@ head_test.o: head_test.cpp catch.hpp part.hpp head.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 part_repo_test.o: part_repo_test.cpp part_repo.hpp battery.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-robot_test.o: robot_test.cpp robot.hpp
+robot_test.o: robot_test.cpp robot.hpp battery.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 clean:
 	rm -f *.o src/*.o a.out test/*.o test/*.gch src/part/*.o 
