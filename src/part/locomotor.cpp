@@ -19,10 +19,15 @@ double Locomotor::GetMaxMphSpeed() const {
 
 std::string Locomotor::ToString() const {
     std::stringstream str;
-    str << GetPartNumber() << ", " << GetName() << ", " << GetWeight() << ", "
-        << "$" << GetCost() << ", " << GetPartTypeString() << ", "
-        << GetDescription() << ", " << GetPowerConsumedWatts() << ", "
-        << GetMaxMphSpeed();
+
+    str << "Part Number: " << GetPartNumber() << std::endl 
+       << "Part Type: " << GetPartTypeString() << std::endl
+       << "Part Name: " << GetName() << std::endl << "Part Weight: " 
+       << GetWeight() << " kg" << std::endl << "Part Cost: $" << GetCost() 
+       << "Power Consumed when Operating: " << GetPowerConsumedWatts() 
+       << " watts" << std::endl << "Max Speed: " << GetMaxMphSpeed() << " mph"
+       << std::endl << "Description: " << GetDescription() << std::endl;
+
     return str.str();
 }
 

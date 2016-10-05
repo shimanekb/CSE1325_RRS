@@ -13,9 +13,8 @@
 
 class PartController {
     public:
-        int Execute();
+        int CreatePart();
     private:
-        std::unique_ptr<Part> CreatePart();
         std::unique_ptr<Battery> CreateBatteryPart(const std::string name, const int part_number, 
             const double weight, const double cost, 
             const std::string description);

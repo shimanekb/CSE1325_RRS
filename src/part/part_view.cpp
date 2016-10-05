@@ -28,7 +28,8 @@ void PartView::AskPartDescription() {
 }
 
 void PartView::DisplayPart(std::unique_ptr<Part> const &part) {
-    std::cout << part->ToString() << std::endl;
+    std::cout << "Part Information" << std::endl << "*********************" 
+        << std::endl << part->ToString() << std::endl;
 }
 
 void PartView::AskForKiloWattHours() {

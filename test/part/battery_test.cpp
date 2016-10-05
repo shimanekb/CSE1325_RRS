@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 #include "battery.hpp"
 #include "catch.hpp"
 
@@ -13,7 +14,15 @@ TEST_CASE("Battery ToString") {
    const Part& battery = Battery{kName, kPartNumber, kWeight, kCost,kDescription, 
        kKilowattHour};
 
-   REQUIRE(battery.ToString() != "");
+   std::stringstream expected_string;
+   expected_string << "Part Number: " << kPartNumber << std::endl 
+       << "Part Type: " << "Battery" << std::endl
+       << "Part Name: " << kName << std::endl << "Part Weight: " 
+       << kWeight << " kg" << std::endl << "Part Cost: $" << kCost << std::endl
+       << "Kilowatt Hours: " << kKilowattHour << std::endl << "Description: " 
+       << kDescription << std::endl;
+
+   REQUIRE(battery.ToString() == expected_string.str());
 }
 
 TEST_CASE("Battery GetCopy") {
@@ -28,5 +37,5 @@ TEST_CASE("Battery GetCopy") {
        kKilowattHour};
 
    std::unique_ptr<Part> part{battery.GetCopy()};
-   REQUIRE(part->ToString() != "");
+   REQUIRE(part->ToString() != "Part Number: 1234\n");
 }

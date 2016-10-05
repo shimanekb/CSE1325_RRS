@@ -3,5 +3,5 @@
 int main() {
     PartController part_controller;
 
-    return part_controller.Execute();
+    return part_controller.CreatePart();
 }

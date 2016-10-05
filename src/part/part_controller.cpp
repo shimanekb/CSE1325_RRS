@@ -1,23 +1,11 @@
 #include <string>
-#include <stdexcept>
 #include <iostream>
+#include "rss_error.hpp"
 #include "part_controller.hpp"
 #include "rss_io.hpp"
 
-int PartController::Execute() {
-    int error = 0;
-    try {
-        part_repo.Add(CreatePart());
-    }
-    catch (std::invalid_argument& e) {
-        std::cerr << e.what() << std::endl;
-        error = 1;
-    }
-
-    return 1;
-}
-
-std::unique_ptr<Part> PartController::CreatePart() {
+int PartController::CreatePart() {
+    int error_code = RssError::NO_ERROR;
     std::unique_ptr<Part> part;
     Part::PartType part_type;
     std::string name;
@@ -26,47 +14,73 @@ std::unique_ptr<Part> PartController::CreatePart() {
     double cost;
     std::string description;
 
-    part_view.AskPartType();
-    if (rss_io::PartTypeIn(part_type))
-        throw std::invalid_argument{"Bad part type input."};
+    if (error_code == RssError::NO_ERROR) {
+        part_view.AskPartType();
+        if (rss_io::PartTypeIn(part_type))
+            error_code = RssError::BAD_INPUT_TYPE;
+    }
 
-    part_view.AskPartName();
-    if(rss_io::StringIn(name))
-        throw std::invalid_argument{"Bad part name input."};
+    if (error_code == RssError::NO_ERROR) {
+        part_view.AskPartName();
+        if(rss_io::StringIn(name))
+            error_code = RssError::BAD_INPUT_TYPE;
+    }
 
-    part_view.AskPartNumber();
-    if(rss_io::IntIn(part_number))
-        throw std::invalid_argument{"Bad part number input."};
+    if (error_code == RssError::NO_ERROR) {
+        part_view.AskPartNumber();
+        if(rss_io::IntIn(part_number))
+            error_code = RssError::BAD_INPUT_TYPE;
+    }
 
-    part_view.AskPartWeight();
-    if(rss_io::DoubleIn(weight))
-        throw std::invalid_argument{"Bad weight input."};
+    if (error_code == RssError::NO_ERROR) {
+        part_view.AskPartWeight();
+        if(rss_io::DoubleIn(weight))
+            error_code = RssError::BAD_INPUT_TYPE;
+    }
 
-    part_view.AskPartCost();
-    if(rss_io::DoubleIn(cost))
-        throw std::invalid_argument{"Bad cost input."};
+    if (error_code == RssError::NO_ERROR) {
+        part_view.AskPartCost();
+        if(rss_io::DoubleIn(cost))
+            error_code = RssError::BAD_INPUT_TYPE;
+    }
 
-    part_view.AskPartDescription();
-    if(rss_io::StringIn(description))
-        throw std::invalid_argument{"Bad description input."};
+    if (error_code == RssError::NO_ERROR) {
+        part_view.AskPartDescription();
+        if(rss_io::StringIn(description))
+            error_code = RssError::BAD_INPUT_TYPE;
+    }
+    
+    try {
+        if (error_code == RssError::NO_ERROR) {
+            if (part_type == Part::PartType::BATTERY && error_code == RssError::NO_ERROR) {
+                part = CreateBatteryPart(name, part_number, weight, cost, description);
+            } 
+            else if (part_type == Part::PartType::ARM && error_code == RssError::NO_ERROR) {
+                part = CreateArmPart(name, part_number, weight, cost, description);
+            }
+            else if (part_type == Part::PartType::LOCOMOTOR && error_code == RssError::NO_ERROR) {
+                part = CreateLocomotorPart(name, part_number, weight, cost, description);
+            }
+            else if (part_type == Part::PartType::TORSO && error_code == RssError::NO_ERROR) {
+                part = CreateTorsoPart(name, part_number, weight, cost, description);
+            }
+            else if (part_type == Part::PartType::HEAD && error_code == RssError::NO_ERROR) {
+                part = CreateHeadPart(name, part_number, weight, cost, description);
+            }
 
-    if (part_type == Part::PartType::BATTERY) {
-        part = CreateBatteryPart(name, part_number, weight, cost, description);
+            part_view.DisplayPart(part);
+            part_repo.Add(std::move(part));
+        }
+        else {
+            std::cerr << "Bad input" << std::endl;
+        }
     } 
-    else if (part_type == Part::PartType::ARM) {
-        part = CreateArmPart(name, part_number, weight, cost, description);
-    }
-    else if (part_type == Part::PartType::LOCOMOTOR) {
-        part = CreateLocomotorPart(name, part_number, weight, cost, description);
-    }
-    else if (part_type == Part::PartType::TORSO) {
-        part = CreateTorsoPart(name, part_number, weight, cost, description);
-    }
-    else if (part_type == Part::PartType::HEAD) {
-        part = CreateHeadPart(name, part_number, weight, cost, description);
+    catch (std::invalid_argument &e) {
+        error_code = RssError::BAD_INPUT_TYPE;
+        std::cerr << e.what() << std::endl;
     }
 
-    return part;
+    return error_code;
 }
 
 std::unique_ptr<Battery> PartController::CreateBatteryPart(const std::string name, const int part_number, 
