@@ -14,6 +14,7 @@ class Robot {
         int GetModelNumber() const;
         double GetPrice() const; 
         bool AddPart(std::unique_ptr<Part> part);
+        std::string ToString() const;
     private:
         std::vector<std::unique_ptr<Part>> parts;
         const std::string kName;

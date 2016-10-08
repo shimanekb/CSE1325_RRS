@@ -4,7 +4,7 @@ vpath %.o objs
 
 OBJ_DIR := objs
 INC = -Isrc/part -Itest -Isrc/robot -Isrc
-OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o robot.o robot_repo.o
+OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o robot.o robot_repo.o robot_controller.o robot_view.o
 TESTOBJS := part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o part_repo_test.o part_repo.o robot.o robot_test.o robot_repo.o robot_repo_test.o
 CXXFLAGS =-std=c++14 -w
 
@@ -35,11 +35,15 @@ $(OBJ_DIR)/torso.o: torso.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 $(OBJ_DIR)/head.o: head.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
-$(OBJ_DIR)/part_repo.o: part_repo.cpp part.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+$(OBJ_DIR)/part_repo.o: part_repo.cpp part.hpp rss_error.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot.o: robot.cpp part.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_repo.o: robot_repo.cpp robot.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/robot_controller.o: robot_controller.cpp robot_view.hpp robot_repo.hpp rss_io.hpp rss_error.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/robot_view.o: robot_view.cpp robot.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 
 test: main_test.cpp $(TESTOBJS)
