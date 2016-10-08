@@ -20,8 +20,7 @@ executable: main.cpp $(OBJS)
 $(OBJ_DIR)/part_controller.o: part_controller.cpp battery.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp torso.hpp head.hpp part_repo.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/part.o: part.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
-$(OBJ_DIR)/part_view.o: part_view.cpp part.hpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@ $(OBJ_DIR)/part_view.o: part_view.cpp part.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 $(OBJ_DIR)/rss_io.o: rss_io.cpp part.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
