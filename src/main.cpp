@@ -1,7 +1,7 @@
-#include "part_controller.hpp"
+#include "rrs_manager.hpp"
 
 int main() {
-    PartController part_controller;
+    RrsManager rrs_manager;
 
-    return part_controller.CreatePart();
+    return rrs_manager.execute();
 }
