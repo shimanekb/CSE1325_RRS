@@ -10,6 +10,8 @@ class RrsManager {
         int execute();
     private:
         int MainMenu();
+        int ReportMenu();
+        int CreateMenu();
         PartController part_controller;
         RobotController robot_controller;
         RrsManagerView rrs_view;

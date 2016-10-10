@@ -6,8 +6,12 @@ bool PartRepo::Add(std::unique_ptr<Part> part) {
     return true;
 }
 
-const std::vector<std::unique_ptr<Part>>& PartRepo::GetAll() {
-    return parts;    
+std::vector<std::unique_ptr<Part>> PartRepo::GetAll() {
+    std::vector<std::unique_ptr<Part>> tmp_parts;
+    for (std::unique_ptr<Part> const &part : parts) {
+        tmp_parts.push_back(part->GetCopy());
+    }
+    return tmp_parts;    
 }
 
 

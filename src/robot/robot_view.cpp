@@ -23,8 +23,9 @@ void RobotView::DisplayRobotModel(std::unique_ptr<Robot> const &robot) {
 
 void RobotView::DisplayPartSelectionMenu() {
     std::cout << "Part Selection" << std::endl << "**********************" 
+        << std::endl
         << "1. Add Part (by Part number)" << std::endl 
-        << "2. List Current Part Selection"
+        << "2. List Current Part Selection" << std::endl
         << "3. Reset Part Selection" << std::endl << "4. Create Robot Model"
         << std::endl << "5. Quit to main menu" << std::endl;
 }

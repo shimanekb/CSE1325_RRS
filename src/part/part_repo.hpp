@@ -8,8 +8,8 @@
 class PartRepo {
     public:
         bool Add(std::unique_ptr<Part> part);
-        const std::vector<std::unique_ptr<Part>>& GetAll();
         int GetByPartNumber(int part_number, std::unique_ptr<Part> &part);
+        std::vector<std::unique_ptr<Part>> GetAll();
         static PartRepo& GetInstance() {
             static PartRepo instance;
             return instance;

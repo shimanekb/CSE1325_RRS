@@ -4,6 +4,17 @@
 #include "part_controller.hpp"
 #include "rss_io.hpp"
 
+
+int PartController::ShowParts() {
+    int error_code = RssError::NO_ERROR;
+
+    for (std::unique_ptr<Part> const &part : part_repo.GetAll()) {
+        part_view.DisplayPart(part);
+    }
+
+    return error_code;
+}
+
 int PartController::CreatePart() {
     int error_code = RssError::NO_ERROR;
     std::unique_ptr<Part> part;
