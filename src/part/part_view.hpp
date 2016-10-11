@@ -2,6 +2,7 @@
 #define RRS_PART_PART_VIEW_HPP_
 
 #include <memory>
+#include <vector>
 #include "part.hpp"
 
 class PartView {
@@ -17,6 +18,7 @@ class PartView {
         void AskForMaxMphSpeed();
         void AskForBatteryCompartmentSize();
         void DisplayPart(std::unique_ptr<Part> const &part);
+        void DisplayParts(std::vector<std::unique_ptr<Part>> const &parts);
 };
 
 #endif

@@ -15,7 +15,9 @@ class Robot {
         double GetPrice() const; 
         bool AddPart(std::unique_ptr<Part> part);
         std::string ToString() const;
+        std::unique_ptr<Robot> GetCopy() const;
     private:
+        bool ValidatePart(std::unique_ptr<Part> const &Part);
         std::vector<std::unique_ptr<Part>> parts;
         const std::string kName;
         const int kModelNumber;

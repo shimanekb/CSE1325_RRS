@@ -22,12 +22,13 @@ void RobotView::DisplayRobotModel(std::unique_ptr<Robot> const &robot) {
 }
 
 void RobotView::DisplayPartSelectionMenu() {
-    std::cout << "Part Selection" << std::endl << "**********************" 
+    std::cout << std::endl
+        << "Part Selection" << std::endl << "**********************" 
         << std::endl
         << "1. Add Part (by Part number)" << std::endl 
         << "2. List Current Part Selection" << std::endl
-        << "3. Reset Part Selection" << std::endl << "4. Create Robot Model"
-        << std::endl << "5. Quit to main menu" << std::endl;
+        << "3. Create Robot Model"
+        << std::endl << "4. Quit to main menu" << std::endl;
 }
 
 void RobotView::DisplayPartSelectionSuccess() {
@@ -58,4 +59,20 @@ void RobotView::DisplayBadInput() {
 
 void RobotView::DisplayPartDoesNotExist() {
     std::cout << "Part does not exist." << std::endl;
+}
+
+void RobotView::DisplayRobotModels(std::vector<std::unique_ptr<Robot>> const &robots) {
+    int enumerate = 1;
+    std::cout << std::endl << "Robot Models List" << std::endl 
+        << "*************************" << std::endl;
+    for (std::unique_ptr<Robot> const &robot : robots) {
+        std::cout << enumerate++ << "." << std::endl;
+        std::cout << robot->ToString();
+    }
+
+    std::cout << std::endl;
+}
+
+void RobotView::DisplayModelCreationSuccess() {
+    std::cout << "Robot model successfully created." << std::endl;
 }

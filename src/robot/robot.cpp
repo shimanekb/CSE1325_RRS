@@ -39,3 +39,14 @@ std::string Robot::ToString() const {
 
     return ss.str();
 }
+
+
+std::unique_ptr<Robot> Robot::GetCopy() const {
+    std::unique_ptr<Robot> tmp_bot{new Robot{GetName(), GetModelNumber(), 
+    GetPrice()}};
+    for (std::unique_ptr<Part> const &part : GetParts()) {
+        tmp_bot->AddPart(part->GetCopy());
+    }
+
+    return std::move(tmp_bot);
+}

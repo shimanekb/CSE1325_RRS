@@ -52,6 +52,7 @@ int RrsManager::ReportMenu() {
            switch(selection) {
                case 1:
                    //robot model
+                   error_code = robot_controller.ShowRobots();
                    break;
                case 2:
                    //robot parts

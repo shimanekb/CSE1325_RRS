@@ -60,7 +60,7 @@ $(OBJ_DIR)/head_test.o: head_test.cpp catch.hpp part.hpp head.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/part_repo_test.o: part_repo_test.cpp part_repo.hpp battery.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/robot_test.o: robot_test.cpp catch.hpp robot.hpp battery.hpp
+$(OBJ_DIR)/robot_test.o: robot_test.cpp catch.hpp robot.hpp battery.hpp torso.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_repo_test.o: robot_repo_test.cpp robot.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 

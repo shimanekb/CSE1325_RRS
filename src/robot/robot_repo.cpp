@@ -55,3 +55,13 @@ std::unique_ptr<Robot> RobotRepo::CreateRobotCopy(
 
     return std::move(my_robot);
 }
+
+std::vector<std::unique_ptr<Robot>> RobotRepo::GetAll() {
+    std::vector<std::unique_ptr<Robot>> tmp_bots;
+    for (std::unique_ptr<Robot> const &robot : robots) {
+        tmp_bots.push_back(robot->GetCopy());
+    }
+    return tmp_bots;    
+}
+
+

@@ -8,9 +8,7 @@
 int PartController::ShowParts() {
     int error_code = RssError::NO_ERROR;
 
-    for (std::unique_ptr<Part> const &part : part_repo.GetAll()) {
-        part_view.DisplayPart(part);
-    }
+    part_view.DisplayParts(part_repo.GetAll());
 
     return error_code;
 }

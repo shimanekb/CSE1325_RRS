@@ -2,6 +2,7 @@
 #define RRS_ROBOT_ROBOT_REPO_HPP_
 
 #include <memory>
+#include <vector>
 #include "robot.hpp"
 
 class RobotRepo {
@@ -13,6 +14,7 @@ class RobotRepo {
         int GetRobotByModelNumber(int model_number, std::unique_ptr<Robot> &robot);
         int SaveRobot(std::unique_ptr<Robot> robot);
         int DeleteRobotByModelNumber(int model_number);
+        std::vector<std::unique_ptr<Robot>> GetAll();
     private:
         RobotRepo() {};
         RobotRepo(RobotRepo const&);

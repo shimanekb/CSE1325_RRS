@@ -19,6 +19,10 @@ int RobotController::CreateRobot() { int error_code = RssError::NO_ERROR;
     if (!error_code) {
         std::unique_ptr<Robot> robot{new Robot{name, model_number, price}};
         error_code = SelectParts(robot);        
+
+        if (!error_code && robot_repo.SaveRobot(std::move(robot))) {
+            robot_view.DisplayModelCreationSuccess();
+        }
     }
 
     return error_code;
@@ -30,11 +34,10 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
     bool complete = false;
     int part_number = 0;
     std::unique_ptr<Part> tmp_part;
-    std::vector<std::unique_ptr<Part>> tmp_parts;
 
     while(!complete) {
         robot_view.DisplayPartSelectionMenu();
-        if (rss_io::IntIn(select) || select < 0 || select > 5) {
+        if (rss_io::IntIn(select) || select < 0 || select > 4) {
             error_code = RssError::BAD_INPUT_TYPE;
             robot_view.DisplayBadPartSelectionInput();
         }
@@ -54,25 +57,24 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
                         robot_view.DisplayPartDoesNotExist();
                         break;
                     }
-                    else {
-                        tmp_parts.push_back(std::move(tmp_part));
+                    else if (robot->AddPart(std::move(tmp_part))){
                         robot_view.DisplayPartSelectionSuccess();
+                    }
+                    else {
+                        error_code = RssError::DID_NOT_CREATE;
+                        robot_view.DisplayPartSelectionFailure();
                     }
 
                     break;
                 case 2:
                     //List current selected parts
-                    robot_view.DisplayRobotParts(tmp_parts);
+                    robot_view.DisplayRobotParts(robot->GetParts());
                     break;
                 case 3:
-                    //reset parts
-                    tmp_parts.clear();
-                    break;
-                case 4:
                     //finish create
                     complete = true;
                     break;
-                case 5:
+                case 4:
                     //quit to main
                     error_code = RssError::DID_NOT_CREATE;
                     complete = true;
@@ -112,4 +114,9 @@ int RobotController::GetModelName(std::string &name) {
         error_code = RssError::BAD_INPUT_TYPE;
 
     return error_code;
+}
+
+int RobotController::ShowRobots() {
+    robot_view.DisplayRobotModels(robot_repo.GetAll());
+    return RssError::NO_ERROR;
 }
