@@ -1,6 +1,6 @@
 #include <sstream>
+#include "rss_error.hpp"
 #include "robot.hpp"
-
 Robot::Robot(const std::string name, const int model_number, const double price) 
     : kName(name), kModelNumber(model_number), kPrice(price) {};
 
@@ -49,4 +49,10 @@ std::unique_ptr<Robot> Robot::GetCopy() const {
     }
 
     return std::move(tmp_bot);
+}
+
+
+int Robot::ValidatePart(std::unique_ptr<Part> const &part) {
+    int error_code = RssError::NO_ERROR;
+    return error_code;
 }

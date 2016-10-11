@@ -64,6 +64,10 @@ TEST_CASE("Robot Part Add Torso and Batteries") {
 
    REQUIRE(robot.AddPart(battery->GetCopy()) == true);
    REQUIRE(robot.GetParts().size() == 2);
+
+   //Should fail because of exceeding max battery compartments
+   REQUIRE(robot.AddPart(battery->GetCopy()) == false);
+   REQUIRE(robot.GetParts().size() == 2);
 }
 
 TEST_CASE("Robot ToString") {

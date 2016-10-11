@@ -17,7 +17,7 @@ class Robot {
         std::string ToString() const;
         std::unique_ptr<Robot> GetCopy() const;
     private:
-        bool ValidatePart(std::unique_ptr<Part> const &Part);
+        int ValidatePart(std::unique_ptr<Part> const &part);
         std::vector<std::unique_ptr<Part>> parts;
         const std::string kName;
         const int kModelNumber;
