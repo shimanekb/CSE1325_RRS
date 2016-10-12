@@ -1,8 +1,11 @@
-#include <sstream>
-#include "rss_error.hpp"
 #include "robot.hpp"
-Robot::Robot(const std::string name, const int model_number, const double price) 
-    : kName(name), kModelNumber(model_number), kPrice(price) {};
+
+#include <sstream>
+
+#include "rss_error.hpp"
+#include "robot_validation_strategy_repo.hpp"
+
+Robot::Robot(const std::string name, const int model_number, const double price) : kName(name), kModelNumber(model_number), kPrice(price) {};
 
 std::string Robot::GetName() const {
     return kName;
@@ -21,8 +24,14 @@ const std::vector<std::unique_ptr<Part>>& Robot::GetParts() const {
 }
 
 bool Robot::AddPart(std::unique_ptr<Part> part) {
-    parts.push_back(std::move(part));    
-    return true;
+    bool added = false;
+    Part *tmp_part = part.release();
+    Part &ref_part = *tmp_part;
+    if (ValidatePart(ref_part) == RssError::NO_ERROR) {
+        parts.push_back(std::unique_ptr<Part>{tmp_part});    
+        added = true;
+    }
+    return added;
 }
 
 std::string Robot::ToString() const {
@@ -52,7 +61,16 @@ std::unique_ptr<Robot> Robot::GetCopy() const {
 }
 
 
-int Robot::ValidatePart(std::unique_ptr<Part> const &part) {
+int Robot::ValidatePart(const Part &part) {
     int error_code = RssError::NO_ERROR;
+
+    std::unique_ptr<RobotValidationStrategy> strategy;
+    RobotValidationStrategyRepo validationRepo{};
+    error_code = validationRepo.DetermineStrategy(part.GetPartType(), strategy);
+
+    if (!error_code) {
+        error_code = strategy->Validate(*this, part);   
+    }
+
     return error_code;
 }

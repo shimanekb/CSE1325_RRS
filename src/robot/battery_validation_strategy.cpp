@@ -1,7 +1,6 @@
 #include "battery_validation_strategy.hpp"
 
 #include <memory>
-#include <iostream>
 
 #include "rss_error.hpp"
 #include "torso.hpp"

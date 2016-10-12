@@ -1,7 +1,8 @@
 #include <string>
 #include <memory>
+
 #include "robot.hpp"
-#include "torso.hpp"
+#include "torso.hpp" 
 #include "battery.hpp"
 #include "catch.hpp"
 #include "battery_validation_strategy.hpp"
