@@ -4,10 +4,12 @@ vpath %.o objs
 
 OBJ_DIR := objs
 INC = -Isrc/part -Itest -Isrc/robot -Isrc
-ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o
+ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o robot_validation_strategy.o
 PART_OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o
 OBJS :=   rrs_manager.o rrs_manager_view.o $(ROBOT_OBJS) $(PART_OBJS)
-TESTOBJS := part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o part_repo_test.o part_repo.o robot.o robot_test.o robot_repo.o robot_repo_test.o
+
+ROBOT_TEST_OBJS := robot.o robot_test.o robot_repo.o robot_repo_test.o battery_validation_strategy_test.o
+TESTOBJS := $(ROBOT_TEST_OBJS) part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o part_repo_test.o part_repo.o battery_validation_strategy.o
 CXXFLAGS =-std=c++14 -w
 
 all: $(OBJ_DIR) executable
@@ -53,6 +55,8 @@ $(OBJ_DIR)/robot_view.o: robot_view.cpp robot.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/battery_validation_strategy.o: battery_validation_strategy.cpp robot_validation_strategy.hpp rss_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/robot_validation_strategy.o: robot_validation_strategy.cpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 
 test: main_test.cpp $(TESTOBJS)
 	$(CXX) $(CXXFLAGS) $^ 
@@ -67,6 +71,8 @@ $(OBJ_DIR)/part_repo_test.o: part_repo_test.cpp part_repo.hpp battery.hpp
 $(OBJ_DIR)/robot_test.o: robot_test.cpp catch.hpp robot.hpp battery.hpp torso.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_repo_test.o: robot_repo_test.cpp robot.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/battery_validation_strategy_test.o: battery_validation_strategy_test.cpp battery_validation_strategy.hpp robot.hpp catch.hpp battery.hpp torso.hpp rss_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 clean:
 	rm -f $(OBJ_DIR)/*.o a.out 

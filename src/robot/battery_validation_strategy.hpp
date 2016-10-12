@@ -5,8 +5,6 @@
 
 class BatteryValidationStrategy : public RobotValidationStrategy {
     public:
-        int Validate(std::unique_ptr<Robot> const &robot, 
-            std::unique_ptr<Part> const &part);
-
+        int Validate(const Robot &robot, const Part &part);
 };
 #endif
