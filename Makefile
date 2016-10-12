@@ -3,14 +3,14 @@ vpath %.cpp src:src/part:src/robot:test:test/part:test/robot
 vpath %.o objs 
 
 OBJ_DIR := objs
-INC = -Isrc/part -Itest -Isrc/robot -Isrc
-ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o robot_validation_strategy.o
+INC = -Isrc/part -Itest -Isrc/robot -Isrc 
+ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o
 PART_OBJS := part_controller.o part.o part_view.o rss_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o
-OBJS :=   rrs_manager.o rrs_manager_view.o $(ROBOT_OBJS) $(PART_OBJS)
+OBJS :=  rrs_manager.o rrs_manager_view.o $(ROBOT_OBJS) $(PART_OBJS)
 
-ROBOT_TEST_OBJS := robot.o robot_test.o robot_repo.o robot_repo_test.o battery_validation_strategy_test.o
-TESTOBJS := $(ROBOT_TEST_OBJS) part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o part_repo_test.o part_repo.o battery_validation_strategy.o
-CXXFLAGS =-std=c++14 -w
+ROBOT_TEST_OBJS := robot.o robot_test.o robot_repo.o robot_repo_test.o battery_validation_strategy_test.o robot_validation_strategy_repo.o battery_validation_strategy.o robot_validation_strategy_repo_test.o
+TESTOBJS := $(ROBOT_TEST_OBJS) part.o battery.o battery_test.o torso.o torso_test.o head.o head_test.o part_repo_test.o part_repo.o 
+CXXFLAGS =-std=c++11 -w
 
 all: $(OBJ_DIR) executable
 debug: CXXFLAGS += -g
@@ -57,6 +57,8 @@ $(OBJ_DIR)/battery_validation_strategy.o: battery_validation_strategy.cpp robot_
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_validation_strategy.o: robot_validation_strategy.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/robot_validation_strategy_repo.o: robot_validation_strategy_repo.cpp part.hpp robot_validation_strategy.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 
 test: main_test.cpp $(TESTOBJS)
 	$(CXX) $(CXXFLAGS) $^ 
@@ -73,6 +75,8 @@ $(OBJ_DIR)/robot_test.o: robot_test.cpp catch.hpp robot.hpp battery.hpp torso.hp
 $(OBJ_DIR)/robot_repo_test.o: robot_repo_test.cpp robot.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/battery_validation_strategy_test.o: battery_validation_strategy_test.cpp battery_validation_strategy.hpp robot.hpp catch.hpp battery.hpp torso.hpp rss_error.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/robot_validation_strategy_repo_test.o: robot_validation_strategy_repo_test.cpp robot_validation_strategy_repo.hpp robot.hpp catch.hpp battery.hpp torso.hpp rss_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 clean:
 	rm -f $(OBJ_DIR)/*.o a.out 

@@ -3,11 +3,13 @@
 
 #include "robot_validation_strategy.hpp"
 
+#include <memory>
+
+#include "part.hpp"
+
 class RobotValidationStrategyRepo {
     public:
         int DetermineStrategy(Part::PartType type, 
                 std::unique_ptr<RobotValidationStrategy> &strategy);
-    private:
-        const std::vector<RobotValidationStrategy> strategies;
 };
 #endif
