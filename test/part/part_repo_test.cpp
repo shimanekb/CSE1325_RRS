@@ -1,8 +1,10 @@
+#include "catch.hpp"
+
 #include <string>
 #include <memory>
-#include "battery.hpp"
-#include "part_repo.hpp"
-#include "catch.hpp"
+
+#include "part/battery.hpp"
+#include "part/part_repo.hpp"
 #include "rss_error.hpp"
 
 TEST_CASE("PartRepo Crud Operations") {

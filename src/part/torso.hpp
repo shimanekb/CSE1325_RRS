@@ -2,7 +2,8 @@
 #define RRS_PART_TORSO_HPP_
 
 #include <string>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class Torso : public Part {
     public:

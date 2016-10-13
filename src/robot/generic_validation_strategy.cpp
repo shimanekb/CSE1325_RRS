@@ -1,9 +1,9 @@
-#include "generic_validation_strategy.hpp"
+#include "robot/generic_validation_strategy.hpp"
 
 #include <memory>
 
 #include "rss_error.hpp"
-#include "torso.hpp"
+#include "part/torso.hpp"
 
 GenericValidationStrategy::GenericValidationStrategy(int max) : kMax(max) {};
 

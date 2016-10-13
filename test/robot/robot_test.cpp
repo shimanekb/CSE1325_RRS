@@ -1,9 +1,11 @@
+#include "catch.hpp"
+
 #include <string>
 #include <memory>
-#include "robot.hpp"
-#include "torso.hpp"
-#include "battery.hpp"
-#include "catch.hpp"
+
+#include "robot/robot.hpp"
+#include "part/torso.hpp"
+#include "part/battery.hpp"
 
 TEST_CASE("Robot Creation") {
    const std::string kName = "FOO";

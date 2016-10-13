@@ -1,5 +1,6 @@
+#include "robot/robot_view.hpp"
+
 #include <iostream>
-#include "robot_view.hpp"
 
 void RobotView::AskModelName() {
     std::cout << "Enter a robot model name: " << std::endl;

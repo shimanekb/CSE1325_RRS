@@ -1,9 +1,9 @@
-#include "robot.hpp"
+#include "robot/robot.hpp"
 
 #include <sstream>
 
 #include "rss_error.hpp"
-#include "robot_validation_strategy_repo.hpp"
+#include "robot/robot_validation_strategy_repo.hpp"
 
 Robot::Robot(const std::string name, const int model_number, const double price) : kName(name), kModelNumber(model_number), kPrice(price) {};
 

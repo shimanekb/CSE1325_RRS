@@ -1,7 +1,7 @@
-#include "robot_validation_strategy_repo.hpp"
+#include "robot/robot_validation_strategy_repo.hpp"
 
-#include "battery_validation_strategy.hpp"
-#include "generic_validation_strategy.hpp"
+#include "robot/battery_validation_strategy.hpp"
+#include "robot/generic_validation_strategy.hpp"
 #include "rss_error.hpp"
 
 

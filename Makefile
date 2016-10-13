@@ -28,21 +28,21 @@ $(OBJ_DIR)/rrs_manager_view.o: rrs_manager_view.cpp
 $(OBJ_DIR)/part_controller.o: part_controller.cpp battery.hpp part_view.hpp rss_io.hpp arm.hpp locomotor.hpp torso.hpp head.hpp part_repo.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/part.o: part.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/part_view.o: part_view.cpp part.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rss_io.o: rss_io.cpp part.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/battery.o: battery.cpp part.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/arm.o: arm.cpp part.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/locomotor.o: locomotor.cpp part.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/torso.o: torso.cpp part.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/head.o: head.cpp part.hpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/part_repo.o: part_repo.cpp part.hpp rss_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot.o: robot.cpp part.hpp robot_validation_strategy_repo.hpp

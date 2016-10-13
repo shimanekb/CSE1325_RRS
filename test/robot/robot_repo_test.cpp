@@ -1,10 +1,12 @@
+#include "catch.hpp"
+
 #include <string>
 #include <memory>
-#include "head.hpp"
+
+#include "part/head.hpp"
+#include "robot/robot.hpp"
+#include "robot/robot_repo.hpp"
 #include "rss_error.hpp"
-#include "robot.hpp"
-#include "robot_repo.hpp"
-#include "catch.hpp"
 
 TEST_CASE("RobotRepo GetRobotByModelNumber") {
    RobotRepo &repo = RobotRepo::GetInstance();

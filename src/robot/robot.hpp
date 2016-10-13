@@ -4,7 +4,8 @@
 #include <vector>
 #include <memory>
 #include <string>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class Robot {
     public:

@@ -1,6 +1,8 @@
-#include <string>
-#include "torso.hpp"
 #include "catch.hpp"
+
+#include <string>
+
+#include "part/torso.hpp"
 
 TEST_CASE("Torso ToString") {
    std::string kName = "FOO"; 

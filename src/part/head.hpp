@@ -2,7 +2,8 @@
 #define RRS_PART_HEAD_HPP_
 
 #include <string>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class Head : public Part {
     public:

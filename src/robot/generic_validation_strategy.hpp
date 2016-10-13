@@ -1,7 +1,7 @@
 #ifndef RRS_ROBOT_GENERIC_VALIDATION_STRATEGY_HPP_ 
 #define RRS_ROBOT_GENERIC_VALIDATION_STRATEGY_HPP_
 
-#include "robot_validation_strategy.hpp"
+#include "robot/robot_validation_strategy.hpp"
 
 class GenericValidationStrategy : public RobotValidationStrategy {
     public:

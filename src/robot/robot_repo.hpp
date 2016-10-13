@@ -3,7 +3,8 @@
 
 #include <memory>
 #include <vector>
-#include "robot.hpp"
+
+#include "robot/robot.hpp"
 
 class RobotRepo {
     public:

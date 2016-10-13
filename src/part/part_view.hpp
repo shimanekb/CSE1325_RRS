@@ -3,7 +3,8 @@
 
 #include <memory>
 #include <vector>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class PartView {
     public:

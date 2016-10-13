@@ -2,9 +2,10 @@
 #define RRS_ROBOT_ROBOT_CONTROLLER_HPP_
 
 #include <memory>
-#include "robot_view.hpp"
-#include "part_repo.hpp"
-#include "robot_repo.hpp"
+
+#include "robot/robot_view.hpp"
+#include "part/part_repo.hpp"
+#include "robot/robot_repo.hpp"
 
 class RobotController {
     public:

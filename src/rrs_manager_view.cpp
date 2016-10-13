@@ -1,5 +1,7 @@
-#include <iostream>
 #include "rrs_manager_view.hpp"
+
+#include <iostream>
+
 
 void RrsManagerView::DisplayMainMenu() {
     std::cout << std::endl << "Main Menu" << std::endl 

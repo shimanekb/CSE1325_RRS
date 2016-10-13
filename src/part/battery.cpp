@@ -1,5 +1,6 @@
+#include "part/battery.hpp"
+
 #include <sstream>
-#include "battery.hpp"
 
 Battery::Battery(const std::string name, const int part_number, 
     const double weight, const double cost,

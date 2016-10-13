@@ -3,7 +3,8 @@
 
 #include <string>
 #include <memory>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class Battery : public Part {
     public:

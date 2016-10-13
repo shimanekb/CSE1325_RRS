@@ -1,8 +1,8 @@
 #ifndef RRS_MANAGER_HPP_
 #define RRS_MANAGER_HPP_
 
-#include "robot_controller.hpp"
-#include "part_controller.hpp"
+#include "robot/robot_controller.hpp"
+#include "part/part_controller.hpp"
 #include "rrs_manager_view.hpp"
 
 class RrsManager {

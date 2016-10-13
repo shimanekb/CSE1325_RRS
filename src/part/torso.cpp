@@ -1,5 +1,6 @@
+#include "part/torso.hpp"
+
 #include <sstream>
-#include "torso.hpp"
 
 Torso::Torso(const std::string name, const int part_number, 
     const double weight, const double cost,

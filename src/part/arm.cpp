@@ -1,5 +1,6 @@
+#include "part/arm.hpp"
+
 #include <sstream>
-#include "arm.hpp"
 
 Arm::Arm(const std::string name, const int part_number, 
     const double weight, const double cost,

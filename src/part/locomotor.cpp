@@ -1,5 +1,6 @@
+#include "part/locomotor.hpp"
+
 #include <sstream>
-#include "locomotor.hpp"
 
 Locomotor::Locomotor(const std::string name, const int part_number, 
     const double weight, const double cost,

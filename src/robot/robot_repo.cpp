@@ -1,4 +1,5 @@
-#include "robot_repo.hpp"
+#include "robot/robot_repo.hpp"
+
 #include "rss_error.hpp"
 
 int RobotRepo::GetRobotByModelNumber(int model_number, std::unique_ptr<Robot> &robot) {

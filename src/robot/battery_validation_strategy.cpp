@@ -1,9 +1,9 @@
-#include "battery_validation_strategy.hpp"
+#include "robot/battery_validation_strategy.hpp"
 
 #include <memory>
 
 #include "rss_error.hpp"
-#include "torso.hpp"
+#include "part/torso.hpp"
 
 int BatteryValidationStrategy::Validate(const Robot &robot, const Part &part) {
     int error_code = RssError::OUT_OF_RANGE;

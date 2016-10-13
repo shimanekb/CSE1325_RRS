@@ -1,6 +1,8 @@
-#include <string>
-#include "head.hpp"
 #include "catch.hpp"
+
+#include <string>
+
+#include "part/head.hpp"
 
 TEST_CASE("Head ToString") {
    std::string kName = "FOO"; 

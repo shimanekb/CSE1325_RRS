@@ -3,7 +3,8 @@
 
 #include <vector>
 #include <memory>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class PartRepo {
     public:

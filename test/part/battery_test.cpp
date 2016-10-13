@@ -1,7 +1,9 @@
+#include "catch.hpp"
+
 #include <string>
 #include <sstream>
-#include "battery.hpp"
-#include "catch.hpp"
+
+#include "part/battery.hpp"
 
 TEST_CASE("Battery ToString") {
    std::string kName = "FOO"; 

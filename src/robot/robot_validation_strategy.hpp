@@ -1,8 +1,8 @@
 #ifndef RRS_ROBOT_ROBOT_VALIDATION_STRATEGY_HPP_
 #define RRS_ROBOT_ROBOT_VALIDATION_STRATEGY_HPP_
 
-#include "part.hpp"
-#include "robot.hpp"
+#include "part/part.hpp"
+#include "robot/robot.hpp"
 
 class RobotValidationStrategy {
     public:

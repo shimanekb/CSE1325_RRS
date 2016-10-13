@@ -1,5 +1,6 @@
+#include "part/head.hpp"
+
 #include <sstream>
-#include "head.hpp"
 
 Head::Head(const std::string name, const int part_number, 
     const double weight, const double cost,

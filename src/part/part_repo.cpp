@@ -1,4 +1,5 @@
-#include "part_repo.hpp"
+#include "part/part_repo.hpp"
+
 #include "rss_error.hpp"
 
 bool PartRepo::Add(std::unique_ptr<Part> part) {

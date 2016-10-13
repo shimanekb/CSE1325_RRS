@@ -2,7 +2,8 @@
 #define RRS_RSS_IO_HPP
 
 #include <string>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 namespace rss_io {
     int PartTypeIn(Part::PartType &part_type);

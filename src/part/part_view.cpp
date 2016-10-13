@@ -1,5 +1,6 @@
+#include "part/part_view.hpp" 
+
 #include <iostream>
-#include "part_view.hpp" 
 
 void PartView::AskPartType() {
     std::cout << std::endl << "Choose a part type: " << std::endl << "1. Torso" 

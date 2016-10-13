@@ -1,5 +1,7 @@
+#include "robot/robot_controller.hpp"
+
 #include <string>
-#include "robot_controller.hpp"
+
 #include "rss_io.hpp"
 #include "rss_error.hpp"
 

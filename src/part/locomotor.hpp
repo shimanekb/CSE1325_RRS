@@ -2,7 +2,8 @@
 #define RRS_PART_LOCOMOTOR_HPP_
 
 #include <string>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class Locomotor : public Part {
     public:

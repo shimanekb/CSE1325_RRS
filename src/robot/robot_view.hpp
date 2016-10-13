@@ -3,7 +3,8 @@
 
 #include <vector>
 #include <memory>
-#include "robot.hpp"
+
+#include "robot/robot.hpp"
 
 class RobotView {
     public:

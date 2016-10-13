@@ -1,4 +1,5 @@
 #include "rrs_manager.hpp"
+
 #include "rss_io.hpp"
 #include "rss_error.hpp"
 

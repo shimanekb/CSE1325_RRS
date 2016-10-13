@@ -1,5 +1,6 @@
+#include "part/part.hpp"
+
 #include <sstream>
-#include "part.hpp"
 
 Part::Part(const std::string name, const int part_number, const double weight,
                 const double cost, std::string description, 

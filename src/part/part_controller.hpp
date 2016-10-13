@@ -2,14 +2,15 @@
 #define RRS_PART_PART_CONTROLLER_HPP_
 
 #include <memory>
-#include "part_repo.hpp"
-#include "part.hpp"
-#include "battery.hpp"
-#include "arm.hpp"
-#include "locomotor.hpp"
-#include "torso.hpp"
-#include "head.hpp"
-#include "part_view.hpp"
+
+#include "part/part_repo.hpp"
+#include "part/part.hpp"
+#include "part/battery.hpp"
+#include "part/arm.hpp"
+#include "part/locomotor.hpp"
+#include "part/torso.hpp"
+#include "part/head.hpp"
+#include "part/part_view.hpp"
 
 class PartController {
     public:

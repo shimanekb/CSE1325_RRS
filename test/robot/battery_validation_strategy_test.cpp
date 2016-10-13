@@ -1,11 +1,12 @@
+#include "catch.hpp"
+
 #include <string>
 #include <memory>
 
-#include "robot.hpp"
-#include "torso.hpp" 
-#include "battery.hpp"
-#include "catch.hpp"
-#include "battery_validation_strategy.hpp"
+#include "robot/robot.hpp"
+#include "part/torso.hpp" 
+#include "part/battery.hpp"
+#include "robot/battery_validation_strategy.hpp"
 #include "rss_error.hpp"
 
 TEST_CASE("Battery Validation Strategy Add Torso and Batteries") {

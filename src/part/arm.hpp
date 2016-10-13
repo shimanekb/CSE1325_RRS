@@ -2,7 +2,8 @@
 #define RRS_PART_ARM_HPP_
 
 #include <string>
-#include "part.hpp"
+
+#include "part/part.hpp"
 
 class Arm : public Part {
     public:

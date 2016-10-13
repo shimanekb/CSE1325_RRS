@@ -1,5 +1,6 @@
-#include <iostream>
 #include "rss_io.hpp"
+
+#include <iostream>
 
 Part::PartType PartTypeByIndex(int index);
 
