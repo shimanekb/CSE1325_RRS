@@ -38,6 +38,6 @@ TEST_CASE("Battery GetCopy") {
    const Part& battery = Battery{kName, kPartNumber, kWeight, kCost,kDescription, 
        kKilowattHour};
 
-   std::unique_ptr<Part> part{battery.GetCopy()};
+   std::unique_ptr<Part> part{battery.Clone()};
    REQUIRE(part->ToString() != "Part Number: 1234\n");
 }

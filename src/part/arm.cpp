@@ -20,7 +20,7 @@ std::string Arm::ToString() const {
     return str.str();
 }
 
-std::unique_ptr<Part> Arm::GetCopy() const {
-    return std::unique_ptr<Part>{new Arm{GetName(), GetPartNumber(),
-        GetWeight(), GetCost(), GetDescription(), GetPowerConsumedWatts()}};
+Part* Arm::Clone() const {
+    return new Arm{GetName(), GetPartNumber(),
+        GetWeight(), GetCost(), GetDescription(), GetPowerConsumedWatts()};
 }

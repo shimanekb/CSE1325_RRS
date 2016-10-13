@@ -76,11 +76,11 @@ TEST_CASE("Robot Part Add Torso and Batteries") {
             kWeight, kCost,kDescription,kKilowattHour}};
 
 
-   REQUIRE(robot.AddPart(battery->GetCopy()) == true);
+   REQUIRE(robot.AddPart(std::unique_ptr<Part>{battery->Clone()}) == true);
    REQUIRE(robot.GetParts().size() == 2);
 
    //Should fail because of exceeding max battery compartments
-   REQUIRE(robot.AddPart(battery->GetCopy()) == false);
+   REQUIRE(robot.AddPart(std::unique_ptr<Part>{battery->Clone()}) == false);
    REQUIRE(robot.GetParts().size() == 2);
 }
 

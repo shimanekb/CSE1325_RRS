@@ -10,7 +10,7 @@ bool PartRepo::Add(std::unique_ptr<Part> part) {
 std::vector<std::unique_ptr<Part>> PartRepo::GetAll() {
     std::vector<std::unique_ptr<Part>> tmp_parts;
     for (std::unique_ptr<Part> const &part : parts) {
-        tmp_parts.push_back(part->GetCopy());
+        tmp_parts.push_back(std::unique_ptr<Part>{part->Clone()});
     }
     return tmp_parts;    
 }
@@ -20,7 +20,7 @@ int PartRepo::GetByPartNumber(int part_number, std::unique_ptr<Part> &part) {
     int error_code = RssError::NOT_FOUND;
     for (const std::unique_ptr<Part> &tmp_part : parts) {
         if (tmp_part->GetPartNumber() == part_number) {
-           part = tmp_part->GetCopy();
+           part = std::unique_ptr<Part>{tmp_part->Clone()};
            error_code = RssError::NO_ERROR; 
         }
     }

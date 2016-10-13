@@ -51,7 +51,7 @@ std::unique_ptr<Robot> RobotRepo::CreateRobotCopy(
         robot->GetModelNumber(), robot->GetPrice()}};
     
     for (const std::unique_ptr<Part> &part : robot->GetParts()) {
-        my_robot->AddPart(part->GetCopy());
+        my_robot->AddPart(std::unique_ptr<Part>{part->Clone()});
     }
 
     return std::move(my_robot);

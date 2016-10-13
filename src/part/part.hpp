@@ -1,7 +1,6 @@
 #ifndef RRS_PART_PART_HPP_
 #define RRS_PART_PART_HPP_
 
-#include <memory>
 #include <string>
 
 class Part {
@@ -24,7 +23,7 @@ class Part {
         std::string GetPartTypeString() const;
         Part::PartType GetPartType() const;
         virtual std::string ToString() const = 0;
-        virtual std::unique_ptr<Part> GetCopy() const = 0;
+        virtual Part* Clone() const = 0;
     private:
         const std::string kName;
         const int kPartNumber;

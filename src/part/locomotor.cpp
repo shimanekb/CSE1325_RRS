@@ -32,8 +32,8 @@ std::string Locomotor::ToString() const {
     return str.str();
 }
 
-std::unique_ptr<Part> Locomotor::GetCopy() const {
-    return std::unique_ptr<Part>{new Locomotor{GetName(), GetPartNumber(),
+Part* Locomotor::Clone() const {
+    return new Locomotor{GetName(), GetPartNumber(),
         GetWeight(), GetCost(), GetDescription(), GetPowerConsumedWatts(),
-        GetMaxMphSpeed()}};
+        GetMaxMphSpeed()};
 }

@@ -2,7 +2,6 @@
 #define RRS_PART_BATTERY_HPP_
 
 #include <string>
-#include <memory>
 
 #include "part/part.hpp"
 
@@ -14,7 +13,7 @@ class Battery : public Part {
                 const double kilowatt_hours);
         double GetKilowattHours() const;
         std::string ToString() const;
-        std::unique_ptr<Part> GetCopy() const;
+        Part* Clone() const;
     private:
         const double kKilowattHours;
 };

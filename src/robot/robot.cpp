@@ -25,12 +25,15 @@ const std::vector<std::unique_ptr<Part>>& Robot::GetParts() const {
 
 bool Robot::AddPart(std::unique_ptr<Part> part) {
     bool added = false;
-    Part *tmp_part = part.release();
+    Part *tmp_part = part->Clone();
     Part &ref_part = *tmp_part;
+
     if (ValidatePart(ref_part) == RssError::NO_ERROR) {
-        parts.push_back(std::unique_ptr<Part>{tmp_part});    
+        parts.push_back(std::move(part));    
         added = true;
     }
+
+    delete tmp_part;
     return added;
 }
 
@@ -54,7 +57,7 @@ std::unique_ptr<Robot> Robot::GetCopy() const {
     std::unique_ptr<Robot> tmp_bot{new Robot{GetName(), GetModelNumber(), 
     GetPrice()}};
     for (std::unique_ptr<Part> const &part : GetParts()) {
-        tmp_bot->AddPart(part->GetCopy());
+        tmp_bot->AddPart(std::unique_ptr<Part>{part->Clone()});
     }
 
     return std::move(tmp_bot);

@@ -13,7 +13,7 @@ class Torso : public Part {
                 const int battery_compartments);
         int GetBatteryCompartmentSize() const;
         std::string ToString() const;
-        std::unique_ptr<Part> GetCopy() const;
+        Part* Clone() const;
     private:
         const int kBatteryCompartments;
 };

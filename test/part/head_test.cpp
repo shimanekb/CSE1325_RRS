@@ -25,6 +25,6 @@ TEST_CASE("Head GetCopy") {
 
    const Head& head = Head{kName, kPartNumber, kWeight, kCost,kDescription};
 
-   std::unique_ptr<Part> headptr{head.GetCopy()};
+   std::unique_ptr<Part> headptr{head.Clone()};
    REQUIRE(headptr->GetName() == kName);
 }

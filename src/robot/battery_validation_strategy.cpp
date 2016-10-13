@@ -12,7 +12,7 @@ int BatteryValidationStrategy::Validate(const Robot &robot, const Part &part) {
 
     for(std::unique_ptr<Part> const &tmp_part : robot.GetParts()) {
         if(tmp_part->GetPartType() == Part::PartType::TORSO) {
-            battery_max = static_cast<Torso*>((tmp_part->GetCopy()).release())
+            battery_max = static_cast<Torso*>(tmp_part->Clone())
                 ->GetBatteryCompartmentSize();
         }
 
