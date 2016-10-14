@@ -3,12 +3,12 @@
 #include <string>
 #include <iostream>
 
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 #include "rss_io.hpp"
 
 
 int PartController::ShowParts() {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
 
     part_view.DisplayParts(part_repo.GetAll());
 
@@ -16,7 +16,7 @@ int PartController::ShowParts() {
 }
 
 int PartController::CreatePart() {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
     std::unique_ptr<Part> part;
     Part::PartType part_type;
     std::string name;
@@ -25,57 +25,57 @@ int PartController::CreatePart() {
     double cost;
     std::string description;
 
-    if (error_code == RssError::NO_ERROR) {
+    if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartType();
         if (rss_io::PartTypeIn(part_type))
-            error_code = RssError::BAD_INPUT_TYPE;
+            error_code = RrsError::BAD_INPUT_TYPE;
     }
 
-    if (error_code == RssError::NO_ERROR) {
+    if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartName();
         if(rss_io::StringIn(name))
-            error_code = RssError::BAD_INPUT_TYPE;
+            error_code = RrsError::BAD_INPUT_TYPE;
     }
 
-    if (error_code == RssError::NO_ERROR) {
+    if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartNumber();
         if(rss_io::IntIn(part_number))
-            error_code = RssError::BAD_INPUT_TYPE;
+            error_code = RrsError::BAD_INPUT_TYPE;
     }
 
-    if (error_code == RssError::NO_ERROR) {
+    if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartWeight();
         if(rss_io::DoubleIn(weight))
-            error_code = RssError::BAD_INPUT_TYPE;
+            error_code = RrsError::BAD_INPUT_TYPE;
     }
 
-    if (error_code == RssError::NO_ERROR) {
+    if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartCost();
         if(rss_io::DoubleIn(cost))
-            error_code = RssError::BAD_INPUT_TYPE;
+            error_code = RrsError::BAD_INPUT_TYPE;
     }
 
-    if (error_code == RssError::NO_ERROR) {
+    if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartDescription();
         if(rss_io::StringIn(description))
-            error_code = RssError::BAD_INPUT_TYPE;
+            error_code = RrsError::BAD_INPUT_TYPE;
     }
     
     try {
-        if (error_code == RssError::NO_ERROR) {
-            if (part_type == Part::PartType::BATTERY && error_code == RssError::NO_ERROR) {
+        if (error_code == RrsError::NO_ERROR) {
+            if (part_type == Part::PartType::BATTERY && error_code == RrsError::NO_ERROR) {
                 part = CreateBatteryPart(name, part_number, weight, cost, description);
             } 
-            else if (part_type == Part::PartType::ARM && error_code == RssError::NO_ERROR) {
+            else if (part_type == Part::PartType::ARM && error_code == RrsError::NO_ERROR) {
                 part = CreateArmPart(name, part_number, weight, cost, description);
             }
-            else if (part_type == Part::PartType::LOCOMOTOR && error_code == RssError::NO_ERROR) {
+            else if (part_type == Part::PartType::LOCOMOTOR && error_code == RrsError::NO_ERROR) {
                 part = CreateLocomotorPart(name, part_number, weight, cost, description);
             }
-            else if (part_type == Part::PartType::TORSO && error_code == RssError::NO_ERROR) {
+            else if (part_type == Part::PartType::TORSO && error_code == RrsError::NO_ERROR) {
                 part = CreateTorsoPart(name, part_number, weight, cost, description);
             }
-            else if (part_type == Part::PartType::HEAD && error_code == RssError::NO_ERROR) {
+            else if (part_type == Part::PartType::HEAD && error_code == RrsError::NO_ERROR) {
                 part = CreateHeadPart(name, part_number, weight, cost, description);
             }
 
@@ -87,7 +87,7 @@ int PartController::CreatePart() {
         }
     } 
     catch (std::invalid_argument &e) {
-        error_code = RssError::BAD_INPUT_TYPE;
+        error_code = RrsError::BAD_INPUT_TYPE;
         std::cerr << e.what() << std::endl;
     }
 

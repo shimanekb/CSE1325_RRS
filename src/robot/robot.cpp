@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 #include "robot/robot_validation_strategy_repo.hpp"
 
 Robot::Robot(const std::string name, const int model_number, const double price) : kName(name), kModelNumber(model_number), kPrice(price) {};
@@ -28,7 +28,7 @@ bool Robot::AddPart(std::unique_ptr<Part> part) {
     Part *tmp_part = part->Clone();
     Part &ref_part = *tmp_part;
 
-    if (ValidatePart(ref_part) == RssError::NO_ERROR) {
+    if (ValidatePart(ref_part) == RrsError::NO_ERROR) {
         parts.push_back(std::move(part));    
         added = true;
     }
@@ -52,20 +52,18 @@ std::string Robot::ToString() const {
     return ss.str();
 }
 
-
-std::unique_ptr<Robot> Robot::GetCopy() const {
-    std::unique_ptr<Robot> tmp_bot{new Robot{GetName(), GetModelNumber(), 
-    GetPrice()}};
+Robot* Robot::Clone() const {
+    Robot* tmp_bot = new Robot{GetName(), GetModelNumber(), 
+    GetPrice()};
     for (std::unique_ptr<Part> const &part : GetParts()) {
         tmp_bot->AddPart(std::unique_ptr<Part>{part->Clone()});
     }
 
-    return std::move(tmp_bot);
+    return tmp_bot;
 }
 
-
 int Robot::ValidatePart(const Part &part) {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
 
     std::unique_ptr<RobotValidationStrategy> strategy;
     RobotValidationStrategyRepo validationRepo{};

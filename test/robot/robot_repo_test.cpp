@@ -6,7 +6,7 @@
 #include "part/head.hpp"
 #include "robot/robot.hpp"
 #include "robot/robot_repo.hpp"
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 
 TEST_CASE("RobotRepo GetRobotByModelNumber") {
    RobotRepo &repo = RobotRepo::GetInstance();
@@ -16,12 +16,12 @@ TEST_CASE("RobotRepo GetRobotByModelNumber") {
 
    std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice}};
 
-   REQUIRE(repo.SaveRobot(std::move(robot)) == RssError::NO_ERROR);
+   REQUIRE(repo.SaveRobot(std::move(robot)) == RrsError::NO_ERROR);
 
    SECTION("GetByModelNumber Without Error") {
         std::unique_ptr<Robot> tmp_robot;
         REQUIRE(repo.GetRobotByModelNumber(kModelNumber, tmp_robot) == 
-                RssError::NO_ERROR);
+                RrsError::NO_ERROR);
         REQUIRE(tmp_robot->GetPrice() == kPrice);
    }
 
@@ -29,13 +29,13 @@ TEST_CASE("RobotRepo GetRobotByModelNumber") {
         constexpr int kFake = 000000000000;
         std::unique_ptr<Robot> tmp_robot;
         REQUIRE(repo.GetRobotByModelNumber(kFake, tmp_robot) == 
-                RssError::NOT_FOUND);
+                RrsError::NOT_FOUND);
    }
 
    REQUIRE(repo.DeleteRobotByModelNumber(kModelNumber) ==
-                RssError::NO_ERROR);
+                RrsError::NO_ERROR);
    REQUIRE(repo.GetRobotByModelNumber(kModelNumber, robot) == 
-                RssError::NOT_FOUND);
+                RrsError::NOT_FOUND);
 }
 
 TEST_CASE("RobotRepo Basic Save Operations") {
@@ -46,12 +46,12 @@ TEST_CASE("RobotRepo Basic Save Operations") {
 
    std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice}};
 
-   REQUIRE(repo.SaveRobot(std::move(robot)) == RssError::NO_ERROR);
+   REQUIRE(repo.SaveRobot(std::move(robot)) == RrsError::NO_ERROR);
 
    REQUIRE(repo.DeleteRobotByModelNumber(kModelNumber) ==
-                RssError::NO_ERROR);
+                RrsError::NO_ERROR);
    REQUIRE(repo.GetRobotByModelNumber(kModelNumber, robot) == 
-                RssError::NOT_FOUND);
+                RrsError::NOT_FOUND);
 }
 
 TEST_CASE("RobotRepo Basic Save With Mod Operations") {
@@ -72,14 +72,14 @@ TEST_CASE("RobotRepo Basic Save With Mod Operations") {
 
    REQUIRE(robot->GetParts().size() == 1);
 
-   REQUIRE(repo.SaveRobot(std::move(robot)) == RssError::NO_ERROR);
+   REQUIRE(repo.SaveRobot(std::move(robot)) == RrsError::NO_ERROR);
    REQUIRE(repo.GetRobotByModelNumber(kModelNumber, robot) == 
-            RssError::NO_ERROR);
+            RrsError::NO_ERROR);
    REQUIRE(robot->GetParts().size() == 1);
 
 
    REQUIRE(repo.DeleteRobotByModelNumber(kModelNumber) ==
-                RssError::NO_ERROR);
+                RrsError::NO_ERROR);
    REQUIRE(repo.GetRobotByModelNumber(kModelNumber, robot) == 
-                RssError::NOT_FOUND);
+                RrsError::NOT_FOUND);
 }

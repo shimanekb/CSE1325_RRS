@@ -5,7 +5,7 @@
 
 #include "part/battery.hpp"
 #include "part/part_repo.hpp"
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 
 TEST_CASE("PartRepo Crud Operations") {
    std::string kName = "FOO"; 
@@ -41,6 +41,6 @@ TEST_CASE("PartRepo GetByPartNumber") {
                kPartNumber, kWeight, kCost,kDescription, kKilowattHour}})
                == true);
 
-   REQUIRE(repo.GetByPartNumber(kPartNumber, tmp) == RssError::NO_ERROR);
+   REQUIRE(repo.GetByPartNumber(kPartNumber, tmp) == RrsError::NO_ERROR);
    REQUIRE(tmp->GetPartNumber() == kPartNumber);
 }

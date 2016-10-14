@@ -3,9 +3,9 @@
 #include <string>
 
 #include "rss_io.hpp"
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 
-int RobotController::CreateRobot() { int error_code = RssError::NO_ERROR;
+int RobotController::CreateRobot() { int error_code = RrsError::NO_ERROR;
     std::string name;
     int model_number;
     double price;
@@ -31,7 +31,7 @@ int RobotController::CreateRobot() { int error_code = RssError::NO_ERROR;
 }
 
 int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
     int select;
     bool complete = false;
     int part_number = 0;
@@ -40,17 +40,17 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
     while(!complete) {
         robot_view.DisplayPartSelectionMenu();
         if (rss_io::IntIn(select) || select < 0 || select > 4) {
-            error_code = RssError::BAD_INPUT_TYPE;
+            error_code = RrsError::BAD_INPUT_TYPE;
             robot_view.DisplayBadPartSelectionInput();
         }
         else {
-            error_code = RssError::NO_ERROR;
+            error_code = RrsError::NO_ERROR;
             switch (select) {
                 case 1:
                     //addpart
                     robot_view.AskPartNumberForModel();
                     if (rss_io::IntIn(part_number)) {
-                        error_code = RssError::BAD_INPUT_TYPE;
+                        error_code = RrsError::BAD_INPUT_TYPE;
                         robot_view.DisplayBadInput(); 
                         break;
                     }
@@ -63,7 +63,7 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
                         robot_view.DisplayPartSelectionSuccess();
                     }
                     else {
-                        error_code = RssError::DID_NOT_CREATE;
+                        error_code = RrsError::DID_NOT_CREATE;
                         robot_view.DisplayPartSelectionFailure();
                     }
 
@@ -78,7 +78,7 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
                     break;
                 case 4:
                     //quit to main
-                    error_code = RssError::DID_NOT_CREATE;
+                    error_code = RrsError::DID_NOT_CREATE;
                     complete = true;
                     break;
             }
@@ -89,36 +89,36 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
 }
 
 int RobotController::GetModelPrice(double &price) {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
 
     robot_view.AskModelPrice();
     if (rss_io::DoubleIn(price))
-        error_code = RssError::BAD_INPUT_TYPE;
+        error_code = RrsError::BAD_INPUT_TYPE;
 
     return error_code;
 }
 
 int RobotController::GetModelNumber(int &model_number) {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
 
     robot_view.AskModelNumber();
     if (rss_io::IntIn(model_number))
-        error_code = RssError::BAD_INPUT_TYPE;
+        error_code = RrsError::BAD_INPUT_TYPE;
 
     return error_code;
 }
 
 int RobotController::GetModelName(std::string &name) {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
 
     robot_view.AskModelName();
     if (rss_io::StringIn(name))
-        error_code = RssError::BAD_INPUT_TYPE;
+        error_code = RrsError::BAD_INPUT_TYPE;
 
     return error_code;
 }
 
 int RobotController::ShowRobots() {
     robot_view.DisplayRobotModels(robot_repo.GetAll());
-    return RssError::NO_ERROR;
+    return RrsError::NO_ERROR;
 }

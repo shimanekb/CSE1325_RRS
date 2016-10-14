@@ -1,14 +1,14 @@
 #include "rrs_manager.hpp"
 
 #include "rss_io.hpp"
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 
 int RrsManager::execute() {
     return MainMenu();
 }
 
 int RrsManager::MainMenu() {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
     bool do_not_exit = true;
     int selection;
 
@@ -39,7 +39,7 @@ int RrsManager::MainMenu() {
 }
 
 int RrsManager::ReportMenu() {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
     bool do_not_exit = true;
     int selection;
 
@@ -71,7 +71,7 @@ int RrsManager::ReportMenu() {
 }
 
 int RrsManager::CreateMenu() {
-    int error_code = RssError::NO_ERROR;
+    int error_code = RrsError::NO_ERROR;
     bool do_not_exit = true;
     int selection;
 

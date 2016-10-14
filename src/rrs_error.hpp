@@ -1,7 +1,7 @@
-#ifndef RSS_RSS_ERROR_HPP_
-#define RSS_RSS_ERROR_HPP_
+#ifndef RRS_RRS_ERROR_HPP_
+#define RRS_RRS_ERROR_HPP_
 
-enum RssError {
+enum RrsError {
     NO_ERROR = 0,
     GENERIC_ERROR = 1,
     OUT_OF_RANGE = 2,

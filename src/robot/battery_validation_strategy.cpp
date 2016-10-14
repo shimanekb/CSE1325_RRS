@@ -2,11 +2,11 @@
 
 #include <memory>
 
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 #include "part/torso.hpp"
 
 int BatteryValidationStrategy::Validate(const Robot &robot, const Part &part) {
-    int error_code = RssError::OUT_OF_RANGE;
+    int error_code = RrsError::OUT_OF_RANGE;
     int battery_count = 1;
     int battery_max = 0;
 
@@ -23,7 +23,7 @@ int BatteryValidationStrategy::Validate(const Robot &robot, const Part &part) {
      
     if (part.GetPartType() == Part::PartType::BATTERY 
             && battery_count <= battery_max) {
-       error_code = RssError::NO_ERROR; 
+       error_code = RrsError::NO_ERROR; 
     }
     return error_code;
 }

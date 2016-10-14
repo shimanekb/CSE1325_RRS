@@ -17,6 +17,7 @@ class Robot {
         bool AddPart(std::unique_ptr<Part> part);
         std::string ToString() const;
         std::unique_ptr<Robot> GetCopy() const;
+        Robot* Clone() const;
     private:
         int ValidatePart(const Part &part);
         std::vector<std::unique_ptr<Part>> parts;

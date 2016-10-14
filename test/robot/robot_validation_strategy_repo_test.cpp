@@ -7,7 +7,7 @@
 #include "robot/robot.hpp"
 #include "part/torso.hpp"
 #include "part/battery.hpp"
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 
 TEST_CASE("Battery Validation Strategy From Repo Add Torso and Batteries") {
    RobotValidationStrategyRepo repo;
@@ -43,8 +43,8 @@ TEST_CASE("Battery Validation Strategy From Repo Add Torso and Batteries") {
 
    std::unique_ptr<RobotValidationStrategy> strategy;
    REQUIRE(repo
-       .DetermineStrategy(battery.GetPartType(), strategy) == RssError::NO_ERROR);
+       .DetermineStrategy(battery.GetPartType(), strategy) == RrsError::NO_ERROR);
 
    //Should fail because of exceeding max battery compartments
-   REQUIRE(strategy->Validate(robot, battery) == RssError::OUT_OF_RANGE);
+   REQUIRE(strategy->Validate(robot, battery) == RrsError::OUT_OF_RANGE);
 }

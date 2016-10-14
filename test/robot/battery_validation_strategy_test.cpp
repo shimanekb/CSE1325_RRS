@@ -7,7 +7,7 @@
 #include "part/torso.hpp" 
 #include "part/battery.hpp"
 #include "robot/battery_validation_strategy.hpp"
-#include "rss_error.hpp"
+#include "rrs_error.hpp"
 
 TEST_CASE("Battery Validation Strategy Add Torso and Batteries") {
    BatteryValidationStrategy batStrat{};
@@ -44,5 +44,5 @@ TEST_CASE("Battery Validation Strategy Add Torso and Batteries") {
    REQUIRE(robot.GetParts().size() == 2);
 
    //Should fail because of exceeding max battery compartments
-   REQUIRE(strategy.Validate(robot, battery) == RssError::OUT_OF_RANGE);
+   REQUIRE(strategy.Validate(robot, battery) == RrsError::OUT_OF_RANGE);
 }
