@@ -1,6 +1,6 @@
 #include "rrs_manager.hpp"
 
-#include "rss_io.hpp"
+#include "rrs_io.hpp"
 #include "rrs_error.hpp"
 
 int RrsManager::execute() {
@@ -14,7 +14,7 @@ int RrsManager::MainMenu() {
 
     while(do_not_exit) {
        rrs_view.DisplayMainMenu();
-       error_code = rss_io::IntIn(selection);
+       error_code = rrs_io::IntIn(selection);
 
        if (error_code || selection < 1 || selection > 3)
            rrs_view.DisplayBadSelectionMessage();
@@ -45,7 +45,7 @@ int RrsManager::ReportMenu() {
 
     while(do_not_exit) {
        rrs_view.DisplayReportMenu();
-       error_code = rss_io::IntIn(selection);
+       error_code = rrs_io::IntIn(selection);
 
        if (error_code || selection < 1 || selection > 3)
            rrs_view.DisplayBadSelectionMessage();
@@ -77,7 +77,7 @@ int RrsManager::CreateMenu() {
 
     while(do_not_exit) {
        rrs_view.DisplayCreateMenu();
-       error_code = rss_io::IntIn(selection);
+       error_code = rrs_io::IntIn(selection);
 
        if (error_code || selection < 1 || selection > 3)
            rrs_view.DisplayBadSelectionMessage();

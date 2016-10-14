@@ -1,10 +1,10 @@
-#include "rss_io.hpp"
+#include "rrs_io.hpp"
 
 #include <iostream>
 
 Part::PartType PartTypeByIndex(int index);
 
-namespace rss_io {
+namespace rrs_io {
 
     constexpr int kPartTypeIndexMax = 4;
 

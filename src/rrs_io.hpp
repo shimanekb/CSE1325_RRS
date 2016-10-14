@@ -5,7 +5,7 @@
 
 #include "part/part.hpp"
 
-namespace rss_io {
+namespace rrs_io {
     int PartTypeIn(Part::PartType &part_type);
     int DoubleIn(double& in);
     int StringIn(std::string& in);

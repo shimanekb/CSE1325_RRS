@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "rrs_error.hpp"
-#include "rss_io.hpp"
+#include "rrs_io.hpp"
 
 
 int PartController::ShowParts() {
@@ -27,37 +27,37 @@ int PartController::CreatePart() {
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartType();
-        if (rss_io::PartTypeIn(part_type))
+        if (rrs_io::PartTypeIn(part_type))
             error_code = RrsError::BAD_INPUT_TYPE;
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartName();
-        if(rss_io::StringIn(name))
+        if(rrs_io::StringIn(name))
             error_code = RrsError::BAD_INPUT_TYPE;
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartNumber();
-        if(rss_io::IntIn(part_number))
+        if(rrs_io::IntIn(part_number))
             error_code = RrsError::BAD_INPUT_TYPE;
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartWeight();
-        if(rss_io::DoubleIn(weight))
+        if(rrs_io::DoubleIn(weight))
             error_code = RrsError::BAD_INPUT_TYPE;
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartCost();
-        if(rss_io::DoubleIn(cost))
+        if(rrs_io::DoubleIn(cost))
             error_code = RrsError::BAD_INPUT_TYPE;
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartDescription();
-        if(rss_io::StringIn(description))
+        if(rrs_io::StringIn(description))
             error_code = RrsError::BAD_INPUT_TYPE;
     }
     
@@ -99,7 +99,7 @@ std::unique_ptr<Battery> PartController::CreateBatteryPart(const std::string nam
             const std::string description) { 
     double kilowattHours;
     part_view.AskForKiloWattHours();
-    if (rss_io::DoubleIn(kilowattHours))
+    if (rrs_io::DoubleIn(kilowattHours))
         throw std::invalid_argument{"Bad kilowatt hours input."};
     auto ptr = std::unique_ptr<Battery>{new Battery{name, part_number, 
         weight, cost, description, kilowattHours}};
@@ -113,7 +113,7 @@ std::unique_ptr<Arm> PartController::CreateArmPart(const std::string name, const
    double power_consumed_watts; 
    part_view.AskForPowerConsumedWatts();
 
-   if (rss_io::DoubleIn(power_consumed_watts))
+   if (rrs_io::DoubleIn(power_consumed_watts))
         throw std::invalid_argument{"Bad power consumed in watts input."};
 
    auto ptr = std::unique_ptr<Arm>{new Arm{name, part_number, weight, 
@@ -128,11 +128,11 @@ std::unique_ptr<Locomotor> PartController::CreateLocomotorPart(
    double max_speed;
 
    part_view.AskForPowerConsumedWatts();
-   if (rss_io::DoubleIn(power_consumed_watts))
+   if (rrs_io::DoubleIn(power_consumed_watts))
         throw std::invalid_argument{"Bad power consumed in watts input."};
 
    part_view.AskForMaxMphSpeed();
-   if (rss_io::DoubleIn(max_speed))
+   if (rrs_io::DoubleIn(max_speed))
         throw std::invalid_argument{"Bad max speed input."};
 
    return std::unique_ptr<Locomotor>{new Locomotor{name, part_number, weight, 
@@ -146,7 +146,7 @@ std::unique_ptr<Torso> PartController::CreateTorsoPart(
    int battery_compartments; 
 
    part_view.AskForBatteryCompartmentSize();
-   if (rss_io::IntIn(battery_compartments) || battery_compartments < 0 
+   if (rrs_io::IntIn(battery_compartments) || battery_compartments < 0 
            || battery_compartments > 3)
         throw std::invalid_argument{"Bad battery compartment size  input."};
    

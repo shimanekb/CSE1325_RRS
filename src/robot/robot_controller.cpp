@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "rss_io.hpp"
+#include "rrs_io.hpp"
 #include "rrs_error.hpp"
 
 int RobotController::CreateRobot() { int error_code = RrsError::NO_ERROR;
@@ -39,7 +39,7 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
 
     while(!complete) {
         robot_view.DisplayPartSelectionMenu();
-        if (rss_io::IntIn(select) || select < 0 || select > 4) {
+        if (rrs_io::IntIn(select) || select < 0 || select > 4) {
             error_code = RrsError::BAD_INPUT_TYPE;
             robot_view.DisplayBadPartSelectionInput();
         }
@@ -49,7 +49,7 @@ int RobotController::SelectParts(std::unique_ptr<Robot> const &robot) {
                 case 1:
                     //addpart
                     robot_view.AskPartNumberForModel();
-                    if (rss_io::IntIn(part_number)) {
+                    if (rrs_io::IntIn(part_number)) {
                         error_code = RrsError::BAD_INPUT_TYPE;
                         robot_view.DisplayBadInput(); 
                         break;
@@ -92,7 +92,7 @@ int RobotController::GetModelPrice(double &price) {
     int error_code = RrsError::NO_ERROR;
 
     robot_view.AskModelPrice();
-    if (rss_io::DoubleIn(price))
+    if (rrs_io::DoubleIn(price))
         error_code = RrsError::BAD_INPUT_TYPE;
 
     return error_code;
@@ -102,7 +102,7 @@ int RobotController::GetModelNumber(int &model_number) {
     int error_code = RrsError::NO_ERROR;
 
     robot_view.AskModelNumber();
-    if (rss_io::IntIn(model_number))
+    if (rrs_io::IntIn(model_number))
         error_code = RrsError::BAD_INPUT_TYPE;
 
     return error_code;
@@ -112,7 +112,7 @@ int RobotController::GetModelName(std::string &name) {
     int error_code = RrsError::NO_ERROR;
 
     robot_view.AskModelName();
-    if (rss_io::StringIn(name))
+    if (rrs_io::StringIn(name))
         error_code = RrsError::BAD_INPUT_TYPE;
 
     return error_code;
