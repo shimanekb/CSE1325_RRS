@@ -1,5 +1,5 @@
-#ifndef RRS_RSS_IO_HPP
-#define RRS_RSS_IO_HPP
+#ifndef RRS_RSS_IO_HPP_
+#define RRS_RSS_IO_HPP_
 
 #include <string>
 
@@ -9,6 +9,7 @@ namespace rrs_io {
     int PartTypeIn(Part::PartType &part_type);
     int DoubleIn(double& in);
     int StringIn(std::string& in);
+    int IntMinMaxIn(int& in, int min, int max); 
     int IntIn(int& in); 
 }
 

@@ -15,12 +15,12 @@ int Torso::GetBatteryCompartmentSize() const {
 std::string Torso::ToString() const {
     std::stringstream str;
 
-    str << "Part Number: " << GetPartNumber() << std::endl 
-       << "Part Type: " << GetPartTypeString() << std::endl
-       << "Part Name: " << GetName() << std::endl << "Part Weight: " 
-       << GetWeight() << " kg" << std::endl << "Part Cost: $" << GetCost() 
-       << std::endl << "Number of Battery Compartments: " 
-       << GetBatteryCompartmentSize() << std::endl << "Description: " 
+    str << "\tPart Number: " << GetPartNumber() << std::endl 
+       << "\tPart Type: " << GetPartTypeString() << std::endl
+       << "\tPart Name: " << GetName() << std::endl << "\tPart Weight: " 
+       << GetWeight() << " kg" << std::endl << "\tPart Cost: $" << GetCost() 
+       << std::endl << "\tNumber of Battery Compartments: " 
+       << GetBatteryCompartmentSize() << std::endl << "\tDescription: " 
        << GetDescription() << std::endl;
 
     return str.str();

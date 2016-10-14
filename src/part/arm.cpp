@@ -14,9 +14,14 @@ double Arm::GetPowerConsumedWatts() const {
 
 std::string Arm::ToString() const {
     std::stringstream str;
-    str << GetPartNumber() << ", " << GetName() << ", " << GetWeight() << ", "
-        << "$" << GetCost() << ", " << GetPartTypeString() << ", "
-        << GetDescription() << ", " << GetPowerConsumedWatts();
+    str << "\tPart Number: " << GetPartNumber() << std::endl 
+        << "\tPart Type: " << GetPartTypeString() << std::endl
+        << "\tName: " << GetName() << std::endl << "\tWeight: " << GetWeight() 
+        << std::endl
+        << "\tCost: $" << GetCost() << std::endl << "\tPart Type: " 
+        << GetPartTypeString() << std::endl << "\tDescription: " 
+        << GetDescription() << std::endl << "\tPower Consumed(Watts): " 
+        << GetPowerConsumedWatts() << std::endl;
     return str.str();
 }
 

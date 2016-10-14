@@ -27,55 +27,49 @@ int PartController::CreatePart() {
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartType();
-        if (rrs_io::PartTypeIn(part_type))
-            error_code = RrsError::BAD_INPUT_TYPE;
+        error_code = rrs_io::PartTypeIn(part_type);
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartName();
-        if(rrs_io::StringIn(name))
-            error_code = RrsError::BAD_INPUT_TYPE;
+        error_code = rrs_io::StringIn(name);
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartNumber();
-        if(rrs_io::IntIn(part_number))
-            error_code = RrsError::BAD_INPUT_TYPE;
+        error_code = rrs_io::IntIn(part_number);
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartWeight();
-        if(rrs_io::DoubleIn(weight))
-            error_code = RrsError::BAD_INPUT_TYPE;
+        error_code = rrs_io::DoubleIn(weight);
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartCost();
-        if(rrs_io::DoubleIn(cost))
-            error_code = RrsError::BAD_INPUT_TYPE;
+        error_code = rrs_io::DoubleIn(cost);
     }
 
     if (error_code == RrsError::NO_ERROR) {
         part_view.AskPartDescription();
-        if(rrs_io::StringIn(description))
-            error_code = RrsError::BAD_INPUT_TYPE;
+        error_code = rrs_io::StringIn(description);
     }
     
     try {
         if (error_code == RrsError::NO_ERROR) {
-            if (part_type == Part::PartType::BATTERY && error_code == RrsError::NO_ERROR) {
+            if (part_type == Part::PartType::BATTERY) {
                 part = CreateBatteryPart(name, part_number, weight, cost, description);
             } 
-            else if (part_type == Part::PartType::ARM && error_code == RrsError::NO_ERROR) {
+            else if (part_type == Part::PartType::ARM) {
                 part = CreateArmPart(name, part_number, weight, cost, description);
             }
-            else if (part_type == Part::PartType::LOCOMOTOR && error_code == RrsError::NO_ERROR) {
+            else if (part_type == Part::PartType::LOCOMOTOR) {
                 part = CreateLocomotorPart(name, part_number, weight, cost, description);
             }
-            else if (part_type == Part::PartType::TORSO && error_code == RrsError::NO_ERROR) {
+            else if (part_type == Part::PartType::TORSO) {
                 part = CreateTorsoPart(name, part_number, weight, cost, description);
             }
-            else if (part_type == Part::PartType::HEAD && error_code == RrsError::NO_ERROR) {
+            else if (part_type == Part::PartType::HEAD) {
                 part = CreateHeadPart(name, part_number, weight, cost, description);
             }
 
@@ -144,10 +138,11 @@ std::unique_ptr<Torso> PartController::CreateTorsoPart(
         const std::string name, const int part_number, const double weight, 
         const double cost,const std::string description) {
    int battery_compartments; 
+   constexpr int kCompartmentMin = 0;
+   constexpr int kCompartmentMax = 3;
 
    part_view.AskForBatteryCompartmentSize();
-   if (rrs_io::IntIn(battery_compartments) || battery_compartments < 0 
-           || battery_compartments > 3)
+   if (rrs_io::IntMinMaxIn(battery_compartments, 0, 3))
         throw std::invalid_argument{"Bad battery compartment size  input."};
    
    return std::unique_ptr<Torso>{new Torso{name, part_number, weight, 

@@ -16,12 +16,12 @@ double Battery::GetKilowattHours() const {
 std::string Battery::ToString() const {
     std::stringstream str;
 
-    str << "Part Number: " << GetPartNumber() << std::endl 
-       << "Part Type: " << GetPartTypeString() << std::endl
-       << "Part Name: " << GetName() << std::endl << "Part Weight: " 
-       << GetWeight() << " kg" << std::endl << "Part Cost: $" << GetCost() 
-       << std::endl << "Kilowatt Hours: " << GetKilowattHours() << std::endl
-       << "Description: " << GetDescription() << std::endl;
+    str << "\tPart Number: " << GetPartNumber() << std::endl 
+       << "\tPart Type: " << GetPartTypeString() << std::endl
+       << "\tPart Name: " << GetName() << std::endl << "\tPart Weight: " 
+       << GetWeight() << " kg" << std::endl << "\tPart Cost: $" << GetCost() 
+       << std::endl << "\tKilowatt Hours: " << GetKilowattHours() << std::endl
+       << "\tDescription: " << GetDescription() << std::endl;
 
     return str.str();
 }

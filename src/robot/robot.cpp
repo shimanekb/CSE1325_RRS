@@ -39,14 +39,14 @@ bool Robot::AddPart(std::unique_ptr<Part> part) {
 
 std::string Robot::ToString() const {
     std::stringstream ss;
-    ss << "Robot Model Name: " << GetName() << std::endl 
-        << "Robot Model Number: " << GetModelNumber() << std::endl 
-        << "Robot Model Price: $" << GetPrice() << std::endl
-        << "Parts" << std::endl << "*****************" << std::endl;
+    ss << "\tRobot Model Name: " << GetName() << std::endl 
+        << "\tRobot Model Number: " << GetModelNumber() << std::endl 
+        << "\tRobot Model Price: $" << GetPrice() << std::endl << std::endl
+        << "\tParts" << std::endl << "\t*****************" << std::endl;
 
     int index = 1;
     for (std::unique_ptr<Part> const &part : GetParts()) {
-        ss << index++ << ". " << part->ToString();
+        ss <<  part->ToString() << "\t-----------------" << std::endl;
     }
 
     return ss.str();

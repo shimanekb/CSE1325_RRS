@@ -11,11 +11,11 @@ Head::Head(const std::string name, const int part_number,
 std::string Head::ToString() const {
     std::stringstream str;
 
-    str << "Part Number: " << GetPartNumber() << std::endl 
-       << "Part Type: " << GetPartTypeString() << std::endl
-       << "Part Name: " << GetName() << std::endl << "Part Weight: " 
-       << GetWeight() << " kg" << std::endl << "Part Cost: $" << GetCost() 
-       << std::endl << "Description: " << GetDescription() << std::endl;
+    str << "\tPart Number: " << GetPartNumber() << std::endl 
+       << "\tPart Type: " << GetPartTypeString() << std::endl
+       << "\tPart Name: " << GetName() << std::endl << "\tPart Weight: " 
+       << GetWeight() << " kg" << std::endl << "\tPart Cost: $" << GetCost() 
+       << std::endl << "\tDescription: " << GetDescription() << std::endl;
 
     return str.str();
 }

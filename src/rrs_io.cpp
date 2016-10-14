@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "rrs_error.hpp"
+
 Part::PartType PartTypeByIndex(int index);
 
 namespace rrs_io {
@@ -9,28 +11,27 @@ namespace rrs_io {
     constexpr int kPartTypeIndexMax = 4;
 
     int PartTypeIn(Part::PartType &part_type) {
-        int error = 0;
-
+        int error = RrsError::NO_ERROR;
         try {
             std::string input;
             std::getline(std::cin, input);
             
             int index = std::stoi(input) - 1;
             if (index < 0 || index > kPartTypeIndexMax) {
-                error = 1;
+                error = RrsError::OUT_OF_RANGE;
             }
             else {
                 part_type = PartTypeByIndex(index);
             }
         }
         catch (std::invalid_argument& e) {
-            error = 1;
+            error = RrsError::BAD_INPUT_TYPE;
         }
         return error;
     }
 
     int DoubleIn(double& in) {
-        int error = 0;
+        int error = RrsError::NO_ERROR;
         std::string input;
         std::getline(std::cin, input);
 
@@ -38,7 +39,7 @@ namespace rrs_io {
             in = std::stod(input);
         }
         catch (std::invalid_argument& e) {
-            error = 1;
+            error = RrsError::BAD_INPUT_TYPE;
         }
 
         return error; 
@@ -50,7 +51,7 @@ namespace rrs_io {
     }
 
     int IntIn(int& in) {
-        int error = 0;
+        int error = RrsError::NO_ERROR;
         std::string input;
         std::getline(std::cin, input);
 
@@ -58,12 +59,29 @@ namespace rrs_io {
             in = std::stoi(input);
         }
         catch (std::invalid_argument& e) {
-            error = 1;
+            error = RrsError::BAD_INPUT_TYPE;
         }
 
         return error; 
     }
     
+    int IntMinMaxIn(int& in, int min, int max) {
+        int error = RrsError::NO_ERROR;
+        std::string input;
+        std::getline(std::cin, input);
+
+        try {
+            in = std::stoi(input);
+        }
+        catch (std::invalid_argument& e) {
+            error = RrsError::BAD_INPUT_TYPE;
+        }
+
+        if (in < min || in > max)
+            error = RrsError::OUT_OF_RANGE;
+
+        return error; 
+    }
 }
 
 Part::PartType PartTypeByIndex(int index) {
