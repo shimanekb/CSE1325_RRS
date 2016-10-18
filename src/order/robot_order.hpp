@@ -7,6 +7,7 @@ class RobotOrder {
     public:
         RobotOrder(int robot_model_number, int quantity, double robot_cost);
         std::string ToString() const;
+        RobotOrder Clone() const;
     private:
         double CalculateTotalCost() const;
         const int kRobotModelNumber;

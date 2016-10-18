@@ -21,3 +21,7 @@ std::string RobotOrder::ToString() const {
 double RobotOrder::CalculateTotalCost() const {
     return kQuantity * kRobotCost;
 }
+
+RobotOrder RobotOrder::Clone() const {
+    return RobotOrder(kRobotModelNumber, kQuantity, kRobotCost);
+}

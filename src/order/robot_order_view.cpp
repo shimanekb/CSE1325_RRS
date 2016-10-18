@@ -19,7 +19,7 @@ void RobotOrderView::DisplayBadQuantityMessage() {
         << std::endl;
 }
 
-void RobotOrderView::DisplayRobotOrder(const RobotOrder &robot_order) {
+void RobotOrderView::DisplayRobotOrder(const std::unique_ptr<RobotOrder> &robot_order) {
     std::cout << "Robot Order " << "***************************" 
-        << robot_order.ToString() << std::endl;
+        << robot_order->ToString() << std::endl;
 }
