@@ -66,7 +66,7 @@ $(OBJ_DIR)/robot_order.o: robot_order.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_order_view.o: robot_order_view.cpp robot_order.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/robot_order_controller.o: robot_order_controller.cpp rrs_error.hpp robot_order_view.hpp robot_order.hpp
+$(OBJ_DIR)/robot_order_controller.o: robot_order_controller.cpp robot_repo.hpp rrs_error.hpp robot_order_view.hpp robot_order_repo.hpp rrs_io.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_order_repo.o: robot_order_repo.cpp robot_order.hpp rrs_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 

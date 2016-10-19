@@ -13,7 +13,7 @@ class RobotOrderRepo {
             return instance;
         }
         int SaveRobotOrder(std::unique_ptr<RobotOrder> robot_order);
-        int GetAll(std::vector<std::unique_ptr<RobotOrder>> &robot_orders_vector);
+        int GetAllRobotOrders(std::vector<std::unique_ptr<RobotOrder>> &robot_orders_vector);
     private:
         std::vector<std::unique_ptr<RobotOrder>> robot_orders;
         RobotOrderRepo();

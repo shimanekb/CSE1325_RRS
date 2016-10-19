@@ -10,7 +10,7 @@ int RobotOrderRepo::SaveRobotOrder(std::unique_ptr<RobotOrder> robot_order) {
 }
 
 
-int RobotOrderRepo::GetAll(std::vector<std::unique_ptr<RobotOrder>> 
+int RobotOrderRepo::GetAllRobotOrders(std::vector<std::unique_ptr<RobotOrder>> 
         &robot_orders_vector) {
     int error_code = RrsError::NO_ERROR;
     robot_orders_vector.clear();

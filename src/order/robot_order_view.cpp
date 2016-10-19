@@ -23,3 +23,11 @@ void RobotOrderView::DisplayRobotOrder(const std::unique_ptr<RobotOrder> &robot_
     std::cout << "Robot Order " << "***************************" 
         << robot_order->ToString() << std::endl;
 }
+
+void RobotOrderView::DisplayRobotOrderCreationSuccess() {
+    std::cout << "Robot Order creation successful!" << std::endl;
+}
+
+void RobotOrderView::DisplayRobotOrderCreationFailure() {
+    std::cout << "Robot Order creation failed!" << std::endl;
+}

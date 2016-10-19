@@ -12,6 +12,8 @@ class RobotOrderView {
         void DisplayBadRobotModelNumber();
         void DisplayBadQuantityMessage();
         void DisplayRobotOrder(const std::unique_ptr<RobotOrder> &robot_order);
+        void DisplayRobotOrderCreationSuccess();
+        void DisplayRobotOrderCreationFailure();
 };
 
 #endif
