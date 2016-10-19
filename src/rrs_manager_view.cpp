@@ -13,7 +13,8 @@ void RrsManagerView::DisplayMainMenu() {
 void RrsManagerView::DisplayCreateMenu() {
     std::cout << std::endl << "Create Menu" << std::endl 
         << "***********************" << std::endl << "1. Robot Model" 
-        << std::endl << "2. Robot Component" << std::endl << "3. Quit/Main Menu"
+        << std::endl << "2. Robot Component" << std::endl << "3. Robot Order"
+        <<std::endl << "4. Quit/Main Menu"
         << std::endl;
 }
 

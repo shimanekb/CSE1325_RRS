@@ -22,7 +22,7 @@ $(OBJ_DIR):
 
 executable: main.cpp $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INC) $^
-$(OBJ_DIR)/rrs_manager.o: rrs_manager.cpp part_controller.hpp robot_controller.hpp rrs_manager_view.hpp
+$(OBJ_DIR)/rrs_manager.o: rrs_manager.cpp part_controller.hpp robot_controller.hpp rrs_manager_view.hpp robot_order_controller.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rrs_manager_view.o: rrs_manager_view.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 

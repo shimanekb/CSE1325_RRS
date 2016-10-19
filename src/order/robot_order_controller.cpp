@@ -1,6 +1,7 @@
 #include "order/robot_order_controller.hpp"
 
 #include <memory>
+#include <iostream>
 
 #include "rrs_error.hpp"
 #include "rrs_io.hpp"
@@ -19,10 +20,14 @@ int RobotOrderController::CreateRobotOrder() {
         error_code = RrsError::BAD_INPUT_TYPE;
     }
 
+    if (error_code) {
         robot_order_view.DisplayBadRobotModelNumber();
-    if (!error_code || rrs_io::IntIn(quantity)) {
-        error_code = RrsError::BAD_INPUT_TYPE;
-        robot_order_view.DisplayBadQuantityMessage();
+    }
+    else {
+        robot_order_view.AskRobotModelQuantity();
+        if (error_code = rrs_io::IntIn(quantity)) {
+            robot_order_view.DisplayBadQuantityMessage();
+        }
     }
 
     if (!error_code) {
@@ -36,7 +41,7 @@ int RobotOrderController::CreateRobotOrder() {
         robot_order_repo.GetAllRobotOrders(tmp_orders);
 
         robot_order_view.DisplayRobotOrderCreationSuccess();
-        robot_order_view.DisplayRobotOrder(tmp_orders.front());
+        robot_order_view.DisplayRobotOrder(tmp_orders.back());
 
         tmp_orders.clear();
     }

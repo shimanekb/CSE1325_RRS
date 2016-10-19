@@ -15,10 +15,10 @@ class RobotOrderRepo {
         int SaveRobotOrder(std::unique_ptr<RobotOrder> robot_order);
         int GetAllRobotOrders(std::vector<std::unique_ptr<RobotOrder>> &robot_orders_vector);
     private:
-        std::vector<std::unique_ptr<RobotOrder>> robot_orders;
-        RobotOrderRepo();
+        RobotOrderRepo() {};
         RobotOrderRepo(RobotOrderRepo const &);
         void operator=(RobotOrderRepo const&);
+        std::vector<std::unique_ptr<RobotOrder>> robot_orders;
 };
 
 #endif

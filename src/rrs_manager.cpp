@@ -43,7 +43,7 @@ int RrsManager::ReportMenu() {
     bool do_not_exit = true;
     int selection;
 
-    while(do_not_exit) {
+    while(do_not_exit) { 
        rrs_view.DisplayReportMenu();
        error_code = rrs_io::IntIn(selection);
 
@@ -79,7 +79,7 @@ int RrsManager::CreateMenu() {
        rrs_view.DisplayCreateMenu();
        error_code = rrs_io::IntIn(selection);
 
-       if (error_code || selection < 1 || selection > 3)
+       if (error_code || selection < 1 || selection > 4)
            rrs_view.DisplayBadSelectionMessage();
        else
            switch(selection) {
@@ -92,6 +92,10 @@ int RrsManager::CreateMenu() {
                    error_code = part_controller.CreatePart();
                    break;
                case 3:
+                   //robot order
+                   error_code = robot_order_controller.CreateRobotOrder();
+                   break;
+               case 4:
                    //quit main menu
                    do_not_exit = false;
                    break;
