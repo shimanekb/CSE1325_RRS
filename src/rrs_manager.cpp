@@ -89,7 +89,6 @@ int RrsManager::CreateMenu() {
                    break;
                case 2:
                    //robot parts
-                   error_code = part_controller.CreatePart();
                    break;
                case 3:
                    //robot order

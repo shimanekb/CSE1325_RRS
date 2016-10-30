@@ -106,6 +106,13 @@ inline void PartCreationWindow::CreatePart() {
          ss << "Part Created!" << std::endl <<std::endl << part->ToString();
          hide();
          fl_message(ss.str().c_str());
+    } 
+    else {
+        std::stringstream ss;
+        ss << "Cannot create Part! Invalid input!" << std::endl 
+            << "Cannot have:" << std::endl << "\t1. Negative numbers"
+            << std::endl << "\t2. Empty input for chosen part type.";
+        fl_alert(ss.str().c_str());
     }
 }
 

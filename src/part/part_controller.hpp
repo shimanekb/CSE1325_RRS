@@ -14,7 +14,6 @@
 
 class PartController {
     public:
-        int CreatePart();
         int CreatePart(std::unique_ptr<Part> &partIn, std::string name, 
                 int partNumber, Part::PartType partType, 
                 double weight, double cost, std::string description, 
@@ -23,21 +22,6 @@ class PartController {
                 double batteryEnergy);
         int ShowParts();
     private:
-        std::unique_ptr<Battery> CreateBatteryPart(const std::string name, const int part_number, 
-            const double weight, const double cost, 
-            const std::string description);
-        std::unique_ptr<Arm> CreateArmPart(const std::string name, const int part_number, 
-            const double weight, const double cost, 
-            const std::string description);
-        std::unique_ptr<Locomotor> CreateLocomotorPart(const std::string name, const int part_number, 
-            const double weight, const double cost, 
-            const std::string description);
-        std::unique_ptr<Torso> CreateTorsoPart(const std::string name, const int part_number, 
-            const double weight, const double cost, 
-            const std::string description);
-        std::unique_ptr<Head> CreateHeadPart(const std::string name, const int part_number, 
-            const double weight, const double cost, 
-            const std::string description);
         PartView part_view;
         PartRepo &part_repo = PartRepo::GetInstance();
 };
