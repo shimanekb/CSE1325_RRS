@@ -1,11 +1,15 @@
 #include "part/view/part_creation_window.hpp"
 
+#include "part/part_controller.hpp"
+#include "part/part.hpp"
+#include "rrs_io.hpp"
+#include "rrs_error.hpp"
+
 PartCreationWindow::PartCreationWindow() 
     : Fl_Window(400,665,"Part"),  
     partTypeLabel(325,30,90,30, "Enter/choose the following options:"), 
     partName(100,60,150,30, "Part Name:"),
-    partNumber(100, 95, 150, 30, "Part Number:"),
-    partWeight(100, 130, 90, 30, "Part Weight:"),
+    partNumber(100, 95, 150, 30, "Part Number:"), partWeight(100, 130, 90, 30, "Part Weight:"),
     partCost(100, 165, 90, 30, "Part Cost:"),
     partDescription(100, 200, 250, 60, "Description:"),
     partType(100, 265, 150, 30, "Part Type:"),
@@ -33,6 +37,9 @@ PartCreationWindow::PartCreationWindow()
         torsoTypeLabel.align(FL_ALIGN_LEFT);
         torsoTypeLabel.labelfont(FL_BOLD);
 
+        torsoBatteryCount.maximum(3);
+        torsoBatteryCount.minimum(1);
+
         armTypeLabel.align(FL_ALIGN_LEFT);
         armTypeLabel.labelfont(FL_BOLD);
 
@@ -42,5 +49,53 @@ PartCreationWindow::PartCreationWindow()
         batteryTypeLabel.align(FL_BOLD);
         batteryTypeLabel.labelfont(FL_BOLD);
 
+        createButton.callback(CreatePartCallback, this);
         end();
     };
+
+inline void PartCreationWindow::CreatePart() {
+    PartController controller{};
+    constexpr int kMax = 2000000000;
+    int error_code;
+    std::string name = partName.value();
+    int number;
+    int partTypeIndex = partType.value();
+    Part::PartType partType = rrs_io::PartTypeByIndex(partTypeIndex);
+    double weight;
+    double cost;
+    std::string description = partDescription.value();
+    int batteryCount = torsoBatteryCount.value();
+    double armPowerUsed;
+    double locoMaxSpeed;
+    double locoPowerUsed;
+    double batteryEnergyUsed;
+
+    error_code = rrs_io::StringToInt(partNumber.value(), number, 0, kMax) +
+       rrs_io::StringToDouble(partWeight.value(), weight, 0, kMax) +
+       rrs_io::StringToDouble(partCost.value(), cost, 0, kMax);
+
+    if (partType == Part::PartType::ARM) {
+       error_code += rrs_io::StringToDouble(powerConsumedWatts.value(), 
+               armPowerUsed, 0, kMax);
+    }
+    else if (partType == Part::PartType::LOCOMOTOR) {
+       error_code += rrs_io::StringToDouble(locomotorMaxSpeed.value(), 
+               locoMaxSpeed, 0, kMax) +
+       rrs_io::StringToDouble(locomotorPowerUsedWatts.value(), locoPowerUsed, 0,
+               kMax);
+    }
+    else if (partType == Part::PartType::BATTERY) {
+       error_code += rrs_io::StringToDouble(batteryEnergy.value(), 
+               batteryEnergyUsed, 0, kMax);
+    }
+
+    if (!error_code) {
+         controller.CreatePart(name, number, partType, weight, cost, 
+                 description, batteryCount, armPowerUsed, locoMaxSpeed, 
+                 locoPowerUsed, batteryEnergyUsed);
+    }
+}
+
+void PartCreationWindow::CreatePartCallback(Fl_Widget *w, void* v) {
+    ((PartCreationWindow*) v)->CreatePart();
+}

@@ -10,6 +10,40 @@ namespace rrs_io {
 
     constexpr int kPartTypeIndexMax = 4;
 
+
+    int StringToDouble(std::string in, double &out, int min, int max) {
+        int error = RrsError::NO_ERROR;
+
+        try {
+            out = std::stod(in);
+
+            if (out < min || out > max) {
+                error = RrsError::OUT_OF_RANGE;
+            }
+        }
+        catch (std::invalid_argument& e) {
+            error = RrsError::BAD_INPUT_TYPE;
+        }
+
+        return error; 
+    }
+
+    int StringToInt(std::string in, int &out, int min, int max) {
+        int error = RrsError::NO_ERROR;
+        try {
+            out = std::stoi(in);
+
+            if (out < min || out > max) {
+                error = RrsError::OUT_OF_RANGE;
+            }
+        }
+        catch (std::invalid_argument& e) {
+            error = RrsError::BAD_INPUT_TYPE;
+        }
+
+        return error; 
+    }
+
     int PartTypeIn(Part::PartType &part_type) {
         int error = RrsError::NO_ERROR;
         try {
@@ -82,27 +116,28 @@ namespace rrs_io {
 
         return error; 
     }
-}
 
-Part::PartType PartTypeByIndex(int index) {
-    Part::PartType type;
-    switch(index) {
-        case 0:
-            type = Part::PartType::TORSO;
-            break;
-        case 1:
-            type = Part::PartType::HEAD;
-            break;
-        case 2:
-            type = Part::PartType::ARM;
-            break;
-        case 3:
-            type = Part::PartType::LOCOMOTOR;
-            break;
-        case 4:
-            type = Part::PartType::BATTERY;
-            break;
+    Part::PartType PartTypeByIndex(int index) {
+        Part::PartType type;
+        switch(index) {
+            case 0:
+                type = Part::PartType::TORSO;
+                break;
+            case 1:
+                type = Part::PartType::HEAD;
+                break;
+            case 2:
+                type = Part::PartType::ARM;
+                break;
+            case 3:
+                type = Part::PartType::LOCOMOTOR;
+                break;
+            case 4:
+                type = Part::PartType::BATTERY;
+                break;
+        }
+
+        return type;
     }
-
-    return type;
 }
+

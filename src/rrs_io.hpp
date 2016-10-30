@@ -11,6 +11,9 @@ namespace rrs_io {
     int StringIn(std::string& in);
     int IntMinMaxIn(int& in, int min, int max); 
     int IntIn(int& in); 
+    int StringToDouble(std::string in, double &out, int min, int max);
+    int StringToInt(std::string in, int &out,int min, int max);
+    Part::PartType PartTypeByIndex(int index);
 }
 
 #endif

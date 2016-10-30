@@ -4,6 +4,8 @@
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Input.H>
+#include <FL/Fl_Int_Input.H>
+#include <FL/Fl_Float_Input.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Choice.H>
 #include <FL/Fl_Spinner.H>
@@ -15,21 +17,23 @@ class PartCreationWindow : public Fl_Window {
     private:
         Fl_Box partTypeLabel;
         Fl_Input partName;
-        Fl_Input partNumber;
-        Fl_Input partWeight;
-        Fl_Input partCost;
+        Fl_Int_Input partNumber;
+        Fl_Float_Input partWeight;
+        Fl_Float_Input partCost;
         Fl_Multiline_Input partDescription;
         Fl_Choice partType;        
         Fl_Box torsoTypeLabel;
         Fl_Spinner torsoBatteryCount;
         Fl_Box armTypeLabel;
-        Fl_Input powerConsumedWatts; 
+        Fl_Float_Input powerConsumedWatts; 
         Fl_Box locomotorTypeLabel;
-        Fl_Input locomotorMaxSpeed;
-        Fl_Input locomotorPowerUsedWatts;
+        Fl_Float_Input locomotorMaxSpeed;
+        Fl_Float_Input locomotorPowerUsedWatts;
         Fl_Box batteryTypeLabel;
-        Fl_Input batteryEnergy;
+        Fl_Float_Input batteryEnergy;
         Fl_Button createButton;
         Fl_Button cancelButton;
+        void CreatePart();
+        static void CreatePartCallback(Fl_Widget *w, void* v);
 };
 #endif
