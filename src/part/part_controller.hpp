@@ -15,7 +15,8 @@
 class PartController {
     public:
         int CreatePart();
-        int CreatePart(std::string name, int partNumber, Part::PartType partType, 
+        int CreatePart(std::unique_ptr<Part> &partIn, std::string name, 
+                int partNumber, Part::PartType partType, 
                 double weight, double cost, std::string description, 
                 int torsoBatteryCount,double armPowerConsumedWatts, 
                 double locomotorMaxSpeed, double locomotorPowerConsumedWatts, 

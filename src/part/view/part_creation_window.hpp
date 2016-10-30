@@ -35,5 +35,7 @@ class PartCreationWindow : public Fl_Window {
         Fl_Button cancelButton;
         void CreatePart();
         static void CreatePartCallback(Fl_Widget *w, void* v);
+        void WindowExit();
+        static void WindowExitCallback(Fl_Widget *w, void* v);
 };
 #endif

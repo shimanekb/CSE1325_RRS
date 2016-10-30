@@ -1,5 +1,9 @@
 #include "part/view/part_creation_window.hpp"
 
+#include <FL/fl_ask.H>
+#include <memory>
+#include <sstream>
+
 #include "part/part_controller.hpp"
 #include "part/part.hpp"
 #include "rrs_io.hpp"
@@ -50,11 +54,13 @@ PartCreationWindow::PartCreationWindow()
         batteryTypeLabel.labelfont(FL_BOLD);
 
         createButton.callback(CreatePartCallback, this);
+        cancelButton.callback(WindowExitCallback, this);
         end();
     };
 
 inline void PartCreationWindow::CreatePart() {
     PartController controller{};
+    std::unique_ptr<Part> part;
     constexpr int kMax = 2000000000;
     int error_code;
     std::string name = partName.value();
@@ -90,12 +96,27 @@ inline void PartCreationWindow::CreatePart() {
     }
 
     if (!error_code) {
-         controller.CreatePart(name, number, partType, weight, cost, 
-                 description, batteryCount, armPowerUsed, locoMaxSpeed, 
+         error_code = controller.CreatePart(part, name, number, partType, weight, 
+                 cost, description, batteryCount, armPowerUsed, locoMaxSpeed,
                  locoPowerUsed, batteryEnergyUsed);
+    }
+
+    if (!error_code) {
+         std::stringstream ss;
+         ss << "Part Created!" << std::endl <<std::endl << part->ToString();
+         hide();
+         fl_message(ss.str().c_str());
     }
 }
 
 void PartCreationWindow::CreatePartCallback(Fl_Widget *w, void* v) {
     ((PartCreationWindow*) v)->CreatePart();
+}
+
+inline void PartCreationWindow::WindowExit() {
+    hide();
+}
+
+void PartCreationWindow::WindowExitCallback(Fl_Widget *w, void* v) {
+    ((PartCreationWindow*) v)->WindowExit();
 }

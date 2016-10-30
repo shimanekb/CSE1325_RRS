@@ -14,7 +14,8 @@ int PartController::ShowParts() {
     return error_code;
 }
 
-int PartController::CreatePart(std::string name, int partNumber, Part::PartType partType, 
+int PartController::CreatePart(std::unique_ptr<Part> &partIn,
+                std::string name, int partNumber, Part::PartType partType, 
                 double weight, double cost, std::string description, 
                 int torsoBatteryCount,double armPowerConsumedWatts, 
                 double locomotorMaxSpeed, double locomotorPowerConsumedWatts, 
@@ -47,7 +48,7 @@ int PartController::CreatePart(std::string name, int partNumber, Part::PartType 
         error_code = RrsError::BAD_INPUT_TYPE;
     }
 
-    part_view.DisplayPart(part);
+    partIn = std::unique_ptr<Part>{part->Clone()};
     part_repo.Add(std::move(part));
     return error_code;
 }
