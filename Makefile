@@ -1,15 +1,15 @@
-vpath %.hpp src:src/part:src/robot:src/order:test:test/part:test/robot
-vpath %.cpp src:src/part:src/robot:src/order:lib:test:test/part:test/robot
+vpath %.hpp src:src/part:src/part/view:src/robot:src/order:test:test/part:test/robot
+vpath %.cpp src:src/part:src/part/view:src/robot:src/order:lib:test:test/part:test/robot
 vpath %.o objs 
 
 
 LIB_DIR := lib
 OBJ_DIR := objs
-INC = -Isrc/part -Itest -Isrc/robot -Isrc/order -Isrc 
+INC = -Isrc/part -Isrc/part/view -Itest -Isrc/robot -Isrc/order -Isrc -L/usr/lib -lfltk -lXext -lX11 -lm
 
 ROBOT_ORDER_OBJS := robot_order.o robot_order_controller.o robot_order_view.o robot_order_repo.o
 ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o generic_validation_strategy.o 
-PART_OBJS := part_controller.o part.o part_view.o rrs_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o
+PART_OBJS := part_controller.o part.o part_view.o rrs_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o part_creation_window.o
 OBJS :=  rrs_manager.o rrs_manager_view.o $(ROBOT_OBJS) $(PART_OBJS) $(ROBOT_ORDER_OBJS) tinyxml2.o
 
 ROBOT_ORDER_TEST_OBJS := robot_order_repo.o robot_order_repo_test.o
@@ -49,6 +49,8 @@ $(OBJ_DIR)/torso.o: torso.cpp part.hpp
 $(OBJ_DIR)/head.o: head.cpp part.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/part_repo.o: part_repo.cpp part.hpp rrs_error.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/part_creation_window.o: part_creation_window.cpp 
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot.o: robot.cpp part.hpp robot_validation_strategy_repo.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
