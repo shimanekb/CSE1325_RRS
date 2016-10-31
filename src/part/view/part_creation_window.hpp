@@ -1,6 +1,7 @@
 #ifndef RRS_PART_VIEW_PART_CREATION_WINDOW_HPP_
 #define RRS_PART_VIEW_PART_CREATION_WINDOW_HPP_
 
+#include <string>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Input.H>
@@ -14,6 +15,17 @@
 class PartCreationWindow : public Fl_Window {
     public:
         PartCreationWindow();
+        std::string GetPartName() const;
+        std::string GetPartNumber() const;
+        std::string GetPartWeight() const;
+        std::string GetPartCost() const;
+        std::string GetPartDescription() const;
+        int GetPartTypeIndex() const;
+        int GetTorsoBatteryCount() const;
+        std::string GetArmPowerConsumedWatts() const;
+        std::string GetLocomotorMaxSpeed() const;
+        std::string GetLocomotorPowerConsumedWatts() const;
+        std::string GetBatteryEnergy() const;
     private:
         Fl_Box partTypeLabel;
         Fl_Input partName;

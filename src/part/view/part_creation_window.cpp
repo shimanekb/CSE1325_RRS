@@ -59,47 +59,10 @@ PartCreationWindow::PartCreationWindow()
     };
 
 inline void PartCreationWindow::CreatePart() {
+    int error_code;
     PartController controller{};
     std::unique_ptr<Part> part;
-    constexpr int kMax = 2000000000;
-    int error_code;
-    std::string name = partName.value();
-    int number;
-    int partTypeIndex = partType.value();
-    Part::PartType partType = rrs_io::PartTypeByIndex(partTypeIndex);
-    double weight;
-    double cost;
-    std::string description = partDescription.value();
-    int batteryCount = torsoBatteryCount.value();
-    double armPowerUsed;
-    double locoMaxSpeed;
-    double locoPowerUsed;
-    double batteryEnergyUsed;
-
-    error_code = rrs_io::StringToInt(partNumber.value(), number, 0, kMax) +
-       rrs_io::StringToDouble(partWeight.value(), weight, 0, kMax) +
-       rrs_io::StringToDouble(partCost.value(), cost, 0, kMax);
-
-    if (partType == Part::PartType::ARM) {
-       error_code += rrs_io::StringToDouble(powerConsumedWatts.value(), 
-               armPowerUsed, 0, kMax);
-    }
-    else if (partType == Part::PartType::LOCOMOTOR) {
-       error_code += rrs_io::StringToDouble(locomotorMaxSpeed.value(), 
-               locoMaxSpeed, 0, kMax) +
-       rrs_io::StringToDouble(locomotorPowerUsedWatts.value(), locoPowerUsed, 0,
-               kMax);
-    }
-    else if (partType == Part::PartType::BATTERY) {
-       error_code += rrs_io::StringToDouble(batteryEnergy.value(), 
-               batteryEnergyUsed, 0, kMax);
-    }
-
-    if (!error_code) {
-         error_code = controller.CreatePart(part, name, number, partType, weight, 
-                 cost, description, batteryCount, armPowerUsed, locoMaxSpeed,
-                 locoPowerUsed, batteryEnergyUsed);
-    }
+    error_code = controller.CreatePart(part, this);
 
     if (!error_code) {
          std::stringstream ss;
@@ -127,3 +90,48 @@ inline void PartCreationWindow::WindowExit() {
 void PartCreationWindow::WindowExitCallback(Fl_Widget *w, void* v) {
     ((PartCreationWindow*) v)->WindowExit();
 }
+
+std::string PartCreationWindow::GetPartName() const {
+    return partName.value();
+}
+
+std::string PartCreationWindow::GetPartNumber() const {
+    return partNumber.value();
+}
+
+std::string PartCreationWindow::GetPartWeight() const {
+    return partWeight.value();
+}
+
+std::string PartCreationWindow::GetPartCost() const {
+    return partCost.value();
+}
+
+std::string PartCreationWindow::GetPartDescription() const {
+   return partDescription.value(); 
+}
+
+int PartCreationWindow::GetPartTypeIndex() const {
+    return partType.value();
+}
+
+int PartCreationWindow::GetTorsoBatteryCount() const {
+    return torsoBatteryCount.value();
+}
+
+std::string PartCreationWindow::GetArmPowerConsumedWatts() const {
+    return powerConsumedWatts.value();
+}
+
+std::string PartCreationWindow::GetLocomotorMaxSpeed() const {
+    return locomotorMaxSpeed.value();
+}
+
+std::string PartCreationWindow::GetLocomotorPowerConsumedWatts() const {
+    return locomotorPowerUsedWatts.value();
+}
+
+std::string PartCreationWindow::GetBatteryEnergy() const {
+    return batteryEnergy.value();
+}
+
