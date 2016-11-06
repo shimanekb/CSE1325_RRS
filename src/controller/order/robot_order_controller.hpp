@@ -1,5 +1,5 @@
-#ifndef RRS_ORDER_ROBOT_ORDER_CONTROLLER_HPP_
-#define RRS_ORDER_ROBOT_ORDER_CONTROLLER_HPP_
+#ifndef RRS_CONTROLLER_ORDER_ROBOT_ORDER_CONTROLLER_HPP_
+#define RRS_CONTROLLER_ORDER_ROBOT_ORDER_CONTROLLER_HPP_
 
 #include "order/robot_order_view.hpp"
 #include "robot/robot_repo.hpp"

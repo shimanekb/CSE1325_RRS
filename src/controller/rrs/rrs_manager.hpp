@@ -3,7 +3,7 @@
 
 #include "controller/robot/robot_controller.hpp"
 #include "controller/part/part_controller.hpp"
-#include "order/robot_order_controller.hpp"
+#include "controller/order/robot_order_controller.hpp"
 #include "rrs_manager_view.hpp"
 
 class RrsManager {
