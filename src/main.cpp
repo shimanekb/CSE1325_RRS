@@ -4,11 +4,12 @@
 #include <FL/Fl_Box.H>
 
 #include "rrs_manager.hpp"
+#include "rrs_main_window.hpp"
 #include "part/view/part_creation_window.hpp"
 
 int main() {
-    PartCreationWindow *partCreationWindow = new PartCreationWindow{};
-    partCreationWindow->show();
+    RrsMainWindow *mainWindow = new RrsMainWindow{};
+    mainWindow->show();
 
     return Fl::run();
 }

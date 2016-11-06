@@ -10,7 +10,7 @@
 #include "rrs_error.hpp"
 
 PartCreationWindow::PartCreationWindow() 
-    : Fl_Window(400,665,"Part"),  
+    : RrsWindow(400,665,"Part"),  
     partTypeLabel(325,30,90,30, "Enter/choose the following options:"), 
     partName(100,60,150,30, "Part Name:"),
     partNumber(100, 95, 150, 30, "Part Number:"), partWeight(100, 130, 90, 30, "Part Weight:"),
@@ -81,14 +81,6 @@ inline void PartCreationWindow::CreatePart() {
 
 void PartCreationWindow::CreatePartCallback(Fl_Widget *w, void* v) {
     ((PartCreationWindow*) v)->CreatePart();
-}
-
-inline void PartCreationWindow::WindowExit() {
-    hide();
-}
-
-void PartCreationWindow::WindowExitCallback(Fl_Widget *w, void* v) {
-    ((PartCreationWindow*) v)->WindowExit();
 }
 
 std::string PartCreationWindow::GetPartName() const {

@@ -2,7 +2,6 @@
 #define RRS_PART_VIEW_PART_CREATION_WINDOW_HPP_
 
 #include <string>
-#include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Int_Input.H>
@@ -12,7 +11,9 @@
 #include <FL/Fl_Spinner.H>
 #include <FL/Fl_Multiline_Input.H>
 
-class PartCreationWindow : public Fl_Window {
+#include "rrs/view/rrs_window.hpp"
+
+class PartCreationWindow : public RrsWindow {
     public:
         PartCreationWindow();
         std::string GetPartName() const;
@@ -47,7 +48,5 @@ class PartCreationWindow : public Fl_Window {
         Fl_Button cancelButton;
         void CreatePart();
         static void CreatePartCallback(Fl_Widget *w, void* v);
-        void WindowExit();
-        static void WindowExitCallback(Fl_Widget *w, void* v);
 };
 #endif
