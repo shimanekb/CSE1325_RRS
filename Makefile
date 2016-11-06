@@ -1,5 +1,5 @@
-vpath %.hpp src:src/view/part:src/view/rrs:src/controller/rrs:src/part:src/part/view:src/robot:src/order:test:test/part:test/robot
-vpath %.cpp src:src/view/part:src/view/rrs:src/controller/rrs:src/part:src/part/view:src/robot:src/order:lib:test:test/part:test/robot
+vpath %.hpp src:$(wildcard src/view/*):$(wildcard src/controller/*):src/part:src/robot:src/order:test:test/part:test/robot
+vpath %.cpp src:$(wildcard src/view/*):$(wildcard src/controller/*):src/part:src/robot:src/order:lib:test:test/part:test/robot
 vpath %.o objs 
 
 
