@@ -64,7 +64,7 @@ $(OBJ_DIR)/robot_controller.o: robot_controller.cpp robot_view.hpp robot_repo.hp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_view.o: robot_view.cpp robot.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/robot_creation_window.o: robot_creation_window.cpp robot.hpp
+$(OBJ_DIR)/robot_creation_window.o: robot_creation_window.cpp robot.hpp robot_controller.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/battery_validation_strategy.o: battery_validation_strategy.cpp robot_validation_strategy.hpp rrs_error.hpp battery.hpp torso.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 

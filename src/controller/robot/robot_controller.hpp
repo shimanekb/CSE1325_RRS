@@ -2,6 +2,7 @@
 #define RRS_CONTROLLER_ROBOT_ROBOT_CONTROLLER_HPP_
 
 #include <memory>
+#include <vector>
 
 #include "view/robot/robot_view.hpp"
 #include "model/part/part_repo.hpp"
@@ -11,6 +12,8 @@ class RobotController {
     public:
         int CreateRobot();
         int ShowRobots();
+        int GetRobotComponentsByType(Part::PartType type, 
+                std::vector<std::unique_ptr<Part>> &parts);
     private:
         int SelectParts(std::unique_ptr<Robot> const &robot);
         int GetModelNumber(int &model_number);

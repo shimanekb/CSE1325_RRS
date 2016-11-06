@@ -1,7 +1,12 @@
 #include "view/rrs/rrs_main_window.hpp"
 
 #include <iostream>
+#include <memory>
+#include <vector>
 #include <FL/Fl_Menu_Item.H>
+
+#include "controller/robot/robot_controller.hpp"
+#include "model/part/part.hpp"
 
 RrsMainWindow::RrsMainWindow()  
     : RrsWindow(600,600,"Robbie Robot Shop"),  
@@ -16,6 +21,10 @@ RrsMainWindow::RrsMainWindow()
 }
 
 inline void RrsMainWindow::CreateRobotOption() {
+    RobotController controller{};
+    std::vector<std::unique_ptr<Part>> parts;
+    controller.GetRobotComponentsByType(Part::PartType::TORSO, parts);
+    robotCreationWindow->SetTorsoChoice(parts);
     robotCreationWindow->show();
 }
 

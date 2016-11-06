@@ -122,3 +122,10 @@ int RobotController::ShowRobots() {
     robot_view.DisplayRobotModels(robot_repo.GetAll());
     return RrsError::NO_ERROR;
 }
+
+
+int RobotController::GetRobotComponentsByType(Part::PartType type, 
+                std::vector<std::unique_ptr<Part>> &parts) {
+    part_repo.GetRobotComponentsByType(type, parts);
+    return 0;
+}

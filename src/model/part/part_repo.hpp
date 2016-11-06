@@ -11,6 +11,8 @@ class PartRepo {
         bool Add(std::unique_ptr<Part> part);
         int GetByPartNumber(int part_number, std::unique_ptr<Part> &part);
         std::vector<std::unique_ptr<Part>> GetAll();
+        int GetRobotComponentsByType(Part::PartType type, 
+                std::vector<std::unique_ptr<Part>> &parts);
         static PartRepo& GetInstance() {
             static PartRepo instance;
             return instance;

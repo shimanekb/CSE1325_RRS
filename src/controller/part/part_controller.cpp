@@ -1,7 +1,6 @@
 #include "controller/part/part_controller.hpp"
 
 #include <string>
-#include <iostream>
 
 #include "rrs_error.hpp"
 #include "rrs_io.hpp"
@@ -55,6 +54,10 @@ int PartController::CreatePart(std::unique_ptr<Part> &partIn,
            partIn = std::unique_ptr<Battery>{new Battery{name, number, 
                 weight, cost, description, batteryEnergyUsed}};
         }
+        else if (partType == Part::PartType::TORSO) {
+            partIn = std::unique_ptr<Torso>{new Torso{name, number,
+                weight, cost, description, batteryCount}};
+        }
         else if (partType == Part::PartType::HEAD) {
             partIn = std::unique_ptr<Head>{new Head{name, number, 
                 weight, cost, description}};
@@ -64,5 +67,9 @@ int PartController::CreatePart(std::unique_ptr<Part> &partIn,
         }
     }
     
+    if(!part_repo.Add(std::unique_ptr<Part>{partIn->Clone()})) {
+        error_code = RrsError::DID_NOT_CREATE;
+    }
+
     return error_code;
 }
