@@ -23,6 +23,14 @@ class RobotCreationWindow : public RrsWindow {
         void SetArmChoice(const std::vector<std::unique_ptr<Part>> &parts);
         void SetLocomotorChoice(const std::vector<std::unique_ptr<Part>> &parts);
         void SetBatteryChoice(const std::vector<std::unique_ptr<Part>> &parts);
+        std::string GetTorsoChoice() const;
+        std::string GetHeadChoice() const;
+        std::string GetArmChoiceOne() const;
+        std::string GetArmChoiceTwo() const;
+        std::string GetLocomotorChoice() const;
+        std::string GetBatteryChoiceOne() const;
+        std::string GetBatteryChoiceTwo() const;
+        std::string GetBatteryChoiceThree() const;
         std::string GetRobotName() const;
         std::string GetRobotNumber() const;
         std::string GetRobotCost() const;

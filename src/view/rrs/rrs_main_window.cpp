@@ -23,8 +23,21 @@ RrsMainWindow::RrsMainWindow()
 inline void RrsMainWindow::CreateRobotOption() {
     RobotController controller{};
     std::vector<std::unique_ptr<Part>> parts;
+
     controller.GetRobotComponentsByType(Part::PartType::TORSO, parts);
     robotCreationWindow->SetTorsoChoice(parts);
+
+    controller.GetRobotComponentsByType(Part::PartType::HEAD, parts);
+    robotCreationWindow->SetHeadChoice(parts);
+
+    controller.GetRobotComponentsByType(Part::PartType::ARM, parts);
+    robotCreationWindow->SetArmChoice(parts);
+
+    controller.GetRobotComponentsByType(Part::PartType::LOCOMOTOR, parts);
+    robotCreationWindow->SetLocomotorChoice(parts);
+
+    controller.GetRobotComponentsByType(Part::PartType::BATTERY, parts);
+    robotCreationWindow->SetBatteryChoice(parts);
     robotCreationWindow->show();
 }
 
@@ -33,6 +46,7 @@ void RrsMainWindow::CreateRobotOptionCallback(Fl_Widget *w, void* v) {
 }
 
 inline void RrsMainWindow::CreatePartOption() {
+    partCreationWindow->ResetInputs();
     partCreationWindow->show();
 }
 

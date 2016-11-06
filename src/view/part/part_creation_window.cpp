@@ -127,3 +127,16 @@ std::string PartCreationWindow::GetBatteryEnergy() const {
     return batteryEnergy.value();
 }
 
+void PartCreationWindow::ResetInputs() {
+    partName.value(NULL);
+    partNumber.value(NULL);
+    partWeight.value(NULL);
+    partCost.value(NULL);
+    partDescription.value(NULL);
+    partType.value(0);
+    torsoBatteryCount.value(1);
+    powerConsumedWatts.value(NULL);
+    locomotorMaxSpeed.value(NULL);
+    locomotorPowerUsedWatts.value(NULL);
+    batteryEnergy.value(NULL);
+}

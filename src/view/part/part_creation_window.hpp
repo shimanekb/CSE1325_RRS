@@ -27,6 +27,7 @@ class PartCreationWindow : public RrsWindow {
         std::string GetLocomotorMaxSpeed() const;
         std::string GetLocomotorPowerConsumedWatts() const;
         std::string GetBatteryEnergy() const;
+        void ResetInputs();
     private:
         Fl_Box partTypeLabel;
         Fl_Input partName;

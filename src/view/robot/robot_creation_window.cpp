@@ -155,3 +155,36 @@ std::string RobotCreationWindow::GetRobotNumber() const {
 std::string RobotCreationWindow::GetRobotCost() const {
     return robotCost.value();
 }
+
+std::string RobotCreationWindow::GetTorsoChoice() const {
+    return torsoChoice.text();
+}
+
+std::string RobotCreationWindow::GetHeadChoice() const {
+    return headChoice.text();
+}
+
+std::string RobotCreationWindow::GetArmChoiceOne() const {
+    return armChoice1.text();
+}
+
+std::string RobotCreationWindow::GetArmChoiceTwo() const {
+    return armChoice2.text();
+}
+
+std::string RobotCreationWindow::GetLocomotorChoice() const {
+    return locomotorChoice.text();
+}
+
+std::string RobotCreationWindow::GetBatteryChoiceOne() const {
+    return batteryChoice1.text();
+}
+
+std::string RobotCreationWindow::GetBatteryChoiceTwo() const {
+    return batteryChoice2.text();
+}
+
+std::string RobotCreationWindow::GetBatteryChoiceThree() const {
+    return batteryChoice3.text();
+}
+
