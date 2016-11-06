@@ -1,5 +1,5 @@
-#ifndef RRS_RRS_VIEW_RRS_WINDOW_HPP_
-#define RRS_RRS_VIEW_RRS_WINDOW_HPP_
+#ifndef RRS_VIEW_RRS_WINDOW_HPP_
+#define RRS_VIEW_RRS_WINDOW_HPP_
 
 #include "FL/Fl_Window.H"
 

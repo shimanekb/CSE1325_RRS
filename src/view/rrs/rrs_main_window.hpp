@@ -5,8 +5,8 @@
 #include <FL/Fl_Menu_Bar.H>
 #include <FL/Fl_Input.H>
 
-#include "rrs/view/rrs_window.hpp"
-#include "part/view/part_creation_window.hpp"
+#include "view/rrs/rrs_window.hpp"
+#include "view/part/part_creation_window.hpp"
 
 class RrsMainWindow : public RrsWindow {
     public:

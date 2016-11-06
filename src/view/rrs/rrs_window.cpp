@@ -1,4 +1,4 @@
-#include "rrs/view/rrs_window.hpp"
+#include "view/rrs/rrs_window.hpp"
 
 RrsWindow::RrsWindow(int w, int h, const char *label) 
     : Fl_Window(w, h, label) {}

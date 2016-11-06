@@ -1,5 +1,5 @@
-#ifndef RRS_PART_VIEW_PART_CREATION_WINDOW_HPP_
-#define RRS_PART_VIEW_PART_CREATION_WINDOW_HPP_
+#ifndef RRS_VIEW_PART_PART_CREATION_WINDOW_HPP_
+#define RRS_VIEW_PART_PART_CREATION_WINDOW_HPP_
 
 #include <string>
 #include <FL/Fl_Box.H>
@@ -11,7 +11,7 @@
 #include <FL/Fl_Spinner.H>
 #include <FL/Fl_Multiline_Input.H>
 
-#include "rrs/view/rrs_window.hpp"
+#include "view/rrs/rrs_window.hpp"
 
 class PartCreationWindow : public RrsWindow {
     public:

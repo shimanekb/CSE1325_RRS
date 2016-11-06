@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "part/view/part_creation_window.hpp"
+#include "view/part/part_creation_window.hpp"
 #include "part/part_repo.hpp"
 #include "part/part.hpp"
 #include "part/battery.hpp"

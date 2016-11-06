@@ -1,4 +1,4 @@
-#include "part/view/part_creation_window.hpp"
+#include "view/part/part_creation_window.hpp"
 
 #include <FL/fl_ask.H>
 #include <memory>

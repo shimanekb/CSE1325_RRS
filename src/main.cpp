@@ -4,8 +4,7 @@
 #include <FL/Fl_Box.H>
 
 #include "rrs_manager.hpp"
-#include "rrs_main_window.hpp"
-#include "part/view/part_creation_window.hpp"
+#include "view/rrs/rrs_main_window.hpp"
 
 int main() {
     RrsMainWindow *mainWindow = new RrsMainWindow{};

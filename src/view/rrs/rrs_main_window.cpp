@@ -1,4 +1,4 @@
-#include "rrs_main_window.hpp"
+#include "view/rrs/rrs_main_window.hpp"
 
 #include <iostream>
 #include <FL/Fl_Menu_Item.H>
