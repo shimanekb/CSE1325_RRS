@@ -3,7 +3,6 @@
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Box.H>
 
-#include "rrs_manager.hpp"
 #include "view/rrs/rrs_main_window.hpp"
 
 int main() {

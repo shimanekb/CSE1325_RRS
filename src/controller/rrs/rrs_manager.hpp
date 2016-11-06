@@ -1,5 +1,5 @@
-#ifndef RRS_MANAGER_HPP_
-#define RRS_MANAGER_HPP_
+#ifndef RRS_CONTROLLER_RRS_MANAGER_HPP_
+#define RRS_CONTROLLER_RRS_MANAGER_HPP_ 
 
 #include "robot/robot_controller.hpp"
 #include "part/part_controller.hpp"

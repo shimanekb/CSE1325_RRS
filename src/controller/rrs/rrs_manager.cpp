@@ -1,4 +1,4 @@
-#include "rrs_manager.hpp"
+#include "controller/rrs/rrs_manager.hpp"
 
 #include "rrs_io.hpp"
 #include "rrs_error.hpp"
