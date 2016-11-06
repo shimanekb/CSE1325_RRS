@@ -7,15 +7,19 @@
 
 #include "view/rrs/rrs_window.hpp"
 #include "view/part/part_creation_window.hpp"
+#include "view/robot/robot_creation_window.hpp"
 
 class RrsMainWindow : public RrsWindow {
     public:
         RrsMainWindow();
         ~RrsMainWindow();
     private:
+        RobotCreationWindow *robotCreationWindow;
         PartCreationWindow *partCreationWindow;
         Fl_Menu_Bar menubar;
         void CreatePartOption();
         static void CreatePartOptionCallback(Fl_Widget *w, void* v);
+        void CreateRobotOption();
+        static void CreateRobotOptionCallback(Fl_Widget *w, void* v);
 };
 #endif

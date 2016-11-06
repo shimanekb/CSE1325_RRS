@@ -7,7 +7,7 @@ OBJ_DIR := objs
 INC = -Itest -Isrc -L/usr/lib -lfltk -lXext -lX11 -lm
 
 ROBOT_ORDER_OBJS := robot_order.o robot_order_controller.o robot_order_view.o robot_order_repo.o
-ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o generic_validation_strategy.o 
+ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o generic_validation_strategy.o  robot_creation_window.o
 PART_OBJS := part_controller.o part.o part_view.o rrs_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o part_creation_window.o
 RRS_OBJS := rrs_window.o rrs_manager.o rrs_main_window.o rrs_manager_view.o
 OBJS := $(RRS_OBJS) $(ROBOT_OBJS) $(PART_OBJS) $(ROBOT_ORDER_OBJS) tinyxml2.o
@@ -63,6 +63,8 @@ $(OBJ_DIR)/robot_repo.o: robot_repo.cpp robot.hpp
 $(OBJ_DIR)/robot_controller.o: robot_controller.cpp robot_view.hpp robot_repo.hpp rrs_io.hpp rrs_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_view.o: robot_view.cpp robot.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/robot_creation_window.o: robot_creation_window.cpp robot.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/battery_validation_strategy.o: battery_validation_strategy.cpp robot_validation_strategy.hpp rrs_error.hpp battery.hpp torso.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
