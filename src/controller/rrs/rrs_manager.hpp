@@ -2,7 +2,7 @@
 #define RRS_CONTROLLER_RRS_MANAGER_HPP_ 
 
 #include "controller/robot/robot_controller.hpp"
-#include "part/part_controller.hpp"
+#include "controller/part/part_controller.hpp"
 #include "order/robot_order_controller.hpp"
 #include "rrs_manager_view.hpp"
 

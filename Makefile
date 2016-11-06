@@ -2,7 +2,6 @@ vpath %.hpp src:$(wildcard src/view/*):$(wildcard src/controller/*):src/part:src
 vpath %.cpp src:$(wildcard src/view/*):$(wildcard src/controller/*):src/part:src/robot:src/order:lib:test:test/part:test/robot
 vpath %.o objs 
 
-
 LIB_DIR := lib
 OBJ_DIR := objs
 INC = -Isrc/part -Isrc/part/view -Itest -Isrc/robot -Isrc/order -Isrc -Isrc/rrs/view -L/usr/lib -lfltk -lXext -lX11 -lm

@@ -4,7 +4,7 @@
 #include <memory>
 #include <sstream>
 
-#include "part/part_controller.hpp"
+#include "controller/part/part_controller.hpp"
 #include "part/part.hpp"
 #include "rrs_io.hpp"
 #include "rrs_error.hpp"
