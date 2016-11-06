@@ -3,10 +3,10 @@
 #include <string>
 #include <memory>
 
-#include "robot/robot.hpp"
-#include "part/torso.hpp" 
-#include "part/battery.hpp"
-#include "robot/battery_validation_strategy.hpp"
+#include "model/robot/robot.hpp"
+#include "model/part/torso.hpp" 
+#include "model/part/battery.hpp"
+#include "model/robot/battery_validation_strategy.hpp"
 #include "rrs_error.hpp"
 
 TEST_CASE("Battery Validation Strategy Add Torso and Batteries") {

@@ -3,9 +3,9 @@
 #include <string>
 #include <memory>
 
-#include "part/head.hpp"
-#include "robot/robot.hpp"
-#include "robot/robot_repo.hpp"
+#include "model/part/head.hpp"
+#include "model/robot/robot.hpp"
+#include "model/robot/robot_repo.hpp"
 #include "rrs_error.hpp"
 
 TEST_CASE("RobotRepo GetRobotByModelNumber") {

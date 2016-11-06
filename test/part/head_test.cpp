@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "part/head.hpp"
+#include "model/part/head.hpp"
 
 TEST_CASE("Head ToString") {
    std::string kName = "FOO"; 

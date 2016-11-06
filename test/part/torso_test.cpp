@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "part/torso.hpp"
+#include "model/part/torso.hpp"
 
 TEST_CASE("Torso ToString") {
    std::string kName = "FOO"; 

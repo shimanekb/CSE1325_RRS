@@ -3,7 +3,7 @@
 #include <string>
 #include <sstream>
 
-#include "part/battery.hpp"
+#include "model/part/battery.hpp"
 
 TEST_CASE("Battery ToString") {
    std::string kName = "FOO"; 

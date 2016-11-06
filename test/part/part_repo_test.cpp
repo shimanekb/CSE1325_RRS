@@ -3,8 +3,8 @@
 #include <string>
 #include <memory>
 
-#include "part/battery.hpp"
-#include "part/part_repo.hpp"
+#include "model/part/battery.hpp"
+#include "model/part/part_repo.hpp"
 #include "rrs_error.hpp"
 
 TEST_CASE("PartRepo Crud Operations") {

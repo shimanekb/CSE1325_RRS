@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "order/robot_order.hpp"
+#include "model/order/robot_order.hpp"
 
 class RobotOrderView {
     public:

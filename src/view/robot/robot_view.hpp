@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 
-#include "robot/robot.hpp"
+#include "model/robot/robot.hpp"
 
 class RobotView {
     public:

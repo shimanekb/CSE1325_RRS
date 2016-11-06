@@ -4,8 +4,8 @@
 #include <memory>
 
 #include "view/robot/robot_view.hpp"
-#include "part/part_repo.hpp"
-#include "robot/robot_repo.hpp"
+#include "model/part/part_repo.hpp"
+#include "model/robot/robot_repo.hpp"
 
 class RobotController {
     public:

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "part/part.hpp"
+#include "model/part/part.hpp"
 
 namespace rrs_io {
     int PartTypeIn(Part::PartType &part_type);

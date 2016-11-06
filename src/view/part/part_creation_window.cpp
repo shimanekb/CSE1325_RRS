@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include "controller/part/part_controller.hpp"
-#include "part/part.hpp"
+#include "model/part/part.hpp"
 #include "rrs_io.hpp"
 #include "rrs_error.hpp"
 

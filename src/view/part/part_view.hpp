@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include "part/part.hpp"
+#include "model/part/part.hpp"
 
 class PartView {
     public:
