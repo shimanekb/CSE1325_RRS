@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "robot/robot_view.hpp"
+#include "view/robot/robot_view.hpp"
 #include "part/part_repo.hpp"
 #include "robot/robot_repo.hpp"
 

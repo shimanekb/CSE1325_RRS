@@ -11,7 +11,7 @@
 #include "part/locomotor.hpp"
 #include "part/torso.hpp"
 #include "part/head.hpp"
-#include "part/part_view.hpp"
+#include "view/part/part_view.hpp"
 
 class PartController {
     public:

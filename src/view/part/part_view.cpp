@@ -1,4 +1,4 @@
-#include "part/part_view.hpp" 
+#include "view/part/part_view.hpp" 
 
 #include <iostream>
 

@@ -1,5 +1,5 @@
-#ifndef RRS_ROBOT_ROBOT_VIEW_HPP_
-#define RRS_ROBOT_ROBOT_VIEW_HPP_
+#ifndef RRS_VIEW_ROBOT_ROBOT_VIEW_HPP_
+#define RRS_VIEW_ROBOT_ROBOT_VIEW_HPP_
 
 #include <vector>
 #include <memory>
