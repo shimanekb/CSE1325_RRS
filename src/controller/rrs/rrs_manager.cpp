@@ -85,7 +85,6 @@ int RrsManager::CreateMenu() {
            switch(selection) {
                case 1:
                    //robot model
-                   error_code = robot_controller.CreateRobot();
                    break;
                case 2:
                    //robot parts

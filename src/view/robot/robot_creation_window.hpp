@@ -18,6 +18,7 @@
 class RobotCreationWindow : public RrsWindow {
     public:
         RobotCreationWindow();
+        void ResetInputs();
         void SetTorsoChoice(const std::vector<std::unique_ptr<Part>> &torsos);
         void SetHeadChoice(const std::vector<std::unique_ptr<Part>> &parts);
         void SetArmChoice(const std::vector<std::unique_ptr<Part>> &parts);

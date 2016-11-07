@@ -8,19 +8,6 @@
 
 class RobotView {
     public:
-        void AskModelName();
-        void AskModelNumber();
-        void AskModelPrice();
-        void DisplayBadInput();
-        void AskPartNumberForModel();
-        void DisplayPartSelectionMenu();
-        void DisplayPartSelectionSuccess();
-        void DisplayPartSelectionFailure();
-        void DisplayPartDoesNotExist();
-        void DisplayRobotParts(std::vector<std::unique_ptr<Part>> const &parts);
-        void DisplayRobotModel(std::unique_ptr<Robot> const &robot);
         void DisplayRobotModels(std::vector<std::unique_ptr<Robot>> const &robots);
-        void DisplayBadPartSelectionInput();
-        void DisplayModelCreationSuccess();
 };
 #endif

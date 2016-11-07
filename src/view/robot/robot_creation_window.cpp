@@ -3,7 +3,9 @@
 #include <FL/fl_ask.H>
 #include <memory>
 #include <string>
+#include <sstream>
 
+#include "controller/robot/robot_controller.hpp"
 #include "rrs_io.hpp"
 #include "rrs_error.hpp"
 
@@ -61,8 +63,31 @@ RobotCreationWindow::RobotCreationWindow()
         end();
     };
 
+void RobotCreationWindow::ResetInputs() {
+    robotName.value(NULL);
+    robotNumber.value(NULL);
+    robotCost.value(NULL);
+}
+
 inline void RobotCreationWindow::CreateRobot() {
     int error_code;
+    RobotController controller{};
+    std::unique_ptr<Robot> robot;
+    error_code = controller.CreateRobot(robot, this);
+
+    if (!error_code) {
+         std::stringstream ss;
+         ss << "Robot Created!" << std::endl <<std::endl << robot->ToString();
+         hide();
+         fl_message(ss.str().c_str());
+    } 
+    else {
+        std::stringstream ss;
+        ss << "Cannot create Robot! Invalid input!" << std::endl 
+            << "Cannot have:" << std::endl << "\t1. Negative numbers"
+            << std::endl << "\t2. More batteries than torso compartments.";
+        fl_alert(ss.str().c_str());
+    }
 }
 
 void RobotCreationWindow::CreateRobotCallback(Fl_Widget *w, void* v) {

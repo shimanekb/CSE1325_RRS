@@ -21,6 +21,7 @@ RrsMainWindow::RrsMainWindow()
 }
 
 inline void RrsMainWindow::CreateRobotOption() {
+    robotCreationWindow->ResetInputs();
     RobotController controller{};
     std::vector<std::unique_ptr<Part>> parts;
 
