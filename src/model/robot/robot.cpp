@@ -23,6 +23,15 @@ const std::vector<std::unique_ptr<Part>>& Robot::GetParts() const {
     return parts;
 }
 
+
+void Robot::GetPartsByType(Part::PartType type, std::vector<std::unique_ptr<Part>> &in) const {
+    in.clear();
+    for (const std::unique_ptr<Part> &tmpPart : parts) {
+        if (tmpPart->GetPartType() == type)
+            in.push_back(std::unique_ptr<Part>{tmpPart->Clone()});
+    } 
+}
+
 bool Robot::AddPart(std::unique_ptr<Part> part) {
     bool added = false;
     Part *tmp_part = part->Clone();

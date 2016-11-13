@@ -16,6 +16,7 @@ class RobotController {
         int ShowRobots();
         int GetRobotComponentsByType(Part::PartType type,
                 std::vector<std::unique_ptr<Part>> &parts);
+        void GetRobots(std::vector<std::unique_ptr<Robot>> &robots);
     private:
         PartRepo &part_repo = PartRepo::GetInstance();
         RobotRepo &robot_repo = RobotRepo::GetInstance();

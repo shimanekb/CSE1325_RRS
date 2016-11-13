@@ -111,3 +111,9 @@ int RobotController::ShowRobots() {
     robot_view.DisplayRobotModels(robot_repo.GetAll());
     return RrsError::NO_ERROR;
 }
+
+void RobotController::GetRobots(std::vector<std::unique_ptr<Robot>> &robots) {
+    robots.clear();
+    for (std::unique_ptr<Robot> &tmpRobot : robot_repo.GetAll())
+        robots.push_back(std::unique_ptr<Robot>{std::move(tmpRobot)});
+}

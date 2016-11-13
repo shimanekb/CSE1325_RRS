@@ -11,6 +11,7 @@ class Robot {
     public:
         Robot(const std::string name, const int model_number, const double price);
         const std::vector<std::unique_ptr<Part>>& GetParts() const;
+        void GetPartsByType(Part::PartType type, std::vector<std::unique_ptr<Part>> &in) const;
         std::string GetName() const;
         int GetModelNumber() const;
         double GetPrice() const; 

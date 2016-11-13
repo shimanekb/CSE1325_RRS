@@ -9,14 +9,16 @@
 #include "model/part/part.hpp"
 
 RrsMainWindow::RrsMainWindow()  
-    : RrsWindow(600,600,"Robbie Robot Shop"),  
-    menubar(0, 0, 600, 25)
+    : RrsWindow(1200,600,"Robbie Robot Shop"),  
+    menubar(0, 0, 1200, 25),
+    robotBrowser(50, 50, 1100, 500)
 {
    partCreationWindow = new PartCreationWindow{};
    robotCreationWindow = new RobotCreationWindow{};
    menubar.add("File/Quit", 0, WindowExitCallback, (void*) this);
-   menubar.add("Part/New", 0, CreatePartOptionCallback, (void*) this);
-   menubar.add("Robot/New", 0, CreateRobotOptionCallback, (void*) this);
+   menubar.add("Create/Part", 0, CreatePartOptionCallback, (void*) this);
+   menubar.add("Create/Robot", 0, CreateRobotOptionCallback, (void*) this);
+   menubar.add("Report/Refresh", 0, RefreshReportsCallback, (void*) this);
    end();
 }
 
@@ -44,6 +46,22 @@ inline void RrsMainWindow::CreateRobotOption() {
 
 void RrsMainWindow::CreateRobotOptionCallback(Fl_Widget *w, void* v) {
     ((RrsMainWindow*) v)->CreateRobotOption();
+}
+
+
+inline void RrsMainWindow::RefreshReports() {
+    RobotController controller{};
+    std::vector<std::unique_ptr<Robot>> robots;
+
+    robotBrowser.ResetInput();
+
+    controller.GetRobots(robots);
+    for (std::unique_ptr<Robot> &tmpRobot: robots)
+       robotBrowser.AddRobot(tmpRobot); 
+}
+
+void RrsMainWindow::RefreshReportsCallback(Fl_Widget *w , void* v) {
+    ((RrsMainWindow*) v)->RefreshReports();
 }
 
 inline void RrsMainWindow::CreatePartOption() {
