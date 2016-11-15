@@ -15,14 +15,16 @@ int RobotController::CreateRobot(std::unique_ptr<Robot> &robotIn,
     std::string name = window->GetRobotName();
     std::string numberStr = window->GetRobotNumber();
     std::string costStr = window ->GetRobotCost();
+    std::string picturePath = window->GetPicturePath();
     int model_number;
     double price;
             
     error_code = rrs_io::StringToInt(numberStr, model_number,
             0, kMax) + rrs_io::StringToDouble(costStr, price, 0,
-                kMax);
+                kMax) + picturePath.empty();
 
-    robotIn = std::unique_ptr<Robot>{new Robot{name, model_number, price}};
+    if (!error_code)
+        robotIn = std::unique_ptr<Robot>{new Robot{name, model_number, price, picturePath}};
 
     if (!error_code && (window->GetTorsoChoice()).compare(kEmptyChoice)) {
         error_code = rrs_io::StringToInt(window->GetTorsoChoice() , tmpNum, 0,
@@ -96,7 +98,7 @@ int RobotController::CreateRobot(std::unique_ptr<Robot> &robotIn,
     }
 
     if (!error_code) {
-        error_code = robot_repo.SaveRobot(std::unique_ptr<Robot>{robotIn->Clone()});
+            error_code = robot_repo.SaveRobot(std::unique_ptr<Robot>{robotIn->Clone()});
     }
 
     return error_code;

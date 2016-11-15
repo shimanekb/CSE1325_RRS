@@ -14,7 +14,7 @@ TEST_CASE("RobotRepo GetRobotByModelNumber") {
    constexpr int kModelNumber = 1324;
    constexpr double kPrice = 20;
 
-   std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice}};
+   std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice, "NONE"}};
 
    REQUIRE(repo.SaveRobot(std::move(robot)) == RrsError::NO_ERROR);
 
@@ -44,7 +44,7 @@ TEST_CASE("RobotRepo Basic Save Operations") {
    constexpr int kModelNumber = 1324;
    constexpr double kPrice = 20;
 
-   std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice}};
+   std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice, "NONE"}};
 
    REQUIRE(repo.SaveRobot(std::move(robot)) == RrsError::NO_ERROR);
 
@@ -66,7 +66,7 @@ TEST_CASE("RobotRepo Basic Save With Mod Operations") {
    const std::string kPartDescription = "FOO";
 
 
-   std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice}};
+   std::unique_ptr<Robot> robot{new Robot{kName, kModelNumber, kPrice, "NONE"}};
    robot->AddPart(std::unique_ptr<Part>{new Head{kPartName, kPartNumber, 
             kWeight, kPartCost, kPartDescription}});  
 

@@ -48,7 +48,7 @@ int RobotRepo::SaveRobot(std::unique_ptr<Robot> robot) {
 std::unique_ptr<Robot> RobotRepo::CreateRobotCopy(
             std::unique_ptr<Robot> const &robot) {
     std::unique_ptr<Robot> my_robot{new Robot{robot->GetName(), 
-        robot->GetModelNumber(), robot->GetPrice()}};
+        robot->GetModelNumber(), robot->GetPrice(), robot->GetImagePath()}};
     
     for (const std::unique_ptr<Part> &part : robot->GetParts()) {
         my_robot->AddPart(std::unique_ptr<Part>{part->Clone()});

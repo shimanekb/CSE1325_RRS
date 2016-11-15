@@ -35,11 +35,14 @@ class RobotCreationWindow : public RrsWindow {
         std::string GetRobotName() const;
         std::string GetRobotNumber() const;
         std::string GetRobotCost() const;
+        std::string GetPicturePath() const;
     private:
         Fl_Box robotTypeLabel;
         Fl_Input robotName;
         Fl_Int_Input robotNumber;
         Fl_Float_Input robotCost;
+        Fl_Input robotPicturePath;
+        Fl_Button choosePictureButton;
         Fl_Box componentsTypeLabel;
         Fl_Choice torsoChoice;
         Fl_Choice headChoice;
@@ -54,5 +57,7 @@ class RobotCreationWindow : public RrsWindow {
         Fl_Button cancelButton;
         void CreateRobot();
         static void CreateRobotCallback(Fl_Widget *w, void* v);
+        void ChoosePicture();
+        static void ChoosePictureCallback(Fl_Widget *w, void* v);
 };
 #endif

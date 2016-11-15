@@ -1,6 +1,5 @@
 #include "view/rrs/rrs_main_window.hpp"
 
-#include <iostream>
 #include <memory>
 #include <vector>
 #include <FL/Fl_Menu_Item.H>
@@ -9,7 +8,7 @@
 #include "model/part/part.hpp"
 
 RrsMainWindow::RrsMainWindow()  
-    : RrsWindow(1200,600,"Robbie Robot Shop"),  
+    : RrsWindow(1200,700,"Robbie Robot Shop"),  
     menubar(0, 0, 1200, 25),
     robotBrowser(50, 50, 1100, 500)
 {
@@ -19,6 +18,7 @@ RrsMainWindow::RrsMainWindow()
    menubar.add("Create/Part", 0, CreatePartOptionCallback, (void*) this);
    menubar.add("Create/Robot", 0, CreateRobotOptionCallback, (void*) this);
    menubar.add("Report/Refresh", 0, RefreshReportsCallback, (void*) this);
+
    end();
 }
 

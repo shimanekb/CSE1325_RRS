@@ -12,7 +12,7 @@ class RobotBrowser : public Fl_Browser {
         void ResetInput();
         int AddRobot(const std::unique_ptr<Robot> &robot);
     private:
-        int widths[11] = {180, 180, 180, 0};
+        int widths[5] = {180,180, 180, 180,0};
 };
 
 #endif 

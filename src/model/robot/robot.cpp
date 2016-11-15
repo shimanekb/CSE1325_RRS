@@ -1,11 +1,12 @@
 #include "model/robot/robot.hpp"
 
 #include <sstream>
-
 #include "rrs_error.hpp"
 #include "model/robot/robot_validation_strategy_repo.hpp"
 
-Robot::Robot(const std::string name, const int model_number, const double price) : kName(name), kModelNumber(model_number), kPrice(price) {};
+Robot::Robot(const std::string name, const int model_number, const double price, 
+        const std::string imagePath) : kName(name), kModelNumber(model_number), 
+    kPrice(price), kImagePath(imagePath) {}
 
 std::string Robot::GetName() const {
     return kName;
@@ -63,12 +64,16 @@ std::string Robot::ToString() const {
 
 Robot* Robot::Clone() const {
     Robot* tmp_bot = new Robot{GetName(), GetModelNumber(), 
-    GetPrice()};
+    GetPrice(), GetImagePath()};
     for (std::unique_ptr<Part> const &part : GetParts()) {
         tmp_bot->AddPart(std::unique_ptr<Part>{part->Clone()});
     }
 
     return tmp_bot;
+}
+
+std::string Robot::GetImagePath() const {
+    return kImagePath;
 }
 
 int Robot::ValidatePart(const Part &part) {
@@ -84,3 +89,9 @@ int Robot::ValidatePart(const Part &part) {
 
     return error_code;
 }
+
+Fl_PNG_Image * Robot::GetImage() {
+    return new Fl_PNG_Image{kImagePath.c_str()};
+}
+
+

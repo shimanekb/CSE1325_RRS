@@ -12,7 +12,7 @@ TEST_CASE("Robot Creation") {
    constexpr int kModelNumber = 1234;
    constexpr double kPrice = 20.0;
    
-   Robot robot{kName, kModelNumber, kPrice};
+   Robot robot{kName, kModelNumber, kPrice, "NONE"};
 
 
    REQUIRE(robot.GetName() == kName);
@@ -50,7 +50,7 @@ TEST_CASE("Robot Part Add Torso and Batteries") {
    constexpr int kModelNumber = 1234;
    constexpr double kPrice = 20.0;
    
-   Robot robot{kName, kModelNumber, kPrice};
+   Robot robot{kName, kModelNumber, kPrice, "NONE"};
 
 
    REQUIRE(robot.GetName() == kName);
@@ -89,7 +89,7 @@ TEST_CASE("Robot ToString") {
    constexpr int kModelNumber = 1234;
    constexpr double kPrice = 20.0;
    
-   Robot robot{kName, kModelNumber, kPrice};
+   Robot robot{kName, kModelNumber, kPrice, "NONE"};
 
 
    REQUIRE(robot.GetName() == kName);

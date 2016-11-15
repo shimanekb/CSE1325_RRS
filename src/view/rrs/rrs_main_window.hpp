@@ -4,6 +4,7 @@
 #include <string>
 #include <FL/Fl_Menu_Bar.H>
 #include <FL/Fl_Input.H>
+#include <FL/Fl_Button.H>
 
 #include "view/rrs/rrs_window.hpp"
 #include "view/part/part_creation_window.hpp"

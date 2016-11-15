@@ -4,12 +4,12 @@ vpath %.o objs
 
 LIB_DIR := lib
 OBJ_DIR := objs
-INC = -Itest -Isrc -L/usr/lib -lfltk -lXext -lX11 -lm
+INC = -Itest -Isrc -L/usr/lib -lfltk -lfltk_images -lXext -lX11 -lm
 
 ROBOT_ORDER_OBJS := robot_order.o robot_order_controller.o robot_order_view.o robot_order_repo.o
 ROBOT_OBJS := robot.o robot_repo.o robot_controller.o robot_view.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o generic_validation_strategy.o  robot_creation_window.o robot_browser.o
 PART_OBJS := part_controller.o part.o part_view.o rrs_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o part_creation_window.o
-RRS_OBJS := rrs_window.o rrs_manager.o rrs_main_window.o rrs_manager_view.o
+RRS_OBJS := rrs_window.o rrs_manager.o rrs_main_window.o rrs_manager_view.o 
 OBJS := $(RRS_OBJS) $(ROBOT_OBJS) $(PART_OBJS) $(ROBOT_ORDER_OBJS) tinyxml2.o
 
 ROBOT_ORDER_TEST_OBJS := robot_order_repo.o robot_order_repo_test.o
@@ -30,7 +30,7 @@ $(OBJ_DIR)/rrs_manager.o: rrs_manager.cpp part_controller.hpp robot_controller.h
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rrs_manager_view.o: rrs_manager_view.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/rrs_main_window.o: rrs_main_window.cpp part_creation_window.hpp rrs_window.hpp robot_browser.hpp
+$(OBJ_DIR)/rrs_main_window.o: rrs_main_window.cpp part_creation_window.hpp rrs_window.hpp robot_browser.hpp 
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rrs_window.o: rrs_window.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
@@ -88,7 +88,7 @@ $(OBJ_DIR)/tinyxml2.o: tinyxml2.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 
 test: main_test.cpp $(TESTOBJS)
-	$(CXX) $(CXXFLAGS) $^ 
+	$(CXX) $(CXXFLAGS) $(INC) $^ 
 $(OBJ_DIR)/battery_test.o: battery_test.cpp catch.hpp part.hpp battery.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/torso_test.o: torso_test.cpp catch.hpp part.hpp torso.hpp

@@ -1,8 +1,8 @@
 #include "view/robot/robot_creation_window.hpp"
 
 #include <FL/fl_ask.H>
-#include <memory>
-#include <string>
+#include <FL/Fl.H>
+#include <FL/Fl_File_Chooser.H>
 #include <sstream>
 
 #include "controller/robot/robot_controller.hpp"
@@ -10,23 +10,25 @@
 #include "rrs_error.hpp"
 
 RobotCreationWindow::RobotCreationWindow() 
-    : RrsWindow(400,665,"Robot"),  
+    : RrsWindow(415,665,"Robot"),  
     robotTypeLabel(350,30,90,30, "Enter/choose the following options:"), 
     robotName(125,60,150,30, "Robot Name:"),
     robotNumber(125, 95, 150, 30, "Robot Number:"),
     robotCost(125, 130, 90, 30, "Robot Cost:"),
-    componentsTypeLabel(325, 165, 90, 30, "Choose at least one component:"),
-    torsoChoice(125, 200, 90, 30, "Torso: "),
-    headChoice(125, 235, 90, 30, "Head: "),
-    armChoice1(125, 270, 90, 30, "Arm 1: "),
-    armChoice2(125, 305, 90, 30, "Arm 2: "),
-    locomotorChoice(125, 340, 90, 30, "Locomotor: "),
-    batteryTypeLabel(325, 375, 90, 30, "Battery quantity is determined \nby Torso choice:"),
-    batteryChoice1(125, 410, 90, 30, "Battery 1: "),
-    batteryChoice2(125, 445, 90, 30, "Battery 2: "),
-    batteryChoice3(125, 480, 90, 30, "Battery 3: "),
+    robotPicturePath(125, 165, 150, 30, "Picture:"),
+    choosePictureButton(290, 165, 115, 30, "Choose Picture"),
+    componentsTypeLabel(125, 200, 90, 30, "Choose at least one component:"),
+    torsoChoice(125, 235, 90, 30, "Torso: "),
+    headChoice(125, 270, 90, 30, "Head: "),
+    armChoice1(125, 305, 90, 30, "Arm 1: "),
+    armChoice2(125, 340, 90, 30, "Arm 2: "),
+    locomotorChoice(125, 375, 90, 30, "Locomotor: "),
+    batteryTypeLabel(325, 410, 90, 30, "Battery quantity is determined \nby Torso choice:"),
+    batteryChoice1(125, 445, 90, 30, "Battery 1: "),
+    batteryChoice2(125, 480, 90, 30, "Battery 2: "),
+    batteryChoice3(125, 515, 90, 30, "Battery 3: "),
     createButton(100, 630, 90, 30, "Create"),
-    cancelButton(225, 630, 90, 30, "Cancel"){
+    cancelButton(225, 630, 90, 30, "Cancel") {
 
         robotTypeLabel.align(FL_ALIGN_LEFT);
         robotTypeLabel.labelfont(FL_BOLD);
@@ -58,6 +60,7 @@ RobotCreationWindow::RobotCreationWindow()
         batteryChoice3.add("None");
         batteryChoice3.value(0);
 
+        choosePictureButton.callback(ChoosePictureCallback, this); 
         createButton.callback(CreateRobotCallback, this);
         cancelButton.callback(WindowExitCallback, this);
         end();
@@ -92,6 +95,33 @@ inline void RobotCreationWindow::CreateRobot() {
 
 void RobotCreationWindow::CreateRobotCallback(Fl_Widget *w, void* v) {
     ((RobotCreationWindow*) v)->CreateRobot();
+}
+
+inline void RobotCreationWindow::ChoosePicture() {
+    std::stringstream ss;
+    Fl_File_Chooser chooser{".","*.png", Fl_File_Chooser::SINGLE, "Choose Robot Picture"};
+
+    chooser.show();
+    while(chooser.shown())
+        Fl::wait();
+
+
+    if ( chooser.value() == NULL ) { 
+        fprintf(stderr, "(User hit 'Cancel')\n"); 
+        return; 
+    }
+
+
+    ss << chooser.value();
+    robotPicturePath.value(ss.str().c_str());
+}
+
+void RobotCreationWindow::ChoosePictureCallback(Fl_Widget *w, void* v) {
+    ((RobotCreationWindow*) v)->ChoosePicture();
+}
+
+std::string RobotCreationWindow::GetPicturePath() const {
+    return robotPicturePath.value();
 }
 
 void RobotCreationWindow::SetTorsoChoice(
