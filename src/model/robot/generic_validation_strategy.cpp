@@ -10,7 +10,7 @@ GenericValidationStrategy::GenericValidationStrategy(int max) : kMax(max) {};
 int GenericValidationStrategy::Validate(const Robot &robot, const Part &part) {
     int error_code = RrsError::OUT_OF_RANGE;
     constexpr int kPartMax = 1;
-    int part_count = 1;
+    int part_count = 0;
 
 
     for(std::unique_ptr<Part> const &tmp_part : robot.GetParts()) {
@@ -22,5 +22,6 @@ int GenericValidationStrategy::Validate(const Robot &robot, const Part &part) {
     if (part_count <= kPartMax) {
        error_code = RrsError::NO_ERROR; 
     }
+
     return error_code;
 }

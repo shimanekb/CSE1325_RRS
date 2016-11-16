@@ -5,14 +5,6 @@
 #include "rrs_error.hpp"
 #include "rrs_io.hpp"
 
-int PartController::ShowParts() {
-    int error_code = RrsError::NO_ERROR;
-
-    part_view.DisplayParts(part_repo.GetAll());
-
-    return error_code;
-}
-
 int PartController::CreatePart(std::unique_ptr<Part> &partIn, 
         const PartCreationWindow* window) {
     int error_code = RrsError::NO_ERROR;

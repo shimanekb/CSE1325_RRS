@@ -1,5 +1,6 @@
 #include "view/robot/robot_browser.hpp"
 
+#include <iostream>
 #include <sstream>
 #include <FL/Fl.H>
 
@@ -26,7 +27,6 @@ int RobotBrowser::AddRobot(const std::unique_ptr<Robot> &robot) {
     std::stringstream ss{}; 
     ss << "\t" << robot->GetModelNumber() << "\t" << robot->GetName() << "\t" 
         << "$" << robot->GetPrice() << "\t";
-
     
 
     for (const std::unique_ptr<Part> &part : robot->GetParts())
