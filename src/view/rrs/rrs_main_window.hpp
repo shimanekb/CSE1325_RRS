@@ -10,6 +10,7 @@
 #include "view/part/part_creation_window.hpp"
 #include "view/robot/robot_creation_window.hpp"
 #include "view/robot/robot_browser.hpp"
+#include "view/part/part_browser.hpp"
 
 class RrsMainWindow : public RrsWindow {
     public:
@@ -19,6 +20,7 @@ class RrsMainWindow : public RrsWindow {
         RobotCreationWindow *robotCreationWindow;
         PartCreationWindow *partCreationWindow;
         RobotBrowser robotBrowser;
+        PartBrowser partBrowser;
         Fl_Menu_Bar menubar;
         void CreatePartOption();
         static void CreatePartOptionCallback(Fl_Widget *w, void* v);
@@ -26,5 +28,9 @@ class RrsMainWindow : public RrsWindow {
         static void CreateRobotOptionCallback(Fl_Widget *w, void* v);
         void RefreshReports();
         static void RefreshReportsCallback(Fl_Widget *w , void* v);
+        void DisplayPartBrowser();
+        static void DisplayPartBrowserCallback(Fl_Widget *w , void* v);
+        void DisplayRobotBrowser();
+        static void DisplayRobotBrowserCallback(Fl_Widget *w , void* v);
 };
 #endif

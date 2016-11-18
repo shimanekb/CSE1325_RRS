@@ -8,7 +8,7 @@ INC = -Itest -Isrc -L/usr/lib -lfltk -lfltk_images -lXext -lX11 -lm
 
 ROBOT_ORDER_OBJS := robot_order.o robot_order_controller.o robot_order_view.o robot_order_repo.o
 ROBOT_OBJS := robot.o robot_repo.o robot_controller.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o generic_validation_strategy.o  robot_creation_window.o robot_browser.o
-PART_OBJS := part_controller.o part.o rrs_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o part_creation_window.o
+PART_OBJS := part_controller.o part.o rrs_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o part_creation_window.o part_browser.o
 RRS_OBJS := rrs_window.o rrs_manager.o rrs_main_window.o rrs_manager_view.o rrs_browser.o
 OBJS := $(RRS_OBJS) $(ROBOT_OBJS) $(PART_OBJS) $(ROBOT_ORDER_OBJS) tinyxml2.o
 
@@ -30,7 +30,7 @@ $(OBJ_DIR)/rrs_manager.o: rrs_manager.cpp part_controller.hpp robot_controller.h
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rrs_manager_view.o: rrs_manager_view.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/rrs_main_window.o: rrs_main_window.cpp part_creation_window.hpp rrs_window.hpp robot_browser.hpp 
+$(OBJ_DIR)/rrs_main_window.o: rrs_main_window.cpp part_creation_window.hpp rrs_window.hpp robot_browser.hpp part_controller.hpp robot_controller.hpp part_browser.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rrs_browser.o: rrs_browser.cpp 
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
@@ -55,6 +55,8 @@ $(OBJ_DIR)/head.o: head.cpp part.hpp
 $(OBJ_DIR)/part_repo.o: part_repo.cpp part.hpp rrs_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/part_creation_window.o: part_creation_window.cpp part_controller.hpp rrs_window.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/part_browser.o: part_browser.cpp torso.hpp arm.hpp head.hpp battery.hpp locomotor.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot.o: robot.cpp part.hpp robot_validation_strategy_repo.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 

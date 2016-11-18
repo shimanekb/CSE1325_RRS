@@ -15,6 +15,7 @@
 class PartController {
     public:
         int CreatePart(std::unique_ptr<Part> &partIn, const PartCreationWindow* window);
+        int GetParts(std::vector<std::unique_ptr<Part>> &partsIn);
     private:
         PartRepo &part_repo = PartRepo::GetInstance();
 };

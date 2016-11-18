@@ -65,3 +65,13 @@ int PartController::CreatePart(std::unique_ptr<Part> &partIn,
 
     return error_code;
 }
+
+
+int PartController::GetParts(std::vector<std::unique_ptr<Part>> &partsIn) {
+    partsIn.clear();
+    std::vector<std::unique_ptr<Part>> parts = part_repo.GetAll();
+    for (std::unique_ptr<Part> &tmpPart : parts)
+        partsIn.push_back(std::unique_ptr<Part>{std::move(tmpPart)});
+
+    return 0;
+}

@@ -9,7 +9,7 @@ RobotBrowser::RobotBrowser(int x, int y, int w, int h)
     : RrsBrowser(x, y, w, h) {
         column_widths(widths);
         type(FL_MULTI_BROWSER);
-        add("@bRobot Picture\t@bROBOT NUMBER\t@bNAME\t@bCOST\t@bPARTS (Number:Type)");
+        add("@bRobot Picture\t@bROBOT NUMBER\t@bNAME\t@bCOST\t@bPARTS (Number:Type:Price)");
         end();
 }
 
@@ -22,7 +22,8 @@ int RobotBrowser::AddRobot(const std::unique_ptr<Robot> &robot) {
     
 
     for (const std::unique_ptr<Part> &part : robot->GetParts())
-        ss << part->GetPartNumber() << ":" << part->GetPartTypeString()
+        ss << part->GetPartNumber() << ":" << part->GetPartTypeString() 
+            << ":$" << part->GetCost()
             <<", ";
 
     add(ss.str().c_str());
