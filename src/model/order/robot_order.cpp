@@ -3,14 +3,15 @@
 #include <sstream>
 #include <iomanip>
 
-RobotOrder::RobotOrder(int robot_model_number, int quantity, double robot_cost) 
-    : kRobotModelNumber(robot_model_number), kQuantity(quantity),
-      kRobotCost(robot_cost) {};
+RobotOrder::RobotOrder(std::unique_ptr<Robot> &tmpRobot, int quantity)
+    : kQuantity(quantity) {
+        robot = std::unique_ptr<Robot>{std::move(robot)};
+    };
 
 std::string RobotOrder::ToString() const {
     std::stringstream ss;
 
-    ss << "\tRobot Model Number: " << kRobotModelNumber << std::endl
+    ss << "\tRobot Model Number: " << robot->GetModelNumber() << std::endl
         << "\tQuantity: " << kQuantity << std::endl
         << "\tTotal Cost: $" << std::fixed << std::setprecision(2) 
         << CalculateTotalCost() << std::endl;
@@ -19,9 +20,10 @@ std::string RobotOrder::ToString() const {
 }
 
 double RobotOrder::CalculateTotalCost() const {
-    return kQuantity * kRobotCost;
+    return kQuantity * robot->GetPrice();
 }
 
-RobotOrder RobotOrder::Clone() const {
-    return RobotOrder(kRobotModelNumber, kQuantity, kRobotCost);
+RobotOrder* RobotOrder::Clone() const {
+    std::unique_ptr<Robot> tmpRobot{robot->Clone()};
+    return new RobotOrder(tmpRobot, kQuantity);
 }

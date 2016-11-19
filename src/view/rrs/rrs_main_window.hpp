@@ -8,9 +8,10 @@
 
 #include "view/rrs/rrs_window.hpp"
 #include "view/part/part_creation_window.hpp"
+#include "view/part/part_browser.hpp"
 #include "view/robot/robot_creation_window.hpp"
 #include "view/robot/robot_browser.hpp"
-#include "view/part/part_browser.hpp"
+#include "view/order/order_creation_window.hpp"
 
 class RrsMainWindow : public RrsWindow {
     public:
@@ -19,6 +20,7 @@ class RrsMainWindow : public RrsWindow {
     private:
         RobotCreationWindow *robotCreationWindow;
         PartCreationWindow *partCreationWindow;
+        OrderCreationWindow *orderCreationWindow;
         RobotBrowser robotBrowser;
         PartBrowser partBrowser;
         Fl_Menu_Bar menubar;
@@ -26,6 +28,8 @@ class RrsMainWindow : public RrsWindow {
         static void CreatePartOptionCallback(Fl_Widget *w, void* v);
         void CreateRobotOption();
         static void CreateRobotOptionCallback(Fl_Widget *w, void* v);
+        void CreateOrderOption();
+        static void CreateOrderOptionCallback(Fl_Widget *w, void* v);
         void RefreshReports();
         static void RefreshReportsCallback(Fl_Widget *w , void* v);
         void DisplayPartBrowser();

@@ -17,7 +17,7 @@ int RobotOrderRepo::GetAllRobotOrders(std::vector<std::unique_ptr<RobotOrder>>
     
     for (const std::unique_ptr<RobotOrder> & order : robot_orders) {
         robot_orders_vector.push_back(
-                std::unique_ptr<RobotOrder>{new RobotOrder(order->Clone())});
+                std::unique_ptr<RobotOrder>{order->Clone()});
     }
     return error_code;
 }

@@ -6,6 +6,7 @@
 #include "rrs_error.hpp"
 #include "rrs_io.hpp"
 
+/*
 int RobotOrderController::CreateRobotOrder() {
     int error_code = RrsError::NO_ERROR;
     int model_number;
@@ -51,3 +52,4 @@ int RobotOrderController::CreateRobotOrder() {
 
     return error_code;
 }
+*/

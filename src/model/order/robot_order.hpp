@@ -2,16 +2,18 @@
 #define RRS_MODEL_PART_ROBOT_ORDER_HPP_
 
 #include <string>
+#include <memory>
+
+#include "model/robot/robot.hpp"
 
 class RobotOrder {
     public:
-        RobotOrder(int robot_model_number, int quantity, double robot_cost);
+        RobotOrder(std::unique_ptr<Robot> &tmpRobot, int quantity);
         std::string ToString() const;
-        RobotOrder Clone() const;
+        RobotOrder* Clone() const;
     private:
         double CalculateTotalCost() const;
-        const int kRobotModelNumber;
         const int kQuantity;
-        const double kRobotCost;
+        std::unique_ptr<Robot> robot;
 };
 #endif

@@ -89,7 +89,6 @@ int RrsManager::CreateMenu() {
                    break;
                case 3:
                    //robot order
-                   error_code = robot_order_controller.CreateRobotOrder();
                    break;
                case 4:
                    //quit main menu
