@@ -14,6 +14,7 @@ class SalesAssociateRepo {
         }
         int SaveSalesAssociate(std::unique_ptr<SalesAssociate> associate);
         int GetAllSalesAssociates(std::vector<std::unique_ptr<SalesAssociate>> &associatesIn);
+        int GetSalesAssociateByNumber(int number, std::unique_ptr<SalesAssociate> &associateIn);
     private:
         SalesAssociateRepo() {};
         SalesAssociateRepo(SalesAssociateRepo const &);

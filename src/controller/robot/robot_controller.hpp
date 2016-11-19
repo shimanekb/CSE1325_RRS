@@ -5,8 +5,10 @@
 #include <vector>
 
 #include "view/robot/robot_creation_window.hpp"
-#include "model/part/part_repo.hpp"
 #include "model/robot/robot_repo.hpp"
+#include "model/part/part_repo.hpp"
+#include "model/customer/customer_repo.hpp"
+#include "model/sales/sales_associate_repo.hpp"
 
 class RobotController {
     public:

@@ -7,6 +7,8 @@
 #include "controller/robot/robot_controller.hpp"
 #include "controller/part/part_controller.hpp"
 #include "controller/order/robot_order_controller.hpp"
+#include "controller/customer/customer_controller.hpp"
+#include "controller/sales/sales_controller.hpp"
 #include "model/part/part.hpp"
 
 RrsMainWindow::RrsMainWindow()  
@@ -48,10 +50,20 @@ void RrsMainWindow::CreateOrderOptionCallback(Fl_Widget *w, void* v) {
 inline void RrsMainWindow::CreateOrderOption() {
     orderCreationWindow->ResetInputs();
     RobotController controller{}; 
+    CustomerController customerController{};
+    SalesController salesController{};
+
     std::vector<std::unique_ptr<Robot>> robots;
+    std::vector<std::unique_ptr<Customer>> customers;
+    std::vector<std::unique_ptr<SalesAssociate>> associates;
 
     controller.GetRobots(robots);
+    customerController.GetCustomers(customers);
+    salesController.GetSalesAssociates(associates);
+
     orderCreationWindow->SetRobotChoice(robots);
+    orderCreationWindow->SetCustomerChoice(customers);
+    orderCreationWindow->SetSalesAssociateChoice(associates);
 
     orderCreationWindow->show();
 }

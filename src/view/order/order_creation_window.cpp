@@ -8,15 +8,24 @@
 #include "rrs_error.hpp"
 
 OrderCreationWindow::OrderCreationWindow() 
-    : RrsWindow(400, 150,"Robot Order"),  
+    : RrsWindow(400, 280,"Robot Order"),  
     robotChoice(130, 30, 150, 30, "Robot Number:"), 
     orderQuantity(130, 65, 90, 30, "Quantity: "),
-    createButton(100, 100, 90, 30, "Create"),
-    cancelButton(225, 100, 90, 30, "Cancel") {
+    customerChoice(130, 100, 90, 30, "Customer: "),
+    associateChoice(130, 135, 90, 30, "Sales Assoc.: "),
+    dateInput(130, 170, 90, 30, "Date (mm/dd/yyyy): "),
+    createButton(100, 220, 90, 30, "Create"),
+    cancelButton(225, 220, 90, 30, "Cancel") {
         orderQuantity.minimum(1);
 
         robotChoice.add("None");
         robotChoice.value(0);
+
+        customerChoice.add("None");
+        customerChoice.value(0);
+
+        associateChoice.add("None");
+        associateChoice.value(0);
 
         createButton.callback(CreateOrderCallback, this);
         cancelButton.callback(WindowExitCallback, this);
@@ -33,6 +42,40 @@ void OrderCreationWindow::SetRobotChoice(const std::vector<std::unique_ptr<Robot
         ss << robot->GetModelNumber();
         robotChoice.add(ss.str().c_str());
     }
+}
+
+void OrderCreationWindow::SetSalesAssociateChoice(
+        const std::vector<std::unique_ptr<SalesAssociate>> &associates) {
+    associateChoice.clear();
+    associateChoice.add("None");
+    associateChoice.value(0);
+
+    for (const std::unique_ptr<SalesAssociate> &tmpAssoc : associates) {
+        std::stringstream ss;
+        ss << tmpAssoc->GetEmployeeNumber();
+        associateChoice.add(ss.str().c_str());
+    }
+}
+
+void OrderCreationWindow::SetCustomerChoice(
+        const std::vector<std::unique_ptr<Customer>> &customers) {
+    customerChoice.clear();
+    customerChoice.add("None");
+    customerChoice.value(0);
+
+    for (const std::unique_ptr<Customer> &tmp : customers) {
+        std::stringstream ss;
+        ss << tmp->GetName();
+        customerChoice.add(ss.str().c_str());
+    }    
+}
+
+std::string OrderCreationWindow::GetEmployeeNumber() const {
+    return associateChoice.text();
+}
+
+std::string OrderCreationWindow::GetCustomerName() const {
+    return customerChoice.text();
 }
 
 std::string OrderCreationWindow::GetRobotNumber() const {
@@ -69,9 +112,23 @@ void OrderCreationWindow::CreateOrderCallback(Fl_Widget *w, void* v) {
     ((OrderCreationWindow*) v)->CreateOrder();
 }
 
+std::string OrderCreationWindow::GetDate() const {
+    return dateInput.value();
+}
+
 void OrderCreationWindow::ResetInputs() {
     robotChoice.clear();
     robotChoice.add("None");
     robotChoice.value(0);
     orderQuantity.value(0);
+
+    customerChoice.clear();
+    customerChoice.add("None");
+    customerChoice.value(0);
+
+    associateChoice.clear();
+    associateChoice.add("None");
+    associateChoice.value(0);
+
+    dateInput.value("");
 }

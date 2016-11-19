@@ -23,3 +23,17 @@ int SalesAssociateRepo::GetAllSalesAssociates(
 
    return errorCode;
 }
+
+int SalesAssociateRepo::GetSalesAssociateByNumber(
+        int number, std::unique_ptr<SalesAssociate> &associateIn) {
+    int errorCode = RrsError::NOT_FOUND;
+    
+    for (const std::unique_ptr<SalesAssociate> &tmpAssociate : associates) {
+        if (tmpAssociate->GetEmployeeNumber() == number) {
+            errorCode = RrsError::NO_ERROR;
+            associateIn = std::unique_ptr<SalesAssociate>{tmpAssociate->Clone()};
+        }
+    }
+
+    return errorCode;
+}

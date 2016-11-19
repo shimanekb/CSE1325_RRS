@@ -7,6 +7,9 @@
 #include "model/robot/robot_repo.hpp"
 #include "model/order/robot_order_repo.hpp"
 #include "view/order/order_creation_window.hpp"
+#include "model/part/part_repo.hpp"
+#include "model/customer/customer_repo.hpp"
+#include "model/sales/sales_associate_repo.hpp"
 
 class RobotOrderController {
     public:
@@ -16,5 +19,7 @@ class RobotOrderController {
     private:
         RobotOrderRepo &robot_order_repo = RobotOrderRepo::GetInstance();
         RobotRepo &robot_repo = RobotRepo::GetInstance();
+        SalesAssociateRepo &salesRepo = SalesAssociateRepo::GetInstance();
+        CustomerRepo &customerRepo = CustomerRepo::GetInstance();
 };
 #endif

@@ -19,3 +19,15 @@ int CustomerRepo::GetAllCustomers(std::vector<std::unique_ptr<Customer>> &custom
     
     return errorCode;
 }
+
+int CustomerRepo::GetCustomerByName(std::string name, 
+        std::unique_ptr<Customer> &customerIn) {
+    int errorCode = RrsError::NOT_FOUND;
+    for (const std::unique_ptr<Customer> &tmpCustomer : customers) {
+        if (!name.empty() && name.compare(tmpCustomer->GetName())) {
+            errorCode = RrsError::NO_ERROR;
+            customerIn = std::unique_ptr<Customer>{tmpCustomer->Clone()};
+        }
+    } 
+    return errorCode;
+}

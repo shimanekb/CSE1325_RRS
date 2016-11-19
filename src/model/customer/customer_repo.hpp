@@ -14,6 +14,7 @@ class CustomerRepo {
         }
         int SaveCustomer(std::unique_ptr<Customer> customer);
         int GetAllCustomers(std::vector<std::unique_ptr<Customer>> &customersIn);
+        int GetCustomerByName(std::string name, std::unique_ptr<Customer> &customerIn);
     private:
         CustomerRepo() {};
         CustomerRepo(CustomerRepo const &);

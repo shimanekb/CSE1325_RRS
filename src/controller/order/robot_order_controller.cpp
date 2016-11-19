@@ -13,7 +13,13 @@ int RobotOrderController::CreateRobotOrder(std::unique_ptr<RobotOrder> &orderIn,
     int quantity = window->GetOrderQuantity();
     int modelNumber;
     std::string modelNumberStr = window->GetRobotNumber();
+    std::string employeeNumberStr = window->GetEmployeeNumber();
+    int employeeNumber;
+    std::string customerName = window->GetCustomerName();
+    std::string date = window->GetDate();
     std::unique_ptr<Robot> robot;
+    std::unique_ptr<Customer> customer;
+    std::unique_ptr<SalesAssociate> associate;
 
     if (modelNumberStr.compare(kEmptyChoice)) {
         error_code = rrs_io::StringToInt(modelNumberStr, modelNumber,
@@ -24,9 +30,27 @@ int RobotOrderController::CreateRobotOrder(std::unique_ptr<RobotOrder> &orderIn,
         error_code = RrsError::BAD_INPUT_TYPE;
     }
 
+    if (employeeNumberStr.compare(kEmptyChoice)) {
+        error_code = rrs_io::StringToInt(employeeNumberStr, employeeNumber,
+                0, kMax);
+        error_code = salesRepo.GetSalesAssociateByNumber(employeeNumber, associate);
+    }
+    else {
+        error_code = RrsError::BAD_INPUT_TYPE;
+    }
+
+    if (customerName.compare(kEmptyChoice)) {
+        error_code = customerRepo.GetCustomerByName(customerName, customer);
+    }
+    else {
+        error_code = RrsError::BAD_INPUT_TYPE;
+    }
+
+
     if (!error_code) {
         std::unique_ptr<Robot> tmpRobot{robot->Clone()};
-        RobotOrder *tmpOrder = new RobotOrder{tmpRobot, quantity};
+        RobotOrder *tmpOrder = new RobotOrder{tmpRobot, quantity, 
+            associate, customer, date};
 
         error_code = robot_order_repo.SaveRobotOrder(std::unique_ptr<RobotOrder>{
                 tmpOrder->Clone()});

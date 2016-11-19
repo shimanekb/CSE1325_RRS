@@ -3,10 +3,13 @@
 #include <sstream>
 #include <iomanip>
 
-RobotOrder::RobotOrder(std::unique_ptr<Robot> &tmpRobot, int quantity)
-    : kQuantity(quantity) {
-        robot = std::unique_ptr<Robot>{std::move(tmpRobot)};
-    };
+RobotOrder::RobotOrder(std::unique_ptr<Robot> &robotIn, int quantity, 
+                std::unique_ptr<SalesAssociate> &associateIn, 
+                std::unique_ptr<Customer> &customerIn,
+                const std::string date) :
+    kQuantity(quantity), robot(std::unique_ptr<Robot>{std::move(robotIn)}), 
+    associate(std::unique_ptr<SalesAssociate>{std::move(associateIn)}),
+    customer(std::unique_ptr<Customer>{std::move(customerIn)}), kDate(date) {}; 
 
 std::string RobotOrder::ToString() const {
     std::stringstream ss;
@@ -28,7 +31,12 @@ double RobotOrder::CalculateTotalCost() const {
 
 RobotOrder* RobotOrder::Clone() const {
     std::unique_ptr<Robot> tmpRobot{robot->Clone()};
-    return new RobotOrder(tmpRobot, kQuantity);
+    std::unique_ptr<SalesAssociate> tmpAssociate{associate->Clone()};
+    std::unique_ptr<Customer> tmpCustomer{customer->Clone()};
+
+    return new RobotOrder(tmpRobot, kQuantity, 
+            tmpAssociate, tmpCustomer,
+            kDate);
 }
 
 int RobotOrder::GetQuantity() const {
@@ -38,3 +46,13 @@ int RobotOrder::GetQuantity() const {
 void RobotOrder::GetRobot(std::unique_ptr<Robot> &robotIn) const {
     robotIn = std::unique_ptr<Robot>{robot->Clone()}; 
 }
+
+void RobotOrder::GetSalesAssociate(
+        std::unique_ptr<SalesAssociate> &associateIn) const {
+    associateIn = std::unique_ptr<SalesAssociate>{associate->Clone()};
+}
+
+void RobotOrder::GetCustomer(std::unique_ptr<Customer> &customerIn) const {
+    customerIn = std::unique_ptr<Customer>{customer->Clone()};
+}
+
