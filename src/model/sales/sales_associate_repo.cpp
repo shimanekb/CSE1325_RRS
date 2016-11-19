@@ -3,7 +3,7 @@
 #include "rrs_error.hpp"
 
 int SalesAssociateRepo::SaveSalesAssociate(
-        std::unique_ptr<SalesAssociate> &associate) {
+        std::unique_ptr<SalesAssociate> associate) {
    int errorCode = RrsError::NO_ERROR; 
 
    associates.push_back(std::unique_ptr<SalesAssociate>{std::move(associate)});

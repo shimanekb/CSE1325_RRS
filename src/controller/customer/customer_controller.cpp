@@ -12,12 +12,12 @@ int CustomerController::CreateCustomer(std::unique_ptr<Customer> &customerIn,
     std::string address = window->GetCustomerAddress();
     std::string phone = window->GetCustomerPhone();
     std::string email = window->GetCustomerEmail();
-    Customer *customer = new Customer{name, address, phone, email}; 
 
     if (name.empty() || address.empty() || phone.empty() || email.empty()) {
        errorCode = RrsError::BAD_INPUT_TYPE;
     }
     else {
+        Customer *customer = new Customer{name, address, phone, email}; 
         customerIn = std::unique_ptr<Customer>{customer->Clone()};
         errorCode = customerRepo.SaveCustomer(std::unique_ptr<Customer>{customer});
     }

@@ -11,8 +11,8 @@
 class SalesCreationWindow : public RrsWindow {
     public:
         SalesCreationWindow();
-        std::string GetName();
-        std::string GetEmployeeNumber();
+        std::string GetName() const;
+        std::string GetEmployeeNumber() const;
         void ResetInputs();
     private:
         Fl_Input name;

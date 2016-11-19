@@ -12,7 +12,7 @@ class SalesAssociateRepo {
             static SalesAssociateRepo instance;
             return instance;
         }
-        int SaveSalesAssociate(std::unique_ptr<SalesAssociate> &associate);
+        int SaveSalesAssociate(std::unique_ptr<SalesAssociate> associate);
         int GetAllSalesAssociates(std::vector<std::unique_ptr<SalesAssociate>> &associatesIn);
     private:
         SalesAssociateRepo() {};

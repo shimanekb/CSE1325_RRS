@@ -5,12 +5,12 @@
 #include <vector>
 
 #include "view/sales/sales_creation_window.hpp"
-#include "view/sales/sales_associate.hpp"
-#include "view/sales/sales_repo.hpp"
+#include "model/sales/sales_associate.hpp"
+#include "model/sales/sales_associate_repo.hpp"
 
 class SalesController {
     public:
-        int CreateSalesAssociate(std::unique<SalesAssociate> &associateIn,
+        int CreateSalesAssociate(std::unique_ptr<SalesAssociate> &associateIn,
                 const SalesCreationWindow *window);
         int GetSalesAssociates(std::vector<std::unique_ptr<SalesAssociate>> 
                 &associatesIn);

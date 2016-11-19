@@ -27,11 +27,11 @@ void SalesCreationWindow::CreateSalesAssociateCallback(Fl_Widget *w, void* v) {
     ((SalesCreationWindow*) v)->CreateSalesAssociate();
 }
 
-std::string SalesCreationWindow::GetName() {
+std::string SalesCreationWindow::GetName() const {
     return name.value();
 }
 
-std::string SalesCreationWindow::GetEmployeeNumber() {
+std::string SalesCreationWindow::GetEmployeeNumber() const {
     return employeeNumber.value();
 }
 
