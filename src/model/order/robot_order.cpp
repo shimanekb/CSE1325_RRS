@@ -30,3 +30,11 @@ RobotOrder* RobotOrder::Clone() const {
     std::unique_ptr<Robot> tmpRobot{robot->Clone()};
     return new RobotOrder(tmpRobot, kQuantity);
 }
+
+int RobotOrder::GetQuantity() const {
+    return kQuantity;
+}
+
+void RobotOrder::GetRobot(std::unique_ptr<Robot> &robotIn) const {
+    robotIn = std::unique_ptr<Robot>{robot->Clone()}; 
+}

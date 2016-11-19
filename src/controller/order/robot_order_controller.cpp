@@ -37,3 +37,13 @@ int RobotOrderController::CreateRobotOrder(std::unique_ptr<RobotOrder> &orderIn,
 
     return error_code;
 }
+
+int RobotOrderController::GetOrders(std::vector<std::unique_ptr<RobotOrder>> &ordersIn) {
+    ordersIn.clear();
+    std::vector<std::unique_ptr<RobotOrder>> orders;
+    robot_order_repo.GetAllRobotOrders(orders);
+    for (std::unique_ptr<RobotOrder> &tmpOrder : orders)
+        ordersIn.push_back(std::unique_ptr<RobotOrder>{std::move(tmpOrder)});
+
+    return 0;
+}

@@ -1,24 +1,28 @@
-#include "view/robot/robot_browser.hpp"
+#include "view/order/order_browser.hpp"
 
 #include <sstream>
 #include <FL/Fl.H>
 
 #include "model/part/part.hpp"
 
-RobotBrowser::RobotBrowser(int x, int y, int w, int h) 
+OrderBrowser::OrderBrowser(int x, int y, int w, int h) 
     : RrsBrowser(x, y, w, h) {
         column_widths(widths);
         type(FL_MULTI_BROWSER);
-        add("@bROBOT PICTURE\t@bROBOT NUMBER\t@bNAME\t@bCOST\t@bPARTS (Number:Type:Price)");
+        add("@bRobot Number\t@bROBOT COST\t@bQUANTITY\t@bTOTAL COST\t@bPARTS (Number:Type:Price)");
         end();
 }
 
-int RobotBrowser::AddRobot(const std::unique_ptr<Robot> &robot) {
+int OrderBrowser::AddRobotOrder(const std::unique_ptr<RobotOrder> &order) {
     std::vector<std::unique_ptr<Part>> tmpParts;
+    std::unique_ptr<Robot> robot;
+
+    order->GetRobot(robot);
 
     std::stringstream ss{}; 
-    ss << "\t" << robot->GetModelNumber() << "\t" << robot->GetName() << "\t" 
-        << "$" << robot->GetPrice() << "\t";
+    ss << robot->GetModelNumber() << "\t"  
+        << "$" << robot->GetPrice() << "\t"
+        << order->GetQuantity() << "\t$" << order->CalculateTotalCost() <<"\t";
     
 
     for (const std::unique_ptr<Part> &part : robot->GetParts())
@@ -27,7 +31,6 @@ int RobotBrowser::AddRobot(const std::unique_ptr<Robot> &robot) {
             <<", ";
 
     add(ss.str().c_str());
-    icon(this->size() , (robot->GetImage())->copy(100,100));
 
     return 0;
 }

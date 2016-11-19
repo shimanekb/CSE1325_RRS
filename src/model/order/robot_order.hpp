@@ -10,9 +10,11 @@ class RobotOrder {
     public:
         RobotOrder(std::unique_ptr<Robot> &tmpRobot, int quantity);
         std::string ToString() const;
+        double CalculateTotalCost() const;
+        int GetQuantity() const;
+        void GetRobot(std::unique_ptr<Robot> &robotIn) const;
         RobotOrder* Clone() const;
     private:
-        double CalculateTotalCost() const;
         const int kQuantity;
         std::unique_ptr<Robot> robot;
 };
