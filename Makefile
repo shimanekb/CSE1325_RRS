@@ -6,7 +6,7 @@ LIB_DIR := lib
 OBJ_DIR := objs
 INC = -Itest -Isrc -L/usr/lib -lfltk -lfltk_images -lXext -lX11 -lm
 
-SALES_OBJS := sales_associate.o
+SALES_OBJS := sales_associate.o sales_creation_window.o
 CUSTOMER_OBJS := customer.o customer_controller.o customer_repo.o customer_creation_window.o
 ROBOT_ORDER_OBJS := robot_order.o robot_order_controller.o order_creation_window.o robot_order_repo.o order_browser.o
 ROBOT_OBJS := robot.o robot_repo.o robot_controller.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o generic_validation_strategy.o  robot_creation_window.o robot_browser.o
@@ -97,6 +97,8 @@ $(OBJ_DIR)/customer_controller.o: customer_controller.cpp customer_repo.hpp cust
 $(OBJ_DIR)/customer_creation_window.o: customer_creation_window.cpp customer_controller.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/sales_associate.o: sales_associate.cpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/sales_creation_window.o: sales_creation_window.cpp sales_associate.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/tinyxml2.o: tinyxml2.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
