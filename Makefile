@@ -6,11 +6,12 @@ LIB_DIR := lib
 OBJ_DIR := objs
 INC = -Itest -Isrc -L/usr/lib -lfltk -lfltk_images -lXext -lX11 -lm
 
+CUSTOMER_OBJS := customer.o customer_controller.o customer_repo.o
 ROBOT_ORDER_OBJS := robot_order.o robot_order_controller.o order_creation_window.o robot_order_repo.o order_browser.o
 ROBOT_OBJS := robot.o robot_repo.o robot_controller.o battery_validation_strategy.o robot_validation_strategy.o robot_validation_strategy_repo.o generic_validation_strategy.o  robot_creation_window.o robot_browser.o
 PART_OBJS := part_controller.o part.o rrs_io.o battery.o arm.o locomotor.o torso.o head.o part_repo.o part_creation_window.o part_browser.o
 RRS_OBJS := rrs_window.o rrs_manager.o rrs_main_window.o rrs_manager_view.o rrs_browser.o
-OBJS := $(RRS_OBJS) $(ROBOT_OBJS) $(PART_OBJS) $(ROBOT_ORDER_OBJS) tinyxml2.o
+OBJS := $(RRS_OBJS) $(ROBOT_OBJS) $(PART_OBJS) $(ROBOT_ORDER_OBJS) $(CUSTOMER_OBJS) tinyxml2.o
 
 ROBOT_ORDER_TEST_OBJS := robot_order_repo.o robot_order_repo_test.o
 ROBOT_TEST_OBJS := robot.o robot_test.o robot_repo.o robot_repo_test.o battery_validation_strategy_test.o robot_validation_strategy_repo.o battery_validation_strategy.o robot_validation_strategy_repo_test.o generic_validation_strategy.o
@@ -30,7 +31,7 @@ $(OBJ_DIR)/rrs_manager.o: rrs_manager.cpp part_controller.hpp robot_controller.h
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rrs_manager_view.o: rrs_manager_view.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/rrs_main_window.o: rrs_main_window.cpp part_creation_window.hpp rrs_window.hpp robot_browser.hpp part_controller.hpp robot_controller.hpp part_browser.hpp order_creation_window.hpp order_browser.hpp
+$(OBJ_DIR)/rrs_main_window.o: rrs_main_window.cpp part_creation_window.hpp rrs_window.hpp robot_browser.hpp part_controller.hpp robot_controller.hpp part_browser.hpp order_creation_window.hpp order_browser.hpp customer_controller.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/rrs_browser.o: rrs_browser.cpp 
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
@@ -85,6 +86,12 @@ $(OBJ_DIR)/order_browser.o: order_browser.cpp part.hpp robot_order.hpp
 $(OBJ_DIR)/robot_order_controller.o: robot_order_controller.cpp robot_repo.hpp rrs_error.hpp robot_order_repo.hpp rrs_io.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/robot_order_repo.o: robot_order_repo.cpp robot_order.hpp rrs_error.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/customer.o: customer.cpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/customer_repo.o: customer_repo.cpp customer.hpp
+	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
+$(OBJ_DIR)/customer_controller.o: customer_controller.cpp customer_repo.hpp rrs_io.hpp rrs_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/tinyxml2.o: tinyxml2.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
