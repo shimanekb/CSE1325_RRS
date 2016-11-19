@@ -19,16 +19,20 @@ RrsMainWindow::RrsMainWindow()
    orderCreationWindow = new OrderCreationWindow{};
    partCreationWindow = new PartCreationWindow{};
    robotCreationWindow = new RobotCreationWindow{};
+   customerCreationWindow = new CustomerCreationWindow{};
+
    menubar.add("File/Quit", 0, WindowExitCallback, (void*) this);
    menubar.add("Create/Part", 0, CreatePartOptionCallback, (void*) this);
    menubar.add("Create/Robot", 0, CreateRobotOptionCallback, (void*) this);
    menubar.add("Create/Order", 0, CreateOrderOptionCallback, (void*) this);
+   menubar.add("Create/Customer", 0, CreateCustomerOptionCallback, (void*) this);
    menubar.add("Report/Part", 0, DisplayPartBrowserCallback, (void *) this);
    menubar.add("Report/Robot", 0, DisplayRobotBrowserCallback, (void *) this);
    menubar.add("Report/Order", 0, DisplayOrderBrowserCallback, (void *) this);
    menubar.add("Report/Refresh", 0, RefreshReportsCallback, (void*) this);
 
    orderCreationWindow->hide();
+   customerCreationWindow->hide();
    partBrowser.hide();
    orderBrowser.hide();
    end();
@@ -116,6 +120,15 @@ void RrsMainWindow::CreatePartOptionCallback(Fl_Widget *w, void* v) {
     ((RrsMainWindow*) v)->CreatePartOption();
 }
 
+inline void RrsMainWindow::CreateCustomerOption() {
+    customerCreationWindow->ResetInputs();
+    customerCreationWindow->show();
+}
+
+void RrsMainWindow::CreateCustomerOptionCallback(Fl_Widget *w, void* v) {
+    ((RrsMainWindow*) v)->CreateCustomerOption();
+}
+
 inline void RrsMainWindow::DisplayPartBrowser() {
     robotBrowser.hide();
     partBrowser.show();
@@ -146,8 +159,10 @@ void RrsMainWindow::DisplayOrderBrowserCallback(Fl_Widget *w , void* v) {
     ((RrsMainWindow*) v)->RefreshReports();
     ((RrsMainWindow *) v)->DisplayOrderBrowser();
 }
+
 RrsMainWindow::~RrsMainWindow() {
     delete orderCreationWindow;
     delete partCreationWindow;
     delete robotCreationWindow;
+    delete customerCreationWindow;
 }

@@ -9,20 +9,40 @@
 #include "rrs_error.hpp"
 
 CustomerCreationWindow::CustomerCreationWindow() 
-    : RrsWindow(400,200,"Customer"),  
-    customerName(100, 30, 150, 30, "Name: "),
-    customerAddress(100, 65, 150, 30, "Address: "),
-    customerPhoneNumber(100, 100, 150, 30, "Phone Number:"),
-    customerEmail(100, 135, 150, 30, "Email: "),
+    : RrsWindow(400,220,"Customer"),  
+    customerName(120, 30, 150, 30, "Name: "),
+    customerAddress(120, 65, 150, 30, "Address: "),
+    customerPhoneNumber(120, 100, 150, 30, "Phone Number:"),
+    customerEmail(120, 135, 150, 30, "Email: "),
     createButton(100, 180, 90, 30, "Create"),
     cancelButton(225, 180, 90, 30, "Cancel") {
 
         createButton.callback(CreateCustomerCallback, this);
         cancelButton.callback(WindowExitCallback, this);
         end();
-    };
+};
 
 inline void CustomerCreationWindow::CreateCustomer() {
+    int errorCode = RrsError::NO_ERROR;
+    CustomerController controller{};
+    std::unique_ptr<Customer> customer;
+
+    errorCode =controller.CreateCustomer(customer, this);
+
+    if (!errorCode) {
+         std::stringstream ss;
+         ss << "Customer Created!" << std::endl <<std::endl << customer->ToString();
+         hide();
+         fl_message(ss.str().c_str());
+    } 
+    else {
+        std::stringstream ss;
+        ss << "Cannot create Customer! Invalid input!" << std::endl 
+            << "Cannot have:" << std::endl << "\t1. Empty inputs."
+            << std::endl;
+        fl_alert(ss.str().c_str());
+    }
+
 }
 
 void CustomerCreationWindow::CreateCustomerCallback(Fl_Widget *w, void* v) {

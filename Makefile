@@ -91,7 +91,7 @@ $(OBJ_DIR)/customer.o: customer.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/customer_repo.o: customer_repo.cpp customer.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/customer_controller.o: customer_controller.cpp customer_repo.hpp rrs_io.hpp rrs_error.hpp
+$(OBJ_DIR)/customer_controller.o: customer_controller.cpp customer_repo.hpp customer_creation_window.hpp rrs_error.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/customer_creation_window.o: customer_creation_window.cpp customer_controller.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 

@@ -13,6 +13,7 @@
 #include "view/robot/robot_browser.hpp"
 #include "view/order/order_creation_window.hpp"
 #include "view/order/order_browser.hpp"
+#include "view/customer/customer_creation_window.hpp"
 
 class RrsMainWindow : public RrsWindow {
     public:
@@ -22,6 +23,7 @@ class RrsMainWindow : public RrsWindow {
         RobotCreationWindow *robotCreationWindow;
         PartCreationWindow *partCreationWindow;
         OrderCreationWindow *orderCreationWindow;
+        CustomerCreationWindow *customerCreationWindow;
         RobotBrowser robotBrowser;
         PartBrowser partBrowser;
         OrderBrowser orderBrowser;
@@ -32,6 +34,8 @@ class RrsMainWindow : public RrsWindow {
         static void CreateRobotOptionCallback(Fl_Widget *w, void* v);
         void CreateOrderOption();
         static void CreateOrderOptionCallback(Fl_Widget *w, void* v);
+        void CreateCustomerOption();
+        static void CreateCustomerOptionCallback(Fl_Widget *w, void* v);
         void RefreshReports();
         static void RefreshReportsCallback(Fl_Widget *w , void* v);
         void DisplayPartBrowser();
