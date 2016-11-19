@@ -1,55 +1,39 @@
 #include "controller/order/robot_order_controller.hpp"
 
 #include <memory>
-#include <iostream>
 
 #include "rrs_error.hpp"
 #include "rrs_io.hpp"
 
-/*
-int RobotOrderController::CreateRobotOrder() {
+int RobotOrderController::CreateRobotOrder(std::unique_ptr<RobotOrder> &orderIn, 
+            const OrderCreationWindow* window) {
     int error_code = RrsError::NO_ERROR;
-    int model_number;
-    int quantity;
+    constexpr int kMax = 99999999999;
+    const std::string kEmptyChoice = "None";
+    int quantity = window->GetOrderQuantity();
+    int modelNumber;
+    std::string modelNumberStr = window->GetRobotNumber();
     std::unique_ptr<Robot> robot;
 
-    robot_order_view.AskRobotModelNumber();
-    if (!rrs_io::IntIn(model_number)) {
-        error_code = robot_repo.GetRobotByModelNumber(model_number, robot);
+    if (modelNumberStr.compare(kEmptyChoice)) {
+        error_code = rrs_io::StringToInt(modelNumberStr, modelNumber,
+                0, kMax);
+        error_code = robot_repo.GetRobotByModelNumber(modelNumber, robot);
     }
     else {
         error_code = RrsError::BAD_INPUT_TYPE;
     }
 
-    if (error_code) {
-        robot_order_view.DisplayBadRobotModelNumber();
-    }
-    else {
-        robot_order_view.AskRobotModelQuantity();
-        if (error_code = rrs_io::IntIn(quantity)) {
-            robot_order_view.DisplayBadQuantityMessage();
-        }
-    }
-
     if (!error_code) {
-        error_code = robot_order_repo.SaveRobotOrder(
-                std::unique_ptr<RobotOrder>{new RobotOrder(model_number, quantity, 
-                        robot->GetPrice())});
-    }
+        std::unique_ptr<Robot> tmpRobot{robot->Clone()};
+        RobotOrder *tmpOrder = new RobotOrder{tmpRobot, quantity};
 
-    if (!error_code) {
-        std::vector<std::unique_ptr<RobotOrder>> tmp_orders;
-        robot_order_repo.GetAllRobotOrders(tmp_orders);
+        error_code = robot_order_repo.SaveRobotOrder(std::unique_ptr<RobotOrder>{
+                tmpOrder->Clone()});
+        orderIn = std::unique_ptr<RobotOrder>{tmpOrder->Clone()};
 
-        robot_order_view.DisplayRobotOrderCreationSuccess();
-        robot_order_view.DisplayRobotOrder(tmp_orders.back());
-
-        tmp_orders.clear();
-    }
-    else {
-        robot_order_view.DisplayRobotOrderCreationFailure();
+        delete tmpOrder;
     }
 
     return error_code;
 }
-*/

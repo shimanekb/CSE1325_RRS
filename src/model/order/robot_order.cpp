@@ -5,7 +5,7 @@
 
 RobotOrder::RobotOrder(std::unique_ptr<Robot> &tmpRobot, int quantity)
     : kQuantity(quantity) {
-        robot = std::unique_ptr<Robot>{std::move(robot)};
+        robot = std::unique_ptr<Robot>{std::move(tmpRobot)};
     };
 
 std::string RobotOrder::ToString() const {
@@ -14,7 +14,10 @@ std::string RobotOrder::ToString() const {
     ss << "\tRobot Model Number: " << robot->GetModelNumber() << std::endl
         << "\tQuantity: " << kQuantity << std::endl
         << "\tTotal Cost: $" << std::fixed << std::setprecision(2) 
-        << CalculateTotalCost() << std::endl;
+        << CalculateTotalCost() << std::endl
+        << "Robot Information" << std::endl
+        << "*********************************" << std::endl
+        << robot->ToString();
 
     return ss.str();
 }

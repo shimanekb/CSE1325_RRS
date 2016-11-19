@@ -3,6 +3,7 @@
 #include <FL/fl_ask.H>
 #include <sstream>
 
+#include "controller/order/robot_order_controller.hpp"
 #include "rrs_io.hpp"
 #include "rrs_error.hpp"
 
@@ -43,8 +44,25 @@ int OrderCreationWindow::GetOrderQuantity() const {
 }
 
 inline void OrderCreationWindow::CreateOrder() {
-    int error_code;
+    int error_code = RrsError::NO_ERROR;
+    RobotOrderController controller{};
+    std::unique_ptr<RobotOrder> order;
 
+    error_code = controller.CreateRobotOrder(order, this);
+
+    if (!error_code) {
+         std::stringstream ss;
+         ss << "Order Created!" << std::endl <<std::endl << order->ToString();
+         hide();
+         fl_message(ss.str().c_str());
+    } 
+    else {
+        std::stringstream ss;
+        ss << "Cannot create Order! Invalid input!" << std::endl 
+            << "Cannot have:" << std::endl << "\t1. Negative numbers"
+            << std::endl << "\t2. Empty Robot Model choice.";
+        fl_alert(ss.str().c_str());
+    }
 }
 
 void OrderCreationWindow::CreateOrderCallback(Fl_Widget *w, void* v) {

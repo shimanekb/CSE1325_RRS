@@ -3,10 +3,12 @@
 
 #include "model/robot/robot_repo.hpp"
 #include "model/order/robot_order_repo.hpp"
+#include "view/order/order_creation_window.hpp"
 
 class RobotOrderController {
     public:
-        int CreateRobotOrder();
+        int CreateRobotOrder(std::unique_ptr<RobotOrder> &orderIn, 
+            const OrderCreationWindow* window);
     private:
         RobotOrderRepo &robot_order_repo = RobotOrderRepo::GetInstance();
         RobotRepo &robot_repo = RobotRepo::GetInstance();
