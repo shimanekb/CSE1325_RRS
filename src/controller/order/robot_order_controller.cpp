@@ -1,5 +1,6 @@
 #include "controller/order/robot_order_controller.hpp"
 
+#include <iostream>
 #include <memory>
 
 #include "rrs_error.hpp"
