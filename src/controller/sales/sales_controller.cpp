@@ -13,7 +13,7 @@ int SalesController::CreateSalesAssociate(std::unique_ptr<SalesAssociate> &assoc
     std::string name = window->GetName();;
     
     errorCode = rrs_io::StringToInt(employeeNumberStr, employeeNumber,
-            0, kMax);
+            1, kMax);
 
     if (!(errorCode && name.empty())) {
         SalesAssociate *associate = new SalesAssociate{name, employeeNumber};    

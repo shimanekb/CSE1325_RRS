@@ -102,7 +102,7 @@ $(OBJ_DIR)/sales_associate_repo.o: sales_associate_repo.cpp sales_associate.hpp 
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/sales_controller.o: sales_controller.cpp rrs_io.hpp sales_associate_repo.hpp sales_creation_window.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
-$(OBJ_DIR)/sales_creation_window.o: sales_creation_window.cpp sales_associate.hpp
+$(OBJ_DIR)/sales_creation_window.o: sales_creation_window.cpp sales_controller.hpp sales_associate.hpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 
 $(OBJ_DIR)/tinyxml2.o: tinyxml2.cpp
 	$(CXX) $(CXXFLAGS) $(INC) -c $< -o $@ 

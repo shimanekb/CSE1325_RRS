@@ -4,6 +4,7 @@
 #include <memory>
 #include <sstream>
 
+#include "controller/sales/sales_controller.hpp"
 #include "model/sales/sales_associate.hpp"
 #include "rrs_error.hpp"
 
@@ -21,6 +22,23 @@ SalesCreationWindow::SalesCreationWindow()
 
 inline void SalesCreationWindow::CreateSalesAssociate() {
     int errorCode = RrsError::NO_ERROR;
+    std::unique_ptr<SalesAssociate> associate;
+    SalesController controller{};
+    errorCode = controller.CreateSalesAssociate(associate, this);
+
+    if (!errorCode) {
+         std::stringstream ss;
+         ss << "Sales Associate Created!" << std::endl <<std::endl << associate->ToString();
+         hide();
+         fl_message(ss.str().c_str());
+    } 
+    else {
+        std::stringstream ss;
+        ss << "Cannot create Sales Associate! Invalid input!" << std::endl 
+            << "Cannot have:" << std::endl << "\t1. Empty inputs."
+            << std::endl;
+        fl_alert(ss.str().c_str());
+    }
 }
 
 void SalesCreationWindow::CreateSalesAssociateCallback(Fl_Widget *w, void* v) {
