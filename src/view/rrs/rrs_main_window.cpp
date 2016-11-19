@@ -36,6 +36,12 @@ void RrsMainWindow::CreateOrderOptionCallback(Fl_Widget *w, void* v) {
 
 inline void RrsMainWindow::CreateOrderOption() {
     orderCreationWindow->ResetInputs();
+    RobotController controller{}; 
+    std::vector<std::unique_ptr<Robot>> robots;
+
+    controller.GetRobots(robots);
+    orderCreationWindow->SetRobotChoice(robots);
+
     orderCreationWindow->show();
 }
 
