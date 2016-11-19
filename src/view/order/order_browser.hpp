@@ -11,7 +11,7 @@ class OrderBrowser : public RrsBrowser {
         OrderBrowser(int x, int y, int w, int h);
         int AddRobotOrder(const std::unique_ptr<RobotOrder> &order);
     private:
-        int widths[5] = {180,180, 180, 180,0};
+        int widths[7] = {180,180, 180, 180, 180, 180, 0};
 };
 
 #endif 

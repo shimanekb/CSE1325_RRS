@@ -154,6 +154,7 @@ void RrsMainWindow::CreateCustomerOptionCallback(Fl_Widget *w, void* v) {
 
 inline void RrsMainWindow::DisplayPartBrowser() {
     robotBrowser.hide();
+    orderBrowser.hide();
     partBrowser.show();
 }
 
@@ -164,6 +165,7 @@ void RrsMainWindow::DisplayPartBrowserCallback(Fl_Widget *w , void* v) {
 
 inline void RrsMainWindow::DisplayRobotBrowser() {
     partBrowser.hide();
+    orderBrowser.hide();
     robotBrowser.show();
 }
 

@@ -18,6 +18,12 @@ std::string RobotOrder::ToString() const {
         << "\tQuantity: " << kQuantity << std::endl
         << "\tTotal Cost: $" << std::fixed << std::setprecision(2) 
         << CalculateTotalCost() << std::endl
+        << "Sales Associate Informatin" << std::endl
+        << "*********************************" << std::endl
+        << associate->ToString() 
+        << "Customer Information" << std::endl
+        << "*********************************" << std::endl
+        << customer->ToString()
         << "Robot Information" << std::endl
         << "*********************************" << std::endl
         << robot->ToString();

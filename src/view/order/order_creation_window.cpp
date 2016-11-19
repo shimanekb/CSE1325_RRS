@@ -13,7 +13,7 @@ OrderCreationWindow::OrderCreationWindow()
     orderQuantity(130, 65, 90, 30, "Quantity: "),
     customerChoice(130, 100, 90, 30, "Customer: "),
     associateChoice(130, 135, 90, 30, "Sales Assoc.: "),
-    dateInput(130, 170, 90, 30, "Date (mm/dd/yyyy): "),
+    dateInput(130, 170, 90, 30, "Date(mm/dd/yyyy): "),
     createButton(100, 220, 90, 30, "Create"),
     cancelButton(225, 220, 90, 30, "Cancel") {
         orderQuantity.minimum(1);
