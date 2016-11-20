@@ -1,0 +1,33 @@
+Robbie Robot Shop Application Manual
+
+This application is to facilitate Robbie Robot Shop in making robot sales, with the 
+following main features:
+1. Creation of parts, robots, orders, customers, and sales associates.
+2. Reporting of parts, robots, and orders.
+
+To make use of these features there are options in the menu bar at 
+the top of the first window that appears upon execution of the Robbie Robot Shop Application.
+The rest of this manual will provide useful information for these menu options.
+
+#### File Features ####
+The following are the available menu options for "File":
+1. Quit - For exiting the application.
+
+#### Create Features ####
+The following are the available menu options for "Create":
+1. Part - For creating a torso, head, arm, locomotor, or battery part.
+2. Robot - For creating a robot model composed of parts created form the 
+    Create/Part menu choice. 
+3. Customer - For creating a customer; necessary for creating a Order.
+4. Sales Associate - For creating a sales associate; necessary for creating 
+    a Order.
+5. Order - For creating an order composed of a robot model choice with its quantity, 
+    the sales associate creating the order, and the customer of the order.
+
+#### Report Features ####
+The following are the available menu options for "Report":
+1. Part - For displaying the part report.
+2. Robot - For displaying the robot report.
+3. Order - For displaying the order report.
+4. Refresh - For refreshing the data for all of the differing reports with 
+    the most current information.
